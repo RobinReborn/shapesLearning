@@ -1,14 +1,12 @@
 <body>
     <div id='graphContainer' style="width: 80%px; margin-left:10%; margin-right:10%">
 	    <div id='graph'></div>
-        <div id="slider-range" ></div>
+        <div id='code' style="display:none;"></div>
 </div>
 
 <script src="http://d3js.org/d3.v3.min.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.23/jquery-ui.min.js"></script>
-<!-- this is necessary for the slider -->
-    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/ui-lightness/jquery-ui.css" type="text/css" media="all" />
 <style>
 
 div.tooltip {   
@@ -24,149 +22,5 @@ div.tooltip {
     pointer-events: none;           
 }
 </style>
-<script>
-    var data = 
-[[1,2,3],
-[3,3,7],
-[7,2,8],
-[4,8,1],
-[3,6,9]]
-    // d3.csv("x-y-z.csv", function(csvdata) {
-    //     for (var i = 0; i < csvdata.length; i++) {
-    //         data.push(csvdata[i].x,csvdata[i].y,csvdata[i].z)
-    //     }
-    // })
-//{% for point in dataset %}
-// var pointDate = new Date("{{point.Time.ctime}}")
-
-// {% endfor %}
-
- // ===== Start Scatterplot =====
-            // Setup settings for graphic
-            var margin = {top: 30, right: 50, bottom: 30, left: 50}
-            var canvas_width = 700 - margin.right -margin.left;
-            var canvas_height = 700 -margin.top - margin.bottom;
-            var timeFormat = d3.time.format("%m/%Y");
-            //right now we're using this for mouseover, we vary it depending on the selection
-            var dayhourMinuteTimeFormat = d3.time.format("%d:%H:%M")
-            // Create SVG element
-            var minX = d3.min(data,function(d) {
-                    return d[0]
-                })
-            var maxX = d3.max(data, function(d) {
-                    return d[0];  // get the input domain as first column of array
-                })
-// Define the div for the tooltip
-			var div = d3.select("body").append("div")	
-    			.attr("class", "tooltip")				
-    			.style("opacity", 0);
-            var graph = d3.select("#graph")  // This is where we put our vis
-                .append("svg:svg")
-                    .attr("width", canvas_width + margin.left + margin.right)
-                    .attr("height", canvas_height + margin.top + margin.bottom)
-                .append("g")
-                    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-            // scatterplot data is an array of arrays
-            var x = d3.time.scale()
-                .domain([minX, maxX])
-                .range([margin.left, canvas_width])  // set the output range
-                .nice();  // Make decimals round up nicely
-
-            var y = d3.scale.linear()
-                .domain([0, d3.max(data, function(d) {
-                    return d[1];  // gets the input domain as the second column of array
-                })])
-                .range([canvas_height, margin.bottom])  // set the output range
-                .nice();  // Make decimals round up nicely
-        $(function() {
-        $( "#slider-range" ).slider({
-            range: true,
-            min: minX,
-            max: maxX,
-            values: [ minX, maxX ],
-            slide: function( event, ui ) {
-              var begin = d3.max([ui.values[0], minX]);
-              var end = d3.min([ui.values[1], maxX]);
-              zoom(begin, end);
-            }
-        });
-    });
-function addPoints(dataPoints) {
-        graph.selectAll("points")
-                .data(dataPoints)
-                .enter()
-                .append("circle")
-                .attr("x", function(d) {
-                    return x(d[0]);  // Location of x
-                })
-
-                .attr("y", function(d) {
-                    return y(d[1]);  // Location of y
-                })
-                .attr("r", 2.5)  // Radius
-                .attr("fill","blue")
-                .attr("cx", function(d) {
-                    return x(d[0]);  // Returns scaled circle x
-                })
-                .attr("cy", function(d) {
-                    return y(d[1]);  // Returns scaled circle y
-                })
-                .on("mouseover", function(d) {		
-            div.transition()		
-                .duration(200)		
-                .style("opacity", .9);		
-            div	.html(dayhourMinuteTimeFormat(d[2]) + "<br/>$"  + String(d[1]))	
-                .style("left", (d3.event.pageX) + "px")		
-                .style("top", (d3.event.pageY - 28) + "px");	
-            })					
-        .on("mouseout", function(d) {		
-            div.transition()		
-                .duration(500)		
-                .style("opacity", 0);
-                });
-    }
-addPoints(data)
-var xTicksArray = []
- var xStep = (maxX - minX) /5
- for (var i = 0; i <=5 ; i++){
-    date = new Date(minX + xStep * i)
-    xTicksArray.push(date)
- }
- var xAxis = d3.svg.axis()  // Create an x axis
-                .scale(x)      // Scale x axis
-                .orient("bottom").tickValues(xTicksArray)  // Put text on bottom of axis line
-               .tickFormat(timeFormat)
-
-graph.append("svg:g")     // Append a group element (itself invisible, but helps 'group' elements)
-    .attr("class", "x axis")  // Assign the 'axis' CSS
-    .attr("transform", "translate(0," + (canvas_height - margin.bottom) + ")")  // Place axis at bottom
-    .call(xAxis);  // Call function to create axis
-
-            // Define Y axis and attach to graph
-var yAxis = d3.svg.axis()  // Create a y axis
-    .scale(y)  // Scale y axis
-    .orient("left")
-    .ticks(5);  // Set rough # of ticks (optional)
-
-  graph.append("text")
-      .attr("transform", "translate(" + ((canvas_width+margin.left)/2) + " ," + (canvas_height + margin.bottom) + ")")  
-      .style("text-anchor", "middle")
-      .text("Date");
-
-graph.append("g")
-    .attr("class", "y axis")
-    .attr("transform", "translate(" + margin.left + "," + -margin.bottom + ")")
-    .call(yAxis);
-graph.append("text")
-    .attr("transform", "rotate(-90)")
-    .attr("y", 0 - margin.left)
-    .attr("x", 0 - (canvas_height/2))
-    .attr("dy", "1em")
-    .style("text-anchor", "middle")
-    .text("Price (USD)");
-
-
-
-
-</script>
+<script src="script.js"></script>
 </body>
