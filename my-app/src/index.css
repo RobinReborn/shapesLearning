@@ -4,7 +4,7 @@ height:35em;
 width:35em;
 text-align: center; 
 font-size:10vh;
-z-index: -1;
+z-index: 1;
 position: relative;
 }
 .code input{
@@ -24,4 +24,7 @@ position: relative;
 }
 #graph{
 	width:35em;
+}
+.drawHolder{
+	display: flex;
 }
