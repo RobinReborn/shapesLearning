@@ -6,6 +6,10 @@ text-align: center;
 font-size:10vh;
 z-index: -1;
 }
+.code input{
+	font-size:10vh;
+	width:2em;
+}
 .flipHolder {
 	width: 35em;
 	height: 100%;
