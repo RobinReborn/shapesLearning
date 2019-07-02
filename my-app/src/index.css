@@ -1,10 +1,11 @@
 .code{
-display:none;
+/*display:none;*/
 height:35em;
 width:35em;
 text-align: center; 
 font-size:10vh;
 z-index: -1;
+position: relative;
 }
 .code input{
 	font-size:10vh;
@@ -12,7 +13,6 @@ z-index: -1;
 }
 .flipHolder {
 	width: 35em;
-	height: 100%;
 	position: relative;
 }
 .card{
