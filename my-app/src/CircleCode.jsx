@@ -5,13 +5,14 @@ import CodeOutput from './CodeOutput';
 class CircleCode extends React.Component {
 	constructor(props) {
 	    super(props);
-	    this.state = {r: '350', fill: 'blue', cx: '350', cy: '350'};
+	    this.state = {r: '350', fill: 'blue', cx: '350', cy: '350', opacity: 1, zIndex : 1};
 	    this.toggle = this.toggle.bind(this);
 	    this.changeCode = this.changeCode.bind(this);
   	}
   	toggle() {
   		this.setState({
-			opacity : this.state.opacity == 1 ? 0.2 : 1
+			opacity : this.state.opacity == 1 ? 0.2 : 1,
+			zIndex: this.state.zIndex == 1 ? -1 : 1
 		})
   	}
   	preventDefault = e => {
@@ -28,7 +29,7 @@ class CircleCode extends React.Component {
 		return (
 			<div className='drawHolder'>
 				<div className='flipHolder' onClick={this.toggle}>
-					<div className='card' style={{opacity:this.state.opacity}} onClick={this.toggle}>
+					<div className='card' style={{opacity:this.state.opacity, zIndex:this.state.zIndex}} onClick={this.toggle}>
 						<svg width="35em" height="35em" id="svgholder">
 							<circle id="blueCircle" r="350" fill="blue" cx="350" cy="350" onClick={this.toggle}></circle>
 						</svg>
