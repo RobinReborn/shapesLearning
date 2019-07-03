@@ -5,9 +5,13 @@ import CodeOutput from './CodeOutput';
 class CircleCode extends React.Component {
 	constructor(props) {
 	    super(props);
-	    this.state = {r: '350', fill: 'blue', cx: '350', cy: '350', opacity: 1, zIndex : 1};
+	    this.state = {r: '0', fill: 'blue', cx: '0', cy: '0',
+	    			  desiredState : {r: String(Math.floor(Math.random() *200)), 
+	    			  fill: 'blue', 
+	    			  cx: String(Math.floor(Math.random() *200)), 
+	    			  cy: String(Math.floor(Math.random() *200))}, 
+	    opacity: 1, zIndex : 1};
 	    this.toggle = this.toggle.bind(this);
-	    this.changeCode = this.changeCode.bind(this);
 	    this.draw = this.draw.bind(this)
   	}
   	toggle() {
@@ -19,19 +23,20 @@ class CircleCode extends React.Component {
   	preventDefault = e => {
   		e.stopPropagation();
   	}
-  	changeCode = e => {
-	    const {name, value} = e.target;
-	    this.setState(() => ({
-	      [name]: value
-	    }))
-  	}
   	draw = e => {
   		e.preventDefault();
-    for (var i = 0; i < e.target.length-1; i++) {
-    	let {name, value} = e.target[i]
-		this.setState(() => ({
-			[name]: value
-			}))    
+  		let correct = true;
+    	for (var i = 0; i < e.target.length-1; i++) {
+    		let {name, value} = e.target[i]
+			this.setState(() => ({
+				[name]: value
+			}))
+			if (correct && this.state.desiredState[name] != value) {
+				correct = false;
+			}
+		}
+		if (correct) {
+			//do something here
 		}
   	}
 
@@ -39,11 +44,9 @@ class CircleCode extends React.Component {
 		return (
 			<div className='drawHolder'>
 				<div className='flipHolder' onClick={this.toggle}>
-					<div className='card' style={{opacity:this.state.opacity, zIndex:this.state.zIndex}} onClick={this.toggle}>
-						<svg width="35em" height="35em" id="svgholder">
-							<circle id="blueCircle" r="350" fill="blue" cx="350" cy="350" onClick={this.toggle}></circle>
-						</svg>
-					</div>
+					<svg width="35em" height="35em" id="svgholder" className='card' style={{opacity:this.state.opacity, zIndex:this.state.zIndex}}>
+						<circle id="blueCircle" r="350" fill="blue" cx="350" cy="350"/>
+					</svg>
 					<div id='code' className='code card'>
 			            	{/* this can be defined as component (with subcomponents for inputs) later */}
 				            <br/>
@@ -66,7 +69,8 @@ class CircleCode extends React.Component {
 				            </form>
 			        </div>
 				</div>
-				<CodeOutput r={this.state.r} fill={this.state.fill} cx={this.state.cx} cy={this.state.cy} />
+				<CodeOutput r={this.state.desiredState.r} fill={this.state.desiredState.fill} cx={this.state.desiredState.cx} cy={this.state.desiredState.cy}
+							guessR = {this.state.r} guessFill= {this.state.fill} guesscx= {this.state.cx} guesscy= {this.state.cy} />
 			</div>
     	);
 	}
