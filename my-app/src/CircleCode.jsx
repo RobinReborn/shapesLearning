@@ -1,6 +1,6 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import CodeOutput from './CodeOutput';
+import ElementMover from './ElementMover';
 
 class CircleCode extends React.Component {
 	constructor(props) {
@@ -16,8 +16,8 @@ class CircleCode extends React.Component {
   	}
   	toggle() {
   		this.setState({
-			opacity : this.state.opacity == 1 ? 0.2 : 1,
-			zIndex: this.state.zIndex == 1 ? -1 : 1
+			opacity : this.state.opacity === 1 ? 0.2 : 1,
+			zIndex: this.state.zIndex === 1 ? -1 : 1
 		})
   	}
   	preventDefault = e => {
@@ -31,7 +31,7 @@ class CircleCode extends React.Component {
 			this.setState(() => ({
 				[name]: value
 			}))
-			if (correct && this.state.desiredState[name] != value) {
+			if (correct && this.state.desiredState[name] !== value) {
 				correct = false;
 			}
 		}
@@ -71,6 +71,7 @@ class CircleCode extends React.Component {
 				</div>
 				<CodeOutput r={this.state.desiredState.r} fill={this.state.desiredState.fill} cx={this.state.desiredState.cx} cy={this.state.desiredState.cy}
 							guessR = {this.state.r} guessFill= {this.state.fill} guesscx= {this.state.cx} guesscy= {this.state.cy} />
+			<ElementMover />
 			</div>
     	);
 	}
