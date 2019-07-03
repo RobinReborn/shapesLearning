@@ -8,6 +8,7 @@ class CircleCode extends React.Component {
 	    this.state = {r: '350', fill: 'blue', cx: '350', cy: '350', opacity: 1, zIndex : 1};
 	    this.toggle = this.toggle.bind(this);
 	    this.changeCode = this.changeCode.bind(this);
+	    this.draw = this.draw.bind(this)
   	}
   	toggle() {
   		this.setState({
@@ -24,6 +25,15 @@ class CircleCode extends React.Component {
 	      [name]: value
 	    }))
   	}
+  	draw = e => {
+  		e.preventDefault();
+    for (var i = 0; i < e.target.length-1; i++) {
+    	let {name, value} = e.target[i]
+		this.setState(() => ({
+			[name]: value
+			}))    
+		}
+  	}
 
 	render() {
 		return (
@@ -35,23 +45,25 @@ class CircleCode extends React.Component {
 						</svg>
 					</div>
 					<div id='code' className='code card'>
-			            <p>
 			            	{/* this can be defined as component (with subcomponents for inputs) later */}
 				            <br/>
 				            &lt;circle id=
 				            <br/>
 				            "blueCircle"
 				            <br/>
-				            r=<input type='text' name='r' value={this.state.r} onChange={this.changeCode} onClick={this.preventDefault}></input> 
-				            <br/>
-				            fill=<input type='text' name='fill' value={this.state.fill} onChange={this.changeCode} onClick={this.preventDefault}></input> 
-				            <br/>
-				            cx=<input type='text' name='cx' value={this.state.cx} onChange={this.changeCode} onClick={this.preventDefault}></input> 
-				            <br/>
-				            cy=<input type='text' name='cy' value={this.state.cy} onChange={this.changeCode} onClick={this.preventDefault}></input>&gt;
-				            <br/>
-				            &lt;/circle&gt; 
-			            </p>
+				            <form onSubmit={this.draw} >
+					            r=<input type='text' name='r' placeholder={this.state.r} onClick={this.preventDefault}/>
+					            <br/>
+					            fill=<input type='text' name='fill' placeholder={this.state.fill} onClick={this.preventDefault}/>
+					            <br/>
+					            cx=<input type='text' name='cx' placeholder={this.state.cx} onClick={this.preventDefault}/>
+					            <br/>
+					            cy=<input type='text' name='cy' placeholder={this.state.cy} onClick={this.preventDefault}/>&gt;
+					            <br/>
+					            &lt;/circle&gt;
+					            <br/>
+					            <input type='Submit' readOnly value='Draw' onClick={this.preventDefault}/>
+				            </form>
 			        </div>
 				</div>
 				<CodeOutput r={this.state.r} fill={this.state.fill} cx={this.state.cx} cy={this.state.cy} />

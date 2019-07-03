@@ -1,10 +1,6 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 
 class CodeOutput extends React.Component {
-	constructor(props) {
-	    super(props);
-	}
 	render() {
 		return (
 			<svg width="35em" height="35em" id="svgholder">
