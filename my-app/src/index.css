@@ -1,8 +1,11 @@
 .code{
 	text-align: center; 
-	font-size:10vh;
+	font-size:10vmin;
 	z-index: 0;
 	position: relative;
+	width:70%;
+	position: absolute;
+
 }
 .code input{
 	font-size:10vh;
@@ -16,12 +19,12 @@
 .card{
 	width: 100%;
 	position: absolute;
-	top:0;
-	left:0;
 }
 .drawHolder{
 	display: flex;
 	width: 100%;
+	padding-left: 2%;
+	padding-right: 2%;
 }
 #move{
 	position: absolute;
@@ -32,9 +35,7 @@
 	top: 0px;
 }
 .objectHolder{
-	width:46%;
-	padding-right:2%;
-	padding-left:2%;
+	width:50%;
 }
 svg {
 	width:70%;
