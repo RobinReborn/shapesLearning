@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import registerServiceWorker from './registerServiceWorker';
 import CircleCode from './CircleCode';
+import Layout from './Layout';
 
-ReactDOM.render(<CircleCode />, document.getElementById('root'));
+ReactDOM.render(<Layout/>, document.getElementById('root'));
 registerServiceWorker();

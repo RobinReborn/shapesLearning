@@ -4,7 +4,6 @@ import Draggable from 'react-draggable';
 class AttributeHolder extends React.Component{
 	constructor(props){
 		super(props);
-		//this.attributes = Object.values(this.props).attributes).map(x => x.name + " = " + x.nodeValue);
 	}
 
 	render() {
