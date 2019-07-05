@@ -8,8 +8,8 @@ class UserInput extends React.Component{
 
 	render(){
 		switch (this.props.level) {
-			case 1: {
-				return(<ClickShape shape={this.props.shape}/>)
+			case 0: {
+				return(<ClickShape shape={this.props.shape} shapeUpgrade={this.props.shapeUpgrade}/>)
 			}
 		}
 	}

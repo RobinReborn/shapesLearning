@@ -23,8 +23,6 @@
 .drawHolder{
 	display: flex;
 	width: 100%;
-	padding-left: 2%;
-	padding-right: 2%;
 }
 #move{
 	position: absolute;
@@ -36,7 +34,12 @@
 }
 .objectHolder{
 	width:50%;
+	text-align:center;
 }
 svg {
 	width:70%;
+}
+#instructions{
+	height:20%;
+	font-size:2em;
 }

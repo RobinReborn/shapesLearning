@@ -1,15 +1,15 @@
 import React from 'react';
 import ClickCircle from './ClickCircle';
+import ClickRectangle from './ClickRectangle';
 
 class ClickShape extends React.Component{
-	constructor(props) {
-	    super(props);
-	}
-	
 	render() {
 		switch (this.props.shape) {
 			case 'circle': {
-				return(<ClickCircle/>)
+				return(<ClickCircle shapeUpgrade={this.props.shapeUpgrade}/>)
+			}
+			case 'rectangle': {
+				return(<ClickRectangle shapeUpgrade={this.props.shapeUpgrade}/>)
 			}
 		}
 	}
