@@ -42,4 +42,7 @@ svg {
 #instructions{
 	height:20%;
 	font-size:2em;
+	padding-top: 2%;
+	padding-left: 2%;
+	padding-bottom:5%;
 }
