@@ -7,7 +7,7 @@ export function click(){
 			})
 			this.props.update(['updateInstructions'])
   		}
-  		else {
+  		else if (this.state.clicked==true) {
   			this.props.update(['updateShape'])
   		}
   	}

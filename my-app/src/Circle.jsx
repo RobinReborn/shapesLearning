@@ -5,24 +5,21 @@ class Circle extends React.Component{
 	constructor(props) {
 	    super(props);
 	    this.handleDrag = this.handleDrag.bind(this);
-	    this.deleteElement = this.deleteElement.bind(this);
-	    this.state = {deltaPosition: {x: 0, y: 0}};
 	}
 	componentDidMount(){
-		const elements = document.getElementById("dragElements").children
-		let positions = []
-		let desiredPositions = []
-		const offsetWidth = document.getElementsByClassName("objectHolder")[0].offsetWidth
-		const flex = 50;
-		for (let x=1; x < elements.length; x++){
-			let posInfo = elements.item(x).getBoundingClientRect();
-			positions.push([posInfo.left,posInfo.top]);
-			desiredPositions.push([[posInfo.left+flex-offsetWidth,posInfo.left-flex-offsetWidth],[posInfo.top+flex,posInfo.top-flex]]);
+		if(this.props.attr){
+			const elements = document.getElementById("dragElements").children
+			let positions = []
+			let desiredPositions = []
+			const offsetWidth = document.getElementsByClassName("objectHolder")[0].offsetWidth
+			const flex = 50;
+			for (let x=1; x < elements.length; x++){
+				let posInfo = elements.item(x).getBoundingClientRect();
+				positions.push([posInfo.left,posInfo.top]);
+				desiredPositions.push([[posInfo.left+flex-offsetWidth,posInfo.left-flex-offsetWidth],[posInfo.top+flex,posInfo.top-flex]]);
+			}
+			this.setState({currentPositions: positions, desiredPositions: desiredPositions})
 		}
-		this.setState({currentPositions: positions, desiredPositions: desiredPositions})
-	}
-	deleteElement(ui) {
-		ui.node.remove()
 	}
 	handleDrag(e,ui) {
 		const elementNumber = Number(ui.node.id.substring(10))
@@ -36,13 +33,12 @@ class Circle extends React.Component{
 			x >= this.state.desiredPositions[elementNumber][0][1]) &&
 			(y <= this.state.desiredPositions[elementNumber][1][0] &&
 			 y >= this.state.desiredPositions[elementNumber][1][1])) {
-			this.props.update(['snapToShape',elementNumber])
-			ui.node.style.visibility = "hidden";
-
+				ui.node.style.visibility = "hidden";
+				this.props.update(['snapToShape',elementNumber])
+				}
 		}
-	}
 	
-
+	
 	render() {
 			if (this.props.attr){
 				return (
@@ -53,11 +49,11 @@ class Circle extends React.Component{
 							</svg>
 						</div>
 						<div className='card' id='dragElements'>
-							<svg viewBox="0 0 100 15"/>
-							<Draggable onDrag={this.handleDrag}><svg id='Draggable_0' viewBox="0 0 100 18"><text x="32" y="10" fontSize="12" fill="black">&lt;circle</text></svg></Draggable>
-							<Draggable onDrag={this.handleDrag}><svg id='Draggable_1' viewBox="0 0 100 18"><text x='33' y='10' fontSize="12" fill="black">r="100"</text></svg></Draggable>
-							<Draggable onDrag={this.handleDrag}><svg id='Draggable_2' viewBox="0 0 100 18"><text x="26" y="10" fontSize="12" fill="black">fill="blue"&gt;</text></svg></Draggable>
-							<Draggable onDrag={this.handleDrag}><svg id='Draggable_3' viewBox="0 0 100 18"><text x="29" y="10" fontSize="12" fill="black">&lt;/circle&gt;</text></svg></Draggable>
+							<svg viewBox="0 0 100 12"/>
+							<Draggable onDrag={this.handleDrag}><svg id='Draggable_0'  viewBox="0 0 100 19"><text className='Draggable' x="32" y="12" fontSize="12" fill="black">&lt;circle</text></svg></Draggable>
+							<Draggable onDrag={this.handleDrag}><svg id='Draggable_1'  viewBox="0 0 100 19"><text className='Draggable' x='30' y='12' fontSize="12" fill="black">r="100"</text></svg></Draggable>
+							<Draggable onDrag={this.handleDrag}><svg id='Draggable_2' viewBox="0 0 100 18"><text className='Draggable' x="20" y="12" fontSize="12" fill="black">fill="blue"&gt;</text></svg></Draggable>
+							<Draggable onDrag={this.handleDrag}><svg id='Draggable_3'  viewBox="0 0 100 18"><text className='Draggable' x="29" y="12" fontSize="12" fill="black">&lt;/circle&gt;</text></svg></Draggable>
 							<svg viewBox="0 0 100 15"/>
 						</div>
 					</div>)

@@ -7,7 +7,7 @@ import {shapeArray} from './shapeArray';
 class Layout extends React.Component{
 	constructor(props) {
 	    super(props);
-	    this.state = {level: 1, shape: 0, instruction:0, snapped: []};
+	    this.state = {level: 0, shape: 0, instruction:0, snapped: []};
 	    this.shapeUpgrade = this.shapeUpgrade.bind(this);
 	    this.update = this.update.bind(this);
 	}
@@ -15,14 +15,17 @@ class Layout extends React.Component{
 		switch (e[0]) {
 		case 'updateInstructions': {
 			this.setState({instruction: this.state.instruction + 1})
+			break;
 		}
 		case 'updateShape': {
 			this.shapeUpgrade()
+			break;
 		}
 		case 'snapToShape': {
 			let snappedArray = this.state.snapped 
 			snappedArray[e[1]] = true
 			this.setState({snapped: snappedArray})
+			break;
 		}
 	}
 	}

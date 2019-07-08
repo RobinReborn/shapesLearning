@@ -45,3 +45,10 @@ svg {
 	position: absolute;
 	width:50%;
 }
+.Draggable{
+	outline: 0.05em solid gray;
+}
+.dragged{
+		outline: 0.05em solid gray;
+		opacity: 0.5;
+}
