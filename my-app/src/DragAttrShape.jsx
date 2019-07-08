@@ -5,7 +5,7 @@ class DragAttrShape extends React.Component{
 	render() {
 		switch (this.props.shape) {
 			case 'circle': {
-				return(<DragAttrCircle/>)
+				return(<DragAttrCircle snapped={this.props.snapped}/>)
 			}
 			/*case 'rectangle': {
 				return(<DragAttrRectangle update={this.props.update}/>)

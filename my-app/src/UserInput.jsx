@@ -10,10 +10,10 @@ class UserInput extends React.Component{
 	render(){
 		switch (this.props.level) {
 			case 0: {
-				return(<ClickShape shape={this.props.shape} update={this.props.update}/>)
+				return(<ClickShape shape={this.props.shape} update={this.props.update} />)
 			}
 			case 1: {
-				return(<DragAttrShape shape={this.props.shape} update={this.props.update}/>)
+				return(<DragAttrShape shape={this.props.shape} update={this.props.update} snapped={this.props.snapped}/>)
 			}
 		}
 	}

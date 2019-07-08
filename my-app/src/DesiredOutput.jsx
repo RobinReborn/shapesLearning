@@ -8,7 +8,7 @@ class DesiredOutput extends React.Component{
 				return(<Shape shape={this.props.shape}/>)
 			}
 			case 1 : {
-				return(<Shape shape={this.props.shape} attr={true}/>)
+				return(<Shape shape={this.props.shape} attr={true} update={this.props.update}/>)
 			}
 		}
 	}

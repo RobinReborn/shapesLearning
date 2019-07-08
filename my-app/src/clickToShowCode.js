@@ -5,9 +5,9 @@ export function click(){
 				zIndex: this.state.zIndex === 1 ? -1 : 1,
 				clicked: true
 			})
-			this.props.update('updateInstructions')
+			this.props.update(['updateInstructions'])
   		}
   		else {
-  			this.props.update('updateShape')
+  			this.props.update(['updateShape'])
   		}
   	}
