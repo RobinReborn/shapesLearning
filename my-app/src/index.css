@@ -49,6 +49,6 @@ svg {
 	outline: 0.05em solid gray;
 }
 .dragged{
-		outline: 0.05em solid gray;
+		outline: 0.02em solid gray;
 		opacity: 0.5;
 }

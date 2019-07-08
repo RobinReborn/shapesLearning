@@ -7,14 +7,16 @@ class DragAttrCircle extends React.Component {
 	    this.checkFinished = this.checkFinished.bind(this);
 	}
 	checkFinished() {
-		let finished = true;
-		for (let x=0;x<this.props.snapped.length;x++){
-			if (!this.props.snapped[x]){
-				finished = false
+		let check = true;
+		if (this.props.snapped != []){
+			for (let x=0;x<3;x++){
+				if (!this.props.snapped[x]){
+					check = false;
+				}
 			}
-		}
-		if (finished){
-			this.props.update(["updateShape"]);
+			if (check){
+				this.props.update(["updateShape"]);
+			}
 		}
 	}
 	render() {
@@ -25,10 +27,14 @@ class DragAttrCircle extends React.Component {
 				</div>
 				<div className='card' onClick={this.checkFinished}>
 					<svg viewBox="0 0 100 15"/>
-					<svg viewBox="0 0 100 18">{this.props.snapped[0] ? <text className="dragged" x="32" y="12" fontSize="12" fill="black">&lt;circle</text> : <rect x="32.5" y="0" width="35" height="13" fill="grey"/>}</svg>
-					<svg viewBox="0 0 100 18">{this.props.snapped[1] ? <text className="dragged" x='30' y='12' fontSize="12" fill="black">r="100"</text> : <rect x='27.5' y='0' width="45" height="13" fill="grey"/>}</svg>
-					<svg viewBox="0 0 100 18">{this.props.snapped[2] ? <text className="dragged" x="20" y="12" fontSize="12" fill="black">fill="blue"&gt;</text> : <rect x="20" y="0" width="65" height="13" fill="grey"/>}</svg>
-					<svg viewBox="0 0 100 18">{this.props.snapped[3] ? <text className="dragged" x="29" y="12" fontSize="12" fill="black">&lt;/circle&gt;</text> : <rect x="27.5" y="0" width="45" height="13" fill="grey"/>}</svg>
+					<svg viewBox="0 0 100 18">{this.props.snapped[0] ? <text className="dragged" x="32" y="12" fontSize="12" fill="black">&lt;circle</text> : 
+					<rect x="32.5" y="0" width="35" height="13" fill="grey"/>}</svg>
+					<svg viewBox="0 0 100 18">{this.props.snapped[1] ? <text className="dragged" x='30' y='12' fontSize="12" fill="black">r="100"</text> : 
+					<rect x='27' y='0' width="45" height="13" fill="grey"/>}</svg>
+					<svg viewBox="0 0 100 18">{this.props.snapped[2] ? <text className="dragged" x="20" y="12" fontSize="12" fill="black">fill="blue"&gt;</text> : 
+					<rect x="17.5" y="0" width="65" height="13" fill="grey"/>}</svg>
+					<svg viewBox="0 0 100 18">{this.props.snapped[3] ? <text className="dragged" x="29" y="12" fontSize="12" fill="black">&lt;/circle&gt;</text> : 
+					<rect x="27.5" y="0" width="45" height="13" fill="grey"/>}</svg>
 				</div>
 			</div>
 			)

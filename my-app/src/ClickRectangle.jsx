@@ -18,9 +18,10 @@ class ClickRectangle extends React.Component{
 				</div>
 		        <div className='card'>
 			        <svg viewBox="0 0 100 100">
-			  			<text x="5" y="39" fontSize="12" fill="black">&lt;rect width="{this.state.width}"</text>
-			   			<text x="24" y="54" fontSize="12" fill="black">height="{this.state.height}"</text>
-			  			<text x="5" y="69" fontSize="12" fill="black">fill="{this.state.fill}"&gt; &lt;/rect&gt;</text>
+			  			<text x="5" y="42" fontSize="12" fill="black">&lt;rect width="{this.state.width}"</text>
+			   			<text x="24" y="58" fontSize="12" fill="black">height="{this.state.height}"</text>
+			  			<text x="27" y="73" fontSize="12" fill="black">fill="{this.state.fill}"&gt; </text>
+			  			<text x="35" y="87" fontSize="12" fill="black">&lt;/rect&gt;</text>
 					</svg>
 				</div> 
 			</div>
