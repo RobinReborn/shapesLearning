@@ -5,15 +5,16 @@ import Triangle from './Triangle';
 
 class Shape extends React.Component{
 	render(){
+
 		switch (this.props.shape) {
 			case 'circle': {
-				return(<Circle/>)
+				return(<Circle attr={this.props.attr}/>)
 			}
 			case 'rectangle' : {
-				return(<Rectangle/>)
+				return(<Rectangle attr={this.props.attr}/>)
 			}
 			case 'triangle' : {
-				return(<Triangle/>)
+				return(<Triangle attr={this.props.attr}/>)
 			}
 		}
 	}

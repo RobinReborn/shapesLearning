@@ -1,15 +1,10 @@
 .code{
 	text-align: center; 
-	font-size:10vmin;
 	z-index: 0;
 	position: relative;
 	width:70%;
 	position: absolute;
 
-}
-.code input{
-	font-size:10vh;
-	width:2em;
 }
 .flipHolder {
 	position: relative;
@@ -45,4 +40,8 @@ svg {
 	padding-top: 2%;
 	padding-left: 2%;
 	padding-bottom:5%;
+}
+.layer{
+	position: absolute;
+	width:50%;
 }
