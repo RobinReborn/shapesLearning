@@ -16,6 +16,9 @@ class ClickShape extends React.Component{
 			case 'triangle': {
 				return(<ClickTriangle update={this.props.update}/>)
 			}
+			default: {
+			break;
+			}
 		}
 	}
 }

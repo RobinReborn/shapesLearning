@@ -1,6 +1,7 @@
 import React from 'react';
 import DragAttrCircle from './DragAttrCircle';
 import DragAttrRectangle from './DragAttrRectangle';
+import DragAttrTriangle from './DragAttrTriangle';
 
 class DragAttrShape extends React.Component{
 	render() {
@@ -10,10 +11,13 @@ class DragAttrShape extends React.Component{
 			}
 			case 'rectangle': {
 				return(<DragAttrRectangle snapped={this.props.snapped} update={this.props.update}/>)
-			}/*
+			}
 			case 'triangle': {
-				return(<DragAttrTriangle update={this.props.update}/>)
-			}*/
+				return(<DragAttrTriangle snapped={this.props.snapped} update={this.props.update}/>)
+			}
+			default: {
+				break;
+			}
 		}
 	}
 }

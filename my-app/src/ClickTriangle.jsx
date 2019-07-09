@@ -2,7 +2,7 @@ import React from 'react';
 import Triangle from './Triangle';
 import {click} from './clickToShowCode.js'
 
-class ClickRectangle extends React.Component{
+class ClickTriangle extends React.Component{
 	constructor(props) {
 	    super(props);
 	    this.click = click.bind(this);
@@ -28,4 +28,4 @@ class ClickRectangle extends React.Component{
 	}
 }
 
-export default ClickRectangle;
+export default ClickTriangle;

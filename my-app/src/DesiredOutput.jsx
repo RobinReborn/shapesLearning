@@ -10,6 +10,12 @@ class DesiredOutput extends React.Component{
 			case 1 : {
 				return(<Shape shape={this.props.shape} attr={true} update={this.props.update}/>)
 			}
+			case 2 : {
+				return(<Shape shape={this.props.shape}/>)
+			}
+			default: {
+			break;
+			}
 		}
 	}
 }

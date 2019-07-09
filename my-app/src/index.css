@@ -52,3 +52,6 @@ svg {
 		outline: 0.02em solid gray;
 		opacity: 0.5;
 }
+foreignObject input{
+	font-size: 0.3em;
+}

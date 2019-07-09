@@ -14,7 +14,10 @@ class Shape extends React.Component{
 				return(<Rectangle attr={this.props.attr} update={this.props.update}/>)
 			}
 			case 'triangle' : {
-				return(<Triangle attr={this.props.attr}/>)
+				return(<Triangle attr={this.props.attr} update={this.props.update}/>)
+			}
+			default: {
+			break;
 			}
 		}
 	}

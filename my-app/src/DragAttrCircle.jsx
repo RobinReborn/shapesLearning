@@ -8,7 +8,7 @@ class DragAttrCircle extends React.Component {
 	}
 	checkFinished() {
 		let check = true;
-		if (this.props.snapped != []){
+		if (this.props.snapped !== []){
 			for (let x=0;x<3;x++){
 				if (!this.props.snapped[x]){
 					check = false;
