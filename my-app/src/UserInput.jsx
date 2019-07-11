@@ -1,9 +1,20 @@
 import React from 'react';
+import { connect } from "react-redux";
 import ClickShape from './ClickShape';
 import DragAttrShape from './DragAttrShape';
 import UserInputShape from './UserInputShape';
+import {INCREMENT_SHAPE} from './redux/actionTypes';
+import PropTypes from 'prop-types'
+import Circle from './Circle';
+import Rectangle from './Rectangle';
+import Triangle from './Triangle';
+import Shape from './Shape';
 
-class UserInput extends React.Component{
+const UserInput = ({shape}) => (
+	<Shape shape={shape}/> )
+
+UserInput.propTypes = {shape: PropTypes.number.isRequired}
+/*class UserInput extends React.Component{
 
 	render(){
 		switch (this.props.level) {
@@ -18,5 +29,5 @@ class UserInput extends React.Component{
 			}
 		}
 	}
-}
+}*/
 export default UserInput;

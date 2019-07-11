@@ -3,6 +3,7 @@ import UserInput from './UserInput';
 import DesiredOutput from './DesiredOutput';
 import Instructions from './Instructions';
 import {shapeArray} from './shapeArray';
+import ShowShape from './ShowShape';
 
 class Layout extends React.Component{
 	constructor(props) {
@@ -50,9 +51,11 @@ class Layout extends React.Component{
 			<div>
 			<Instructions text={instructionsArray[this.state.instruction]}/>
 			<div className='drawHolder'>
+				<ShowShape></ShowShape>
 				<div className = 'objectHolder'>
 					<UserInput level={this.state.level} shape={shapeArray[this.state.shape]} update={this.update} snapped={this.state.snapped}/>
 				</div>
+
 				<div className = 'objectHolder'>
 					<DesiredOutput level={this.state.level} shape={shapeArray[this.state.shape]} update={this.update} />
 				</div>
