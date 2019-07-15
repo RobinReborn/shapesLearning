@@ -1,5 +1,6 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { render } from 'react-dom'
+
 import './index.css';
 import Layout from './Layout';
 import { Provider } from 'react-redux';
@@ -9,4 +10,9 @@ import { createStore } from 'redux';
 
 const store = createStore(rootReducer)
 
-ReactDOM.render(<Provider store={store}> <Layout /> </Provider>, document.getElementById('root') );
+render(
+	<Provider store={store}> 
+		<Layout /> 
+	</Provider>, 
+	document.getElementById('root')
+)

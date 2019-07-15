@@ -1,5 +1,5 @@
 import rootReducer from './redux/reducers/';
-import {INCREMENT_SHAPE} from './redux/actionTypes';
+import {incrementInstructions, incrementShape} from './redux/actions';
 
 export function click(){
 	if (!this.state.clicked){
@@ -9,13 +9,12 @@ export function click(){
 				zIndex: this.state.zIndex === 1 ? -1 : 1,
 				clicked: true
 			})
-			this.props.update(['updateInstructions'])
+			incrementInstructions(1)
   		}
   		else if (this.state.clicked===true) {
   			/*store.dispatch(INCREMENT_SHAPE) {
     			this.setState(state => rootReducer(state, INCREMENT_SHAPE))
-  			}
-  			//this.state = rootReducer(this.state, INCREMENT_SHAPE)*/
-  			this.props.update(['updateShape'])
-  		}
+  			}*/
+        this.update()
+      }
   	}

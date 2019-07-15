@@ -4,3 +4,4 @@ export const INC_LEVEL = "INC_LEVEL";
 export const DEC_LEVEL = "DEC_LEVEL";
 export const INC_SHAPE = "INC_SHAPE";
 export const DEC_SHAPE = "DEC_SHAPE";
+export const INCREMENT_INSTRUCTIONS = "INCREMENT_INSTRUCTIONS";

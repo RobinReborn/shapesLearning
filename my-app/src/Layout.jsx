@@ -51,10 +51,10 @@ class Layout extends React.Component{
 			<div>
 			<Instructions text={instructionsArray[this.state.instruction]}/>
 			<div className='drawHolder'>
-				<ShowShape></ShowShape>
 				<div className = 'objectHolder'>
-					<UserInput level={this.state.level} shape={shapeArray[this.state.shape]} update={this.update} snapped={this.state.snapped}/>
-				</div>
+				<ShowShape shape={this.state.shape} onClick={this.update} level={this.state.level}/>
+{/*					<UserInput level={this.state.level} shape={shapeArray[this.state.shape]} update={this.update} snapped={this.state.snapped}/>
+*/}				</div>
 
 				<div className = 'objectHolder'>
 					<DesiredOutput level={this.state.level} shape={shapeArray[this.state.shape]} update={this.update} />
