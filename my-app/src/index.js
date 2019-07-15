@@ -6,13 +6,13 @@ import Layout from './Layout';
 import { Provider } from 'react-redux';
 import rootReducer from './redux/reducers'
 import { createStore } from 'redux';
-
+import ShowShape from './ShowShape';
 
 const store = createStore(rootReducer)
 
 render(
 	<Provider store={store}> 
-		<Layout /> 
+		<ShowShape/>
 	</Provider>, 
 	document.getElementById('root')
 )

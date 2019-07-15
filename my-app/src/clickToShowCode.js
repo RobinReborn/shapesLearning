@@ -1,5 +1,5 @@
 import rootReducer from './redux/reducers/';
-import {incrementInstructions, incrementShape} from './redux/actions';
+import {incrementInstructions} from './redux/actions';
 
 export function click(){
 	if (!this.state.clicked){
@@ -12,9 +12,6 @@ export function click(){
 			incrementInstructions(1)
   		}
   		else if (this.state.clicked===true) {
-  			/*store.dispatch(INCREMENT_SHAPE) {
-    			this.setState(state => rootReducer(state, INCREMENT_SHAPE))
-  			}*/
         this.update()
       }
   	}

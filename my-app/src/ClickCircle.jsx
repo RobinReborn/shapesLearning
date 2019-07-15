@@ -10,23 +10,7 @@ class ClickCircle extends React.Component{
 	    this.state = {r: '100', fill: 'blue', opacity: 1, zIndex : 1, clicked : false};
 	    this.update = this.props.update.bind(this);
 	}
-	/*click() {
-	if (!this.state.clicked){
-
-	  		this.setState({
-				opacity : this.state.opacity === 1 ? 0.2 : 1,
-				zIndex: this.state.zIndex === 1 ? -1 : 1,
-				clicked: true
-			})
-			incrementInstructions(1)
-  		}
-  		else if (this.state.clicked===true) {
-  			/*store.dispatch(INCREMENT_SHAPE) {
-    			this.setState(state => rootReducer(state, INCREMENT_SHAPE))
-  			}
-        this.update()
-      }
-  	}*/
+	
 	render() {
 		return(
 		<div className='flipHolder' onClick={this.click}>

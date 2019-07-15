@@ -9,25 +9,57 @@ import Circle from './Circle';
 import Rectangle from './Rectangle';
 import Triangle from './Triangle';
 import Shape from './Shape';
+import ClickCircle from './ClickCircle';
+import ClickRectangle from './ClickRectangle';
+import ClickTriangle from './ClickTriangle';
+import DragAttrTriangle from './DragAttrTriangle';
+import DragAttrCircle from './DragAttrCircle';
+import DragAttrRectangle from './DragAttrRectangle';
+import {getShape, incrementShape} from './redux/actions';
 
-const UserInput = ({shape}) => (
-	<Shape shape={shape}/> )
-
-UserInput.propTypes = {shape: PropTypes.number.isRequired}
-/*class UserInput extends React.Component{
-
-	render(){
-		switch (this.props.level) {
-			case 0: {
-				return(<ClickShape shape={this.props.shape} update={this.props.update} />)
-			}
-			case 1: {
-				return(<DragAttrShape shape={this.props.shape} update={this.props.update} snapped={this.props.snapped}/>)
-			}
-			case 2: {
-				return(<UserInputShape shape={this.props.shape} update={this.props.update}/>)
+const UserInput = ({shape,update,level,snapped} ) => {
+	switch (level) {
+		case 0 : {
+			switch (shape) {
+				case 'circle': {
+					return <ClickCircle update={update}/>
+				}
+				case 'rectangle' : {
+					return <ClickRectangle update={update}/>
+				}
+				case 'triangle' : {
+					return <ClickTriangle update={update}/>
+				}
+				default : {
+					return <div/>
+				}
 			}
 		}
+		case 1 : {
+			switch (shape) {
+				case 'circle': {
+						return <DragAttrCircle update={update} snapped={snapped}/>
+					}
+					case 'rectangle' : {
+						return <DragAttrRectangle update={update}/>
+					}
+					case 'triangle' : {
+						return <DragAttrTriangle update={update}/>
+					}
+					default : {
+						return <div/>
+					}
+				}
+			}
+		default : { 
+			return <div/>
+		}
 	}
-}*/
+}
+
+UserInput.propTypes = {
+	shape: PropTypes.string.isRequired,
+	level: PropTypes.number.isRequired,
+	update: PropTypes.func.isRequired
+}
 export default UserInput;

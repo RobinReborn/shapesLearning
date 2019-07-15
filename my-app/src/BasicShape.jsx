@@ -2,10 +2,10 @@ import React from 'react';
 import Circle from './Circle';
 import Rectangle from './Rectangle';
 import Triangle from './Triangle';
+import {shapeArray} from './shapeArray';
 
-class Shape extends React.Component{
+class BasicShape extends React.Component{
 	render(){
-
 		switch (this.props.shape) {
 			case 'circle': {
 				return(<Circle/>)
@@ -23,4 +23,4 @@ class Shape extends React.Component{
 	}
 }
 
-export default Shape;
+export default BasicShape;

@@ -7,6 +7,7 @@ class ClickTriangle extends React.Component{
 	    super(props);
 	    this.click = click.bind(this);
 	    this.state = {points: ["10 80", "90 80", "50 30"], fill: 'green', opacity: 1, zIndex : 1, clicked : false};
+	    this.update = this.props.update.bind(this);
 	}
 
 	render() { 

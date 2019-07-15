@@ -5,3 +5,6 @@ export const DEC_LEVEL = "DEC_LEVEL";
 export const INC_SHAPE = "INC_SHAPE";
 export const DEC_SHAPE = "DEC_SHAPE";
 export const INCREMENT_INSTRUCTIONS = "INCREMENT_INSTRUCTIONS";
+export const SNAP_SET = "SNAP_SET";
+export const SNAP_GET = "SNAP_GET";
+export const GET_SHAPE = "GET_SHAPE";

@@ -7,6 +7,8 @@ class ClickRectangle extends React.Component{
 	    super(props);
 	    this.click = click.bind(this);
 	    this.state = {width: 100, height: 80, fill: 'red', opacity: 1, zIndex : 1, clicked : false};
+	    this.update = this.props.update.bind(this);
+
 	}
 	
 
