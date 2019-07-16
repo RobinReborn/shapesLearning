@@ -7,7 +7,7 @@ const DragAttrRectangle = ({ dispatch, snapped }) => {
 	function checkFinished() {
 		let check = true;
 		if (snapped !== []){
-			for (let x=0;x<3;x++){
+			for (let x=0;x<4;x++){
 				if (!snapped[x]){
 					check = false;
 				}

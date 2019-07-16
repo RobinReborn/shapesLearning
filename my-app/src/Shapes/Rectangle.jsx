@@ -7,6 +7,8 @@ class Rectangle extends React.Component{
 	constructor(props) {
 	    super(props);
 		this.handleDrag = handleDrag.bind(this);
+		this.state = {placed: [], toPlace: 4}
+
 	}
 	componentDidMount(){
 		if(this.props.attr){

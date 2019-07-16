@@ -1,4 +1,4 @@
-import {incrementShape, snapSet} from './actions';
+import {incrementShape} from './actions';
 import { connect } from "react-redux";
 import Layout from './Layout';
 import {shapeArray} from './shapeArray';

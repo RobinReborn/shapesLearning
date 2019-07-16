@@ -1,5 +1,5 @@
 import {INCREMENT_SHAPE, INCREMENT_INSTRUCTIONS, SNAP_SET, SNAP_GET, GET_SHAPE, 
-	RESET_SNAP ,CHECK_SNAP_FINISHED} from "./actionTypes";
+	RESET_SNAP ,CHECK_SNAP_FINISHED, INSTRUCTION_INCREMENT} from "./actionTypes";
 
 export const incrementShape = value => ({
 	type: INCREMENT_SHAPE,
@@ -31,4 +31,8 @@ export const checkSnapFinished = () => ({
 
 export const resetSnap = () => ({
 	type: RESET_SNAP
+})
+
+export const instructionIncrement = () => ({
+	type: INSTRUCTION_INCREMENT
 })

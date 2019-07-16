@@ -2,22 +2,18 @@ import React from 'react';
 import Draggable from 'react-draggable';
 import {handleDrag,mount} from './dragHelpers.js'
 import {connect} from "react-redux";
-import {snapSet} from '../actions';
+import {snapSet,instructionIncrement} from '../actions';
 
 class Circle extends React.Component{
 	constructor(props) {
 	    super(props);
 	    this.handleDrag = handleDrag.bind(this);
-	    if (this.props.update){
-	    	this.update = this.props.update.bind(this);
-	    }
 	}
 	componentDidMount(){
 		if(this.props.attr){
 			mount(this);
 		}
 	}
-
 	render() {
 		if (this.props.attr){
 			return (

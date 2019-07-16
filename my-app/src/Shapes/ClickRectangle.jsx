@@ -1,6 +1,7 @@
 import React from 'react';
 import Rectangle from './Rectangle';
 import {click} from './clickToShowCode.js'
+import {connect} from "react-redux";
 
 class ClickRectangle extends React.Component{
 	constructor(props) {
@@ -31,4 +32,4 @@ class ClickRectangle extends React.Component{
 	}
 }
 
-export default ClickRectangle;
+export default connect()(ClickRectangle);

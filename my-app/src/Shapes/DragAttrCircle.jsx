@@ -1,13 +1,13 @@
 import React from 'react';
 import Circle from './Circle';
-import {snapGet, incrementShape, resetSnap} from '../actions';
+import {instructionIncrement, incrementShape, resetSnap} from '../actions';
 import {connect} from "react-redux";
 
 const DragAttrCircle = ({ dispatch, snapped }) => {
 	function checkSnapFinished() {
 		let check = true;
 		if (snapped !== []){
-			for (let x=0;x<3;x++){
+			for (let x=0;x<4;x++){
 				if (!snapped[x]){
 					check = false;
 				}
@@ -15,6 +15,7 @@ const DragAttrCircle = ({ dispatch, snapped }) => {
 			if (check){
 				dispatch(incrementShape())
 				dispatch(resetSnap())
+				dispatch(instructionIncrement())
 			}
 		}
 	}

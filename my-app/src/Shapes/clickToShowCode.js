@@ -1,6 +1,7 @@
-import {incrementInstructions} from '../actions';
+import {instructionIncrement} from '../actions';
 
 export function click(){
+	const { dispatch } = this.props;
 	if (!this.state.clicked){
 
 	  		this.setState({
@@ -8,10 +9,10 @@ export function click(){
 				zIndex: this.state.zIndex === 1 ? -1 : 1,
 				clicked: true
 			})
-			//not working
-			incrementInstructions(1)
+			dispatch(instructionIncrement())
   		}
   		else if (this.state.clicked===true) {
+  		dispatch(instructionIncrement())
         this.update()
       }
   	}

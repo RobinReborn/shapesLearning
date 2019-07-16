@@ -2,6 +2,7 @@ import { combineReducers } from "redux";
 import {INCREMENT_SHAPE, INC_LEVEL, INCREMENT_INSTRUCTIONS, GET_SHAPE} from "../actionTypes";
 import {shapeArray} from "../shapeArray";
 import snapReducer from "./snapReducer";
+import instructionsReducer from "./instructionsReducer"
 
 const initialState = {
   shape: 0,
@@ -13,25 +14,23 @@ const initialState = {
 function rootReducer(state = initialState, action) {
 	switch (action.type) {
 		case INCREMENT_SHAPE: {
-			
 			if (state.shape < shapeArray.length-1){ 
-				return Object.assign({}, state, {shape: state.shape + 1 })
-      		}
-      		else {
-      			rootReducer(state,INC_LEVEL)
-      		}
+				  return Object.assign({}, state, {shape: state.shape + 1 })
       	}
-      	case INC_LEVEL: {
-      		//something to check for max level
-      		if (state.level == 0){
-      			return Object.assign({}, state,{shape: 0, level: state.level + 1, attr: true, snapped: []})
-      		}
-      		else {
-      			return Object.assign({}, state,{shape: 0, level: state.level + 1})
-      		}
-      		break;
+      	else {
+      		rootReducer(state,INC_LEVEL)
       	}
-
+      }
+  	case INC_LEVEL: {
+  		//something to check for max level
+  		if (state.level == 0){
+  			return Object.assign({}, state,{shape: 0, level: state.level + 1, attr: true, snapped: []})
+  		}
+  		else {
+  			return Object.assign({}, state,{shape: 0, level: state.level + 1})
+  		}
+  		break;
+  	}
 		case GET_SHAPE: {
 			console.log(state.shape)
 			return state.shape
@@ -46,4 +45,4 @@ function rootReducer(state = initialState, action) {
 };
 
 
-export default combineReducers({rootReducer, snapReducer});
+export default combineReducers({rootReducer, snapReducer, instructionsReducer});

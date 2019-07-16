@@ -1,6 +1,7 @@
 import React from 'react';
 import Triangle from './Triangle';
 import {click} from './clickToShowCode.js'
+import {connect} from "react-redux";
 
 class ClickTriangle extends React.Component{
 	constructor(props) {
@@ -29,4 +30,4 @@ class ClickTriangle extends React.Component{
 	}
 }
 
-export default ClickTriangle;
+export default connect()(ClickTriangle);

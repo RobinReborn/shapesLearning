@@ -9,4 +9,5 @@ export const SNAP_SET = "SNAP_SET";
 export const SNAP_GET = "SNAP_GET";
 export const GET_SHAPE = "GET_SHAPE";
 export const CHECK_SNAP_FINISHED = "CHECK_SNAP_FINISHED";
-export const RESET_SNAP = "RESET_SNAP"
+export const RESET_SNAP = "RESET_SNAP";
+export const INSTRUCTION_INCREMENT = "INSTRUCTION_INCREMENT";

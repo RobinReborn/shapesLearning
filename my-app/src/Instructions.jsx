@@ -1,8 +1,13 @@
 import React from 'react';
-
-class Instructions extends React.Component{
-	render(){
-		return(<div id='instructions'>{this.props.text}</div>)
-	}
+import { connect } from "react-redux";
+import { instructionsArray } from './InstructionsArray'
+const Instructions = ({instructions}) => {
+	console.log(instructions)
+	return(<div id='instructions'>{instructionsArray[instructions[0]][instructions[1]]}</div>)
 }
-export default Instructions
+
+const mapStateToProps = (state) => {
+	return {instructions: state.instructionsReducer.instructions}
+}
+
+export default connect(mapStateToProps)(Instructions)

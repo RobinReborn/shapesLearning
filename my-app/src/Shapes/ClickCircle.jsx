@@ -1,6 +1,7 @@
 import React from 'react';
 import Circle from './Circle';
 import {click} from './clickToShowCode.js'
+import {connect} from "react-redux";
 
 class ClickCircle extends React.Component{
 	constructor(props) {
@@ -30,4 +31,4 @@ class ClickCircle extends React.Component{
 }
 
 
-export default ClickCircle;
+export default connect()(ClickCircle);
