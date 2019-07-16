@@ -1,4 +1,5 @@
-import {SNAP_SET, SNAP_GET} from '../actionTypes';
+import {SNAP_SET, SNAP_GET, CHECK_SNAP_FINISHED, INCREMENT_SHAPE, RESET_SNAP} from '../actionTypes';
+import rootReducer from './';
 
 const initialState = {
 	snapped: []
@@ -6,14 +7,21 @@ const initialState = {
 
 function snapReducer(state = initialState, action){
 	switch (action.type) {
+		case RESET_SNAP: {
+			return Object.assign({}, state,{snapped: []})
+		}
 		case SNAP_SET: {
-			const newState = state.slice();
-			newState.splice(action.index,0,true)
-			return newState
+			const newState = state.snapped.slice();
+			newState[action.index] = true
+			return Object.assign({}, state,{snapped: newState})
 		}
 		case SNAP_GET :{
-			console.log(state.snapped[action.index])
-			return state.snapped[action.index]
+			if (state.snapped[action.index]){
+				return true
+			}
+			else {
+				return false
+			}
 		}
 		default: {
 			return state

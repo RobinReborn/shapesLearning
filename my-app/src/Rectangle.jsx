@@ -1,6 +1,7 @@
 import React from 'react';
 import Draggable from 'react-draggable';
 import {handleDrag,mount} from './dragHelpers.js'
+import {connect} from "react-redux";
 
 class Rectangle extends React.Component{
 	constructor(props) {
@@ -40,4 +41,4 @@ class Rectangle extends React.Component{
 	}
 }
 
-export default Rectangle;
+export default connect()(Rectangle);

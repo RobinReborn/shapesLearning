@@ -1,4 +1,7 @@
+import {snapSet} from './redux/actions';
+
 export function handleDrag(e,ui) {
+	const { dispatch } = this.props;
 		const elementNumber = Number(ui.node.id.substring(10))
     	const [x, y] = this.state.currentPositions[elementNumber];
     	let oldPositions = [...this.state.currentPositions];
@@ -11,7 +14,7 @@ export function handleDrag(e,ui) {
 			(y <= this.state.desiredPositions[elementNumber][1][0] &&
 			 y >= this.state.desiredPositions[elementNumber][1][1])) {
 				ui.node.style.visibility = "hidden";
-				this.props.update(['snapToShape',elementNumber])
+				dispatch(snapSet(elementNumber))
 				}
 		}
 export function mount(object){

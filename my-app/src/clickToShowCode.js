@@ -1,4 +1,3 @@
-import rootReducer from './redux/reducers/';
 import {incrementInstructions} from './redux/actions';
 
 export function click(){
@@ -9,6 +8,7 @@ export function click(){
 				zIndex: this.state.zIndex === 1 ? -1 : 1,
 				clicked: true
 			})
+			//not working
 			incrementInstructions(1)
   		}
   		else if (this.state.clicked===true) {

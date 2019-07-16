@@ -1,5 +1,5 @@
-import {INCREMENT_SHAPE , CHANGE_SHAPE, INC_LEVEL, DEC_LEVEL,
- INC_SHAPE, DEC_SHAPE, INCREMENT_INSTRUCTIONS, SNAP_SET, SNAP_GET, GET_SHAPE} from "./actionTypes";
+import {INCREMENT_SHAPE, INCREMENT_INSTRUCTIONS, SNAP_SET, SNAP_GET, GET_SHAPE, 
+	RESET_SNAP ,CHECK_SNAP_FINISHED} from "./actionTypes";
 
 export const incrementShape = value => ({
 	type: INCREMENT_SHAPE,
@@ -23,4 +23,12 @@ export const snapGet = index => ({
 
 export const getShape = () => ({
 	type: GET_SHAPE
+})
+
+export const checkSnapFinished = () => ({
+	type: CHECK_SNAP_FINISHED
+})
+
+export const resetSnap = () => ({
+	type: RESET_SNAP
 })

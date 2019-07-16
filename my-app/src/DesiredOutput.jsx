@@ -1,35 +1,21 @@
 import React from 'react';
-import { connect } from "react-redux";
-import ClickShape from './ClickShape';
-import DragAttrShape from './DragAttrShape';
-import UserInputShape from './UserInputShape';
-import {INCREMENT_SHAPE} from './redux/actionTypes';
 import PropTypes from 'prop-types'
 import Circle from './Circle';
 import Rectangle from './Rectangle';
 import Triangle from './Triangle';
-import Shape from './Shape';
-import ClickCircle from './ClickCircle';
-import ClickRectangle from './ClickRectangle';
-import ClickTriangle from './ClickTriangle';
-import DragAttrTriangle from './DragAttrTriangle';
-import DragAttrCircle from './DragAttrCircle';
-import DragAttrRectangle from './DragAttrRectangle';
-import {getShape, incrementShape} from './redux/actions';
 
 const DesiredOutput = ({shape,update,level,snapped} ) => {
-/*	console.log(this.props.dispatch(getShape()))
-*/	switch (level) {
+	switch (level) {
 		case 0 : {
 			switch (shape) {
 				case 'circle': {
-					return <Circle/>
+					return <Circle update={update}/>
 				}
 				case 'rectangle' : {
-					return <Rectangle/>
+					return <Rectangle update={update}/>
 				}
 				case 'triangle' : {
-					return <Triangle/>
+					return <Triangle update={update}/>
 				}
 				default : {
 					return <div/>
@@ -39,13 +25,13 @@ const DesiredOutput = ({shape,update,level,snapped} ) => {
 		case 1 : {
 			switch (shape) {
 				case 'circle': {
-						return <DragAttrCircle update={update} snapped={snapped}/>
+						return <Circle attr={true} update={update} snapped={snapped}/>
 					}
 					case 'rectangle' : {
-						return <DragAttrRectangle update={update}/>
+						return <Rectangle update={update} attr={true} snapped={snapped}/>
 					}
 					case 'triangle' : {
-						return <DragAttrTriangle update={update}/>
+						return <Triangle update={update} attr={true} snapped={snapped}/>
 					}
 					default : {
 						return <div/>

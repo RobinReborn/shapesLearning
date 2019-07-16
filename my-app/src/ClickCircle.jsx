@@ -1,7 +1,6 @@
 import React from 'react';
 import Circle from './Circle';
 import {click} from './clickToShowCode.js'
-import {incrementInstructions, incrementShape} from './redux/actions';
 
 class ClickCircle extends React.Component{
 	constructor(props) {

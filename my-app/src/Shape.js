@@ -8,7 +8,7 @@ class Shape extends React.Component{
 
 		switch (this.props.shape) {
 			case 'circle': {
-				return(<Circle/>)
+				return(<Circle attr={this.props.attr}/>)
 			}
 			case 'rectangle' : {
 				return(<Rectangle attr={this.props.attr} update={this.props.update}/>)

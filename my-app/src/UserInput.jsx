@@ -1,21 +1,11 @@
 import React from 'react';
-import { connect } from "react-redux";
-import ClickShape from './ClickShape';
-import DragAttrShape from './DragAttrShape';
-import UserInputShape from './UserInputShape';
-import {INCREMENT_SHAPE} from './redux/actionTypes';
 import PropTypes from 'prop-types'
-import Circle from './Circle';
-import Rectangle from './Rectangle';
-import Triangle from './Triangle';
-import Shape from './Shape';
 import ClickCircle from './ClickCircle';
 import ClickRectangle from './ClickRectangle';
 import ClickTriangle from './ClickTriangle';
 import DragAttrTriangle from './DragAttrTriangle';
 import DragAttrCircle from './DragAttrCircle';
 import DragAttrRectangle from './DragAttrRectangle';
-import {getShape, incrementShape} from './redux/actions';
 
 const UserInput = ({shape,update,level,snapped} ) => {
 	switch (level) {
@@ -41,10 +31,10 @@ const UserInput = ({shape,update,level,snapped} ) => {
 						return <DragAttrCircle update={update} snapped={snapped}/>
 					}
 					case 'rectangle' : {
-						return <DragAttrRectangle update={update}/>
+						return <DragAttrRectangle update={update} snapped={snapped}/>
 					}
 					case 'triangle' : {
-						return <DragAttrTriangle update={update}/>
+						return <DragAttrTriangle update={update} snapped={snapped}/>
 					}
 					default : {
 						return <div/>
