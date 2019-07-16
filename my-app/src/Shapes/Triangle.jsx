@@ -2,7 +2,7 @@ import React from 'react';
 import Draggable from 'react-draggable';
 import {handleDrag,mount} from './dragHelpers.js'
 import {connect} from "react-redux";
-import {snapSet} from './redux/actions';
+import {snapSet} from '../actions';
 
 class Triangle extends React.Component{
 	constructor(props) {

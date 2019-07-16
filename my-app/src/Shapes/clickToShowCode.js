@@ -1,4 +1,4 @@
-import {incrementInstructions} from './redux/actions';
+import {incrementInstructions} from '../actions';
 
 export function click(){
 	if (!this.state.clicked){

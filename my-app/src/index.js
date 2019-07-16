@@ -3,7 +3,7 @@ import { render } from 'react-dom'
 
 import './index.css';
 import { Provider } from 'react-redux';
-import rootReducer from './redux/reducers'
+import rootReducer from './reducers'
 import { createStore } from 'redux';
 import ShowShape from './ShowShape';
 

@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types'
-import Circle from './Circle';
-import Rectangle from './Rectangle';
-import Triangle from './Triangle';
+import Circle from './Shapes/Circle';
+import Rectangle from './Shapes/Rectangle';
+import Triangle from './Shapes/Triangle';
 
 const DesiredOutput = ({shape,update,level,snapped} ) => {
 	switch (level) {

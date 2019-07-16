@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types'
-import ClickCircle from './ClickCircle';
-import ClickRectangle from './ClickRectangle';
-import ClickTriangle from './ClickTriangle';
-import DragAttrTriangle from './DragAttrTriangle';
-import DragAttrCircle from './DragAttrCircle';
-import DragAttrRectangle from './DragAttrRectangle';
+import ClickCircle from './Shapes/ClickCircle';
+import ClickRectangle from './Shapes/ClickRectangle';
+import ClickTriangle from './Shapes/ClickTriangle';
+import DragAttrTriangle from './Shapes/DragAttrTriangle';
+import DragAttrCircle from './Shapes/DragAttrCircle';
+import DragAttrRectangle from './Shapes/DragAttrRectangle';
+import UserInputCircle from './Shapes/UserInputCircle';
 
 const UserInput = ({shape,update,level,snapped} ) => {
 	switch (level) {
@@ -41,6 +42,16 @@ const UserInput = ({shape,update,level,snapped} ) => {
 					}
 				}
 			}
+		case 2 :{
+			switch (shape) {
+				case 'circle': {
+					return <UserInputCircle update={update}/>
+				}
+				default : {
+					return <div/>
+				}
+			}
+		}
 		default : { 
 			return <div/>
 		}

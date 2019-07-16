@@ -1,4 +1,4 @@
-import {snapSet} from './redux/actions';
+import {snapSet} from '../actions';
 
 export function handleDrag(e,ui) {
 	const { dispatch } = this.props;

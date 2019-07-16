@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
 import {INCREMENT_SHAPE, INC_LEVEL, INCREMENT_INSTRUCTIONS, GET_SHAPE} from "../actionTypes";
-import {shapeArray} from "../../shapeArray";
+import {shapeArray} from "../shapeArray";
 import snapReducer from "./snapReducer";
 
 const initialState = {

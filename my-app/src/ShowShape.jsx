@@ -1,4 +1,4 @@
-import {incrementShape, snapSet} from './redux/actions';
+import {incrementShape, snapSet} from './actions';
 import { connect } from "react-redux";
 import Layout from './Layout';
 import {shapeArray} from './shapeArray';
@@ -6,7 +6,7 @@ import {shapeArray} from './shapeArray';
 const mapStateToProps = (state) => {
 	 return {shape: shapeArray[state.rootReducer.shape],
 	 		level: state.rootReducer.level,
-	 		snapped: state.rootReducer.snapped};
+	 		};
 }
 
 function mapDispatchToProps(dispatch) {
