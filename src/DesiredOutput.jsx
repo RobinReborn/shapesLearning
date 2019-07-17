@@ -38,6 +38,22 @@ const DesiredOutput = ({shape,update,level,snapped} ) => {
 					}
 				}
 			}
+		case 2 : {
+			switch (shape) {
+				case 'circle': {
+					return <Circle update={update}/>
+				}
+				case 'rectangle' : {
+					return <Rectangle update={update}/>
+				}
+				case 'triangle' : {
+					return <Triangle update={update}/>
+				}
+				default : {
+					return <div/>
+				}
+			}
+		}
 		default : { 
 			return <div/>
 		}

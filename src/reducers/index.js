@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import {INCREMENT_SHAPE, INC_LEVEL, INCREMENT_INSTRUCTIONS, GET_SHAPE} from "../actionTypes";
+import {INCREMENT_SHAPE, INC_LEVEL, INCREMENT_INSTRUCTIONS, GET_SHAPE, CHANGE_STATE} from "../actionTypes";
 import {shapeArray} from "../shapeArray";
 import snapReducer from "./snapReducer";
 import instructionsReducer from "./instructionsReducer"
@@ -13,6 +13,9 @@ const initialState = {
 
 function rootReducer(state = initialState, action) {
 	switch (action.type) {
+    case CHANGE_STATE: {
+      return Object.assign({}, state, {shape : action.shape, level : action.level})
+    }
 		case INCREMENT_SHAPE: {
 			if (state.shape < shapeArray.length-1){ 
 				  return Object.assign({}, state, {shape: state.shape + 1 })

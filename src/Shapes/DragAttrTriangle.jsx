@@ -1,6 +1,6 @@
 import React from 'react';
 import Triangle from './Triangle';
-import {snapGet, incrementShape, resetSnap} from '../actions';
+import {snapGet, incrementShape, resetSnap, instructionIncrement} from '../actions';
 import {connect} from "react-redux";
 
 const DragAttrRectangle = ({ dispatch, snapped }) => {
@@ -16,6 +16,7 @@ const DragAttrRectangle = ({ dispatch, snapped }) => {
 			if (check){
 				dispatch(incrementShape())
 				dispatch(resetSnap())
+				dispatch(instructionIncrement())
 			}
 		}
 	}
