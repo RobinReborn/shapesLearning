@@ -1,4 +1,4 @@
-import {snapSet, instructionIncrement} from '../actions';
+import {snapSet, instructionIncrement, addError, clearError} from '../actions';
 export function handleDrag(e,ui) {
 	const { dispatch } = this.props;
 	const elementNumber = Number(ui.node.id.substring(10))
@@ -14,6 +14,10 @@ export function handleDrag(e,ui) {
 		 y >= this.state.desiredPositions[elementNumber][1][1])) {
 		ui.node.style.visibility = "hidden";
 		dispatch(snapSet(elementNumber))
+		dispatch(clearError())
+		}
+	else {
+		dispatch(addError(ui.node.children[0].textContent,"element misplaced"))
 		}
 	}
 export function mount(object){

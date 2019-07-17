@@ -34,15 +34,6 @@ function rootReducer(state = initialState, action) {
   		}
   		break;
   	}
-		case GET_SHAPE: {
-			console.log(state.shape)
-			return state.shape
-		}
-		case INCREMENT_INSTRUCTIONS: {
-			return {
-				instructions: action.value
-			}
-		}
 		default: return state;
 	}
 };

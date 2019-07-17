@@ -1,5 +1,5 @@
 import {INCREMENT_SHAPE, INCREMENT_INSTRUCTIONS, SNAP_SET, SNAP_GET, GET_SHAPE, 
-	RESET_SNAP ,CHECK_SNAP_FINISHED, INSTRUCTION_INCREMENT, CHANGE_STATE} from "./actionTypes";
+	RESET_SNAP ,CHECK_SNAP_FINISHED, INSTRUCTION_INCREMENT, CHANGE_STATE,ADD_ERROR, CLEAR_ERROR} from "./actionTypes";
 
 export const incrementShape = value => ({
 	type: INCREMENT_SHAPE,
@@ -41,4 +41,14 @@ export const changeState = (level,shape) => ({
 	type: CHANGE_STATE,
 	level,
 	shape
+})
+
+export const addError = (parameter,message) => ({
+	type: ADD_ERROR,
+	parameter,
+	message
+})
+
+export const clearError = () => ({
+	type: CLEAR_ERROR
 })
