@@ -21,6 +21,16 @@ export function handleStop(e,ui){
 		ui.node.style.visibility = "hidden";
 		dispatch(snapSet(elementNumber))
 		dispatch(clearError())
+
+		let check = true;
+		for (let x=0;x< document.getElementsByClassName('react-draggable').length; x++){
+			if (document.getElementsByClassName('react-draggable')[x].style.visibility != 'hidden'){
+				check = false
+			}
+		}
+		if (check){
+			dispatch(instructionIncrement())
+		}
 	}
 	else {
 		dispatch(addError(ui.node.children[0].textContent,"element misplaced"))
