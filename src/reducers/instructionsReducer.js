@@ -8,6 +8,16 @@ const initialState = {
 	showControlState: 'hidden',
 	showControlPanelButton: 'hidden'
 }
+function shallowCopyOfEnumerableOwnProperties( original )  
+{
+    var clone = {} ;
+    var i , keys = Object.keys( original ) ;
+    for ( i = 0 ; i < keys.length ; i ++ )
+    {
+        clone[ keys[ i ] ] = original[ keys[ i ] ] ;
+    }
+    return clone ;
+}
 
 function instructionReducer(state=initialState,action){
 	switch(action.type){
@@ -40,10 +50,11 @@ function instructionReducer(state=initialState,action){
            [action.parameter]: action.message} 
     	}}
     	case CLEAR_ERROR: {
-    		let stateErrors = state.errors
+    		let newState = state
+    		let stateErrors = newState.errors
     		delete stateErrors[action.error]
-    		console.log(stateErrors)
-    		return Object.assign({}, state,{errors: stateErrors})
+    		let newStateErrors = shallowCopyOfEnumerableOwnProperties(stateErrors)
+    		return Object.assign({}, state,{errors: newStateErrors})
     	}
 		default:{
 			return state
