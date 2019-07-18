@@ -3,10 +3,14 @@ import { connect } from "react-redux";
 import { instructionsArray } from './InstructionsArray'
 import {changeState , toggleControlPanel, showControlPanelButton, hideControlPanelButton} from './actions';
 
-function onClick(){
-
+function showErrors(errors){
+	let errorOutput = ""
+	Object.keys(errors).forEach(function(key) {
+		errorOutput += key + " " + errors[key] + " ";
+});
+	console.log(errorOutput)
+	return errorOutput
 }
-
 const stateShift = (e,dispatch) => {
 	e.preventDefault();
 	let level = e.target[0]['value']
@@ -20,15 +24,14 @@ function stopPropagation(e) {
 const Instructions = ({instructions, errors, level, shape, showControlState, controlPanelButton, dispatch}) => {
 	return(
 			<div id='instructions'>{instructionsArray[instructions[0]][instructions[1]]}
-				<div id='error'>{errors}</div>
+				<div id='error'>{showErrors(errors)}</div>
 					<div id='controlPanelHolder'>
 						<br/>
 						<div id='controlPanel' style={{visibility : showControlState}}>
-							<label>level {level}</label>
-							<br/>
+							<label>level {level + "     "}</label>
 							<label>shape {shape}</label>
 							<form onSubmit={(e) => stateShift(e,dispatch)}>
-								<label>level</label><input type='number' name='level' onClick={e => stopPropagation(e)}/>
+								<label>level</label><input type='number' onClick={e => stopPropagation(e)}/>
 								<label>shape</label><input type='number' onClick={e => stopPropagation(e)}/>
 								<input type='submit'  readOnly value='Go' onClick={e => stopPropagation(e)}/>
 							</form>

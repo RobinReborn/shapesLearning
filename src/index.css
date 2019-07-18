@@ -46,8 +46,7 @@ svg {
 #instructions{
 	height:20%;
 	font-size:2em;
-	padding-top: 2%;
-	padding-bottom:5%;
+	padding-top: 1%;
 	text-align: center;
 	border-color: black;
     border-width: .2em;
@@ -58,6 +57,9 @@ svg {
 	position:absolute;
 	bottom:0;
 	width:100%;
+}
+#error{
+	color:red;
 }
 #controlPanelHolder{
 

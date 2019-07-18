@@ -20,7 +20,7 @@ export function handleStop(e,ui){
 		 y >= this.state.desiredPositions[elementNumber][1][1])) {
 		ui.node.style.visibility = "hidden";
 		dispatch(snapSet(elementNumber))
-		dispatch(clearError())
+		dispatch(clearError(ui.node.children[0].textContent))
 
 		let check = true;
 		for (let x=0;x< document.getElementsByClassName('react-draggable').length; x++){

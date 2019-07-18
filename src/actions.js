@@ -50,8 +50,9 @@ export const addError = (parameter,message) => ({
 	message
 })
 
-export const clearError = () => ({
-	type: CLEAR_ERROR
+export const clearError = (error) => ({
+	type: CLEAR_ERROR,
+	error
 })
 
 export const toggleControlPanel = () => ({

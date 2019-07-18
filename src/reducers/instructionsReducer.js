@@ -4,7 +4,7 @@ import {INSTRUCTION_INCREMENT, ADD_ERROR, CLEAR_ERROR, TOGGLE_CONTROL_PANEL,HIDE
 
 const initialState = {
 	instructions: [0,0],
-	errors: "",
+	errors: {},
 	showControlState: 'hidden',
 	showControlPanelButton: 'hidden'
 }
@@ -28,17 +28,22 @@ function instructionReducer(state=initialState,action){
 		case INSTRUCTION_INCREMENT: {
 			const instructions = state.instructions.slice()
 			if (instructions[1] <  instructionsArray[state.instructions[0]].length-1){
-				return Object.assign({}, state,{instructions: [instructions[0],instructions[1]+1], errors: ""})
+				return Object.assign({}, state,{instructions: [instructions[0],instructions[1]+1], errors: {}})
 			}
 			else {
-				return Object.assign({}, state,{instructions: [instructions[0]+1,0], errors: ""})
+				return Object.assign({}, state,{instructions: [instructions[0]+1,0], errors: {}})
 			}
 		}
 		case ADD_ERROR: {
-			return Object.assign({}, state,{errors: action.parameter + " " + action.message})
-    	}
+			return {...state, errors: { 
+				...state.errors,
+           [action.parameter]: action.message} 
+    	}}
     	case CLEAR_ERROR: {
-    		return Object.assign({}, state,{errors: ""})
+    		let stateErrors = state.errors
+    		delete stateErrors[action.error]
+    		console.log(stateErrors)
+    		return Object.assign({}, state,{errors: stateErrors})
     	}
 		default:{
 			return state
