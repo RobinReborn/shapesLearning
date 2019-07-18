@@ -8,6 +8,12 @@ export function handleDrag(e,ui) {
 	oldPosition = [oldPosition[0] + ui.deltaX, oldPosition[1] + ui.deltaY]
 	oldPositions[elementNumber] = oldPosition
 	this.setState({currentPositions : oldPositions})
+	}
+
+export function handleStop(e,ui){
+	const elementNumber = Number(ui.node.id.substring(10))
+	const [x, y] = this.state.currentPositions[elementNumber];
+	const { dispatch } = this.props;
 	if ((x <= this.state.desiredPositions[elementNumber][0][0] &&
 		x >= this.state.desiredPositions[elementNumber][0][1]) &&
 		(y <= this.state.desiredPositions[elementNumber][1][0] &&
@@ -15,11 +21,11 @@ export function handleDrag(e,ui) {
 		ui.node.style.visibility = "hidden";
 		dispatch(snapSet(elementNumber))
 		dispatch(clearError())
-		}
+	}
 	else {
 		dispatch(addError(ui.node.children[0].textContent,"element misplaced"))
-		}
 	}
+}
 export function mount(object){
 	const elements = document.getElementById("dragElements").children
 	let positions = []
