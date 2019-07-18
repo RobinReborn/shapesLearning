@@ -26,7 +26,7 @@ const DragAttrRectangle = ({ dispatch, snapped }) => {
 					<Rectangle />
 				</div>
 				<div className='card' onClick={() => checkFinished()}>
-					<svg viewBox="0 0 100 24"/>
+					<svg viewBox="0 0 100 17"/>
 					<svg viewBox="0 0 100 17">{snapped[0] ? <text className="dragged" x="6" y="12" fontSize="12" fill="black">&lt;rect width="100"</text> : 
 					<rect x="8" y="2" width="85" height="13" fill="grey"/>}</svg>
 		   			<svg viewBox="0 0 100 17">{snapped[1] ? <text className="dragged" x="21" y="13" fontSize="12" fill="black">height="70"</text> : 

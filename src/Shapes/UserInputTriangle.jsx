@@ -26,7 +26,7 @@ class UserInputTriangle extends React.Component {
 		return(<div className='flipHolder' onClick={this.click}>
 					<div className='card' style={{opacity:this.state.opacity, zIndex:this.state.zIndex}}>
 						<svg viewBox="0 0 100 100">
-							<polygon points="0 100, 100 100, 50,14" fill={this.state.fill}/>
+							<polygon points="0 95, 100 95, 50,9" fill={this.state.fill}/>
 						</svg>
 					</div>
 					<div className='card'>

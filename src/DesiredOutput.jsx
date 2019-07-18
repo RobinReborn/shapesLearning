@@ -3,19 +3,22 @@ import PropTypes from 'prop-types'
 import Circle from './Shapes/Circle';
 import Rectangle from './Shapes/Rectangle';
 import Triangle from './Shapes/Triangle';
+import CircleElements from './Shapes/CircleElements';
+import RectangleElements from './Shapes/RectangleElements';
+import TriangleElements from './Shapes/TriangleElements'
 
 const DesiredOutput = ({shape,update,level,snapped} ) => {
 	switch (level) {
 		case 0 : {
 			switch (shape) {
 				case 'circle': {
-					return <Circle update={update}/>
+					return <Rectangle update={update}/> 
 				}
 				case 'rectangle' : {
-					return <Rectangle update={update}/>
+					return <Triangle update={update}/>
 				}
 				case 'triangle' : {
-					return <Triangle update={update}/>
+					return <Circle update={update}/>
 				}
 				default : {
 					return <div/>
@@ -25,13 +28,13 @@ const DesiredOutput = ({shape,update,level,snapped} ) => {
 		case 1 : {
 			switch (shape) {
 				case 'circle': {
-						return <Circle attr={true} update={update} snapped={snapped}/>
+						return <CircleElements update={update} snapped={snapped}/>
 					}
 					case 'rectangle' : {
-						return <Rectangle update={update} attr={true} snapped={snapped}/>
+						return <RectangleElements update={update} snapped={snapped}/>
 					}
 					case 'triangle' : {
-						return <Triangle update={update} attr={true} snapped={snapped}/>
+						return <TriangleElements update={update} snapped={snapped}/>
 					}
 					default : {
 						return <div/>

@@ -30,5 +30,4 @@ class ClickCircle extends React.Component{
 	}
 }
 
-
 export default connect()(ClickCircle);
