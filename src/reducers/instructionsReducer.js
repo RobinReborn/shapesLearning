@@ -1,13 +1,30 @@
 import {instructionsArray} from '../InstructionsArray';
-import {INSTRUCTION_INCREMENT, ADD_ERROR, CLEAR_ERROR} from '../actionTypes'
+import {INSTRUCTION_INCREMENT, ADD_ERROR, CLEAR_ERROR, TOGGLE_CONTROL_PANEL,HIDE_CONTROL_PANEL_BUTTON,
+		SHOW_CONTROL_PANEL_BUTTON} from '../actionTypes'
 
 const initialState = {
 	instructions: [0,0],
-	errors: ""
+	errors: "",
+	showControlState: 'hidden',
+	showControlPanelButton: 'hidden'
 }
 
 function instructionReducer(state=initialState,action){
 	switch(action.type){
+		case TOGGLE_CONTROL_PANEL: {
+			if (state.showControlState == 'visible'){
+			return Object.assign({}, state,{showControlState: 'hidden'})
+			}
+			else{
+				return Object.assign({}, state,{showControlState: 'visible'})
+			}
+		}
+		case HIDE_CONTROL_PANEL_BUTTON: {
+			return Object.assign({}, state,{showControlPanelButton: 'hidden'})
+		}
+		case SHOW_CONTROL_PANEL_BUTTON: {
+			return Object.assign({}, state,{showControlPanelButton: 'visible'})
+		}
 		case INSTRUCTION_INCREMENT: {
 			const instructions = state.instructions.slice()
 			if (instructions[1] <  instructionsArray[state.instructions[0]].length-1){

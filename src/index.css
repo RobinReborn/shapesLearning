@@ -52,6 +52,18 @@ svg {
 	border-color: black;
     border-width: .2em;
     border-style: solid;
+    position: relative;
+}
+#controlPanelShow{
+	position:absolute;
+	bottom:0;
+	width:100%;
+}
+#controlPanelHolder{
+
+}
+#controlPanel{
+	top: 0;
 }
 .layer{
 	position: absolute;
