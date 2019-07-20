@@ -17,8 +17,12 @@ class CircleElements extends React.Component{
 	render() {
 		return(
 			<div className='card' id='dragElements'>
-				<svg viewBox="0 0 100 12"/>
+				<svg viewBox="0 0 100 17" />
 				<Draggable onDrag={this.handleDrag} onStop={this.handleStop}><svg id='Draggable_0'  viewBox="0 0 100 19">
+					<g>
+					<line x1='30' y1='10' x2='0' y2='10' transform="rotate(10)" style={{strokeWidth:1, stroke:'red', display: this.props.arrowVisible[0]}}/>
+					<line x1='0' y1='10' x2='8' y2='6' style={{strokeWidth:1, stroke:'red',display: this.props.arrowVisible[0]}}/>
+					<line x1='0' y1='10' x2='8' y2='14' style={{strokeWidth:1, stroke:'red', display: this.props.arrowVisible[0]}}/></g>
 					<text className='Draggable' x="32" y="12" fontSize="12" fill="black">&lt;circle</text></svg></Draggable>
 				<Draggable onDrag={this.handleDrag} onStop={this.handleStop}><svg id='Draggable_1'  viewBox="0 0 100 19">
 					<text className='Draggable' x='30' y='12' fontSize="12" fill="black">r="100"</text></svg></Draggable>
@@ -31,6 +35,6 @@ class CircleElements extends React.Component{
 	}
 }
 const mapStateToProps = (state) => {
-	return {snapped: state.snapReducer.snapped}};
+	return {arrowVisible: state.instructionsReducer.arrowVisible}};
 
 export default connect(mapStateToProps)(CircleElements);

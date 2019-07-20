@@ -1,4 +1,4 @@
-import {snapSet, instructionIncrement, addError, clearError} from '../actions';
+import {snapSet, instructionIncrement, addError, showArrow , clearError} from '../actions';
 export function handleDrag(e,ui) {
 	const { dispatch } = this.props;
 	const elementNumber = Number(ui.node.id.substring(10))
@@ -34,6 +34,15 @@ export function handleStop(e,ui){
 	}
 	else {
 		dispatch(addError(ui.node.children[0].textContent,"element misplaced"))
+		//ui.node.setAttribute('viewBox','0 0 100 100')
+		//rotate just the arrow
+		let arrow  = `<svg><line x1='50' y1='50' x2='0' y2='50'/><line x1='0' y1='50' x2='10' y2='60'/>
+							<line x1='0' y1='50' x2='10' y2='40'/></svg>`
+		//arrow  = new DOMParser().parseFromString(arrow, "text/xml");
+		ui.node.innterHTML += arrow
+
+		dispatch(showArrow(elementNumber))
+		//ui.node.children[0].setAttribute('transform',"rotate(100)")
 	}
 }
 export function mount(object){

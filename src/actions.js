@@ -1,6 +1,6 @@
 import {INCREMENT_SHAPE, INCREMENT_INSTRUCTIONS, SNAP_SET, SNAP_GET, GET_SHAPE, 
 	RESET_SNAP ,CHECK_SNAP_FINISHED, INSTRUCTION_INCREMENT, CHANGE_STATE,ADD_ERROR, CLEAR_ERROR,
-	SHOW_CONTROL_PANEL_BUTTON,TOGGLE_CONTROL_PANEL,HIDE_CONTROL_PANEL_BUTTON} from "./actionTypes";
+	SHOW_CONTROL_PANEL_BUTTON,TOGGLE_CONTROL_PANEL,HIDE_CONTROL_PANEL_BUTTON, SHOW_ARROW} from "./actionTypes";
 
 export const incrementShape = value => ({
 	type: INCREMENT_SHAPE,
@@ -65,4 +65,9 @@ export const showControlPanelButton = () => ({
 
 export const hideControlPanelButton = () => ({
 	type: HIDE_CONTROL_PANEL_BUTTON
+})
+
+export const showArrow = (element) => ({
+	type: SHOW_ARROW,
+	element
 })
