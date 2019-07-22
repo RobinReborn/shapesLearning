@@ -8,6 +8,14 @@ export function handleDrag(e,ui) {
 	oldPosition = [oldPosition[0] + ui.deltaX, oldPosition[1] + ui.deltaY]
 	oldPositions[elementNumber] = oldPosition
 	this.setState({currentPositions : oldPositions})
+	let angle = Math.atan2((y-(this.state.desiredPositions[elementNumber][1][0]-this.state.flex)),
+				(x-(this.state.desiredPositions[elementNumber][0][0]-this.state.flex))) * 180/Math.PI
+	console.log(angle)
+	let angles = this.state.rotate;
+		angles[elementNumber] = angle
+		this.setState({ rotate : angles})
+		dispatch(changeAngle(elementNumber,angle))
+
 	}
 
 export function handleStop(e,ui){
@@ -34,24 +42,22 @@ export function handleStop(e,ui){
 	}
 	else {
 		dispatch(addError(ui.node.children[0].textContent,"element misplaced"))
-		//ui.node.setAttribute('viewBox','0 0 100 100')
 		//rotate just the arrow
-		let angle = Math.atan((y-(this.state.desiredPositions[elementNumber][1][0]-this.state.flex))/
-					(x-(this.state.desiredPositions[elementNumber][0][0]-this.state.flex))) * 180/Math.PI
 
 		let arrow  = `<svg transform ='rotate(` + '10' + `)'><line x1='50' y1='50' x2='0' y2='50'/><line x1='0' y1='50' x2='10' y2='60'/>
 							<line x1='0' y1='50' x2='10' y2='40'/></svg>`
 		//arrow  = new DOMParser().parseFromString(arrow, "text/xml");
-		let angles = this.state.rotate;
-		angles[elementNumber] = angle
-		this.setState({ rotate : angles})
-		ui.node.innterHTML = arrow
-		//let inaccuracy = [x-(this.state.desiredPositions[0][0]-this.state.flex),y-(this.state.desiredPositions[1][0]-this.state.flex)]
-		console.log(angle)
 		dispatch(showArrow(elementNumber))
-		dispatch(changeAngle(elementNumber,angle))
-		//ui.node.children[0].setAttribute('transform',"rotate(100)")
+
+		
 	}
+}
+
+export function getArrowOffset(number){
+/*	console.log([(this.state.currentPositions[0][1] - document.getElementsByClassName("objectHolder")[0].offsetHeight),
+			this.state.currentPositions[0][0] - document.getElementsByClassName("objectHolder")[0].offsetWidth] )
+*/	return [(this.state.currentPositions[0][1] - document.getElementsByClassName("objectHolder")[0].offsetHeight *0.70),
+			this.state.currentPositions[0][0] - document.getElementsByClassName("objectHolder")[0].offsetWidth] 
 }
 export function mount(object){
 	const elements = document.getElementById("dragElements").children

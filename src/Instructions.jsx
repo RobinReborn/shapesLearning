@@ -8,7 +8,6 @@ function showErrors(errors){
 	Object.keys(errors).forEach(function(key) {
 		errorOutput += key + " " + errors[key] + " ";
 });
-	console.log(errorOutput)
 	return errorOutput
 }
 const stateShift = (e,dispatch) => {

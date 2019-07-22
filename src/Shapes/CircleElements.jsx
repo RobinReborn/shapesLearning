@@ -1,6 +1,6 @@
 import React from 'react';
 import Draggable from 'react-draggable';
-import {handleDrag,mount,handleStop} from './dragHelpers.js'
+import {handleDrag,mount,handleStop,getArrowOffset} from './dragHelpers.js'
 import {connect} from "react-redux";
 
 class CircleElements extends React.Component{
@@ -8,8 +8,9 @@ class CircleElements extends React.Component{
 	    super(props);
 	    this.handleDrag = handleDrag.bind(this);
 	    this.handleStop = handleStop.bind(this);
+	    this.state = {currentPositions: [[],[]], desiredPositions: [], flex: 50, rotate: []}
+		this.getArrowOffset = getArrowOffset.bind(this);
 	}
-
 	componentDidMount(){
 		mount(this);
 	}
@@ -17,13 +18,16 @@ class CircleElements extends React.Component{
 	render() {
 		return(
 			<div className='card' id='dragElements'>
-				<svg viewBox="0 0 100 17" />
-				<Draggable onDrag={this.handleDrag} onStop={this.handleStop}><svg id='Draggable_0'  viewBox="0 0 100 19">
-					<g transform={"rotate(" + this.props.rotates[0] + ")"}>
-					<line x1='30' y1='10' x2='0' y2='10'
+				<svg viewBox="0 0 100 60" className='arrowHolder' style={{ top: this.getArrowOffset(0)[0], 
+																		left: this.getArrowOffset(0)[1]}}>
+				<g transform={"rotate(" + this.props.rotates[0] + ", 50, 30)"}>
+					<line x1='30' y1='30' x2='0' y2='30'
 					style={{strokeWidth:1, stroke:'red', display: this.props.arrowVisible[0]}}/>
-					<line x1='0' y1='10' x2='8' y2='6' style={{strokeWidth:1, stroke:'red',display: this.props.arrowVisible[0]}}/>
-					<line x1='0' y1='10' x2='8' y2='14' style={{strokeWidth:1, stroke:'red', display: this.props.arrowVisible[0]}}/></g>
+					<line x1='0' y1='30' x2='8' y2='26' style={{strokeWidth:1, stroke:'red',display: this.props.arrowVisible[0]}}/>
+					<line x1='0' y1='30' x2='8' y2='34' style={{strokeWidth:1, stroke:'red', display: this.props.arrowVisible[0]}}/></g>
+					</svg>
+				<Draggable onDrag={this.handleDrag} onStop={this.handleStop}><svg id='Draggable_0'  viewBox="0 0 100 19">
+					
 					<text className='Draggable' x="32" y="12" fontSize="12" fill="black">&lt;circle</text></svg></Draggable>
 				<Draggable onDrag={this.handleDrag} onStop={this.handleStop}><svg id='Draggable_1'  viewBox="0 0 100 19">
 					<text className='Draggable' x='30' y='12' fontSize="12" fill="black">r="100"</text></svg></Draggable>
