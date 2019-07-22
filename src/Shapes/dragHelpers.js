@@ -1,4 +1,5 @@
 import {snapSet, instructionIncrement, addError, showArrow , clearError, changeAngle} from '../actions';
+
 export function handleDrag(e,ui) {
 	const { dispatch } = this.props;
 	const elementNumber = Number(ui.node.id.substring(10))
@@ -16,6 +17,15 @@ export function handleDrag(e,ui) {
 	dispatch(changeAngle(elementNumber,angle))
 
 	}
+export function checkFinished(){
+	let check = true;
+	for (let x=0;x< document.getElementsByClassName('react-draggable').length; x++){
+		if (document.getElementsByClassName('react-draggable')[x].style.visibility !== 'hidden'){
+			check = false
+		}
+	}
+	return check
+}
 
 export function handleStop(e,ui){
 	const elementNumber = Number(ui.node.id.substring(10))
@@ -26,18 +36,17 @@ export function handleStop(e,ui){
 		(y <= this.state.desiredPositions[elementNumber][1][0] &&
 		 y >= this.state.desiredPositions[elementNumber][1][1])) {
 		ui.node.style.visibility = "hidden";
+		let arrowHolder = document.getElementById('arrowHolder');
+		let arrowToRemove = document.getElementById('arrow' + String(elementNumber));
+		//arrowToRemove.arrowHolder.removeChild(arrowToRemove);
+		arrowToRemove.remove()
 		dispatch(snapSet(elementNumber))
 		dispatch(clearError(ui.node.children[0].textContent,elementNumber))
-
-		let check = true;
-		for (let x=0;x< document.getElementsByClassName('react-draggable').length; x++){
-			if (document.getElementsByClassName('react-draggable')[x].style.visibility !== 'hidden'){
-				check = false
-			}
-		}
-		if (check){
+		if(checkFinished()){
 			dispatch(instructionIncrement())
 		}
+		
+		
 	}
 	else {
 		dispatch(addError(ui.node.children[0].textContent,"element misplaced"))

@@ -23,11 +23,10 @@ function rootReducer(state = initialState, action) {
     	else {
     		rootReducer(state,INC_LEVEL)
     	}
-        break;
       }
   	case INC_LEVEL: {
   		//something to check for max level
-  		if (state.level === 0){
+  		if (state.level == 0){
   			return Object.assign({}, state,{shape: 0, level: state.level + 1, attr: true, snapped: []})
   		}
   		else {
