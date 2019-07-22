@@ -84,11 +84,15 @@ foreignObject input{
 #dragElements{
 	width:100%;
 	height:100%;
-	position: relative;
+	position: absolute;
+	z-index: 2;
 }
 .arrows{
 	position:absolute;
 }
 .arrowHolder{
+	width:100%;
+	height:100%;
 	position: absolute;
+	z-index: 1;
 }

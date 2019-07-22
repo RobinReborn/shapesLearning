@@ -10,11 +10,10 @@ export function handleDrag(e,ui) {
 	this.setState({currentPositions : oldPositions})
 	let angle = Math.atan2((y-(this.state.desiredPositions[elementNumber][1][0]-this.state.flex)),
 				(x-(this.state.desiredPositions[elementNumber][0][0]-this.state.flex))) * 180/Math.PI
-	console.log(angle)
 	let angles = this.state.rotate;
-		angles[elementNumber] = angle
-		this.setState({ rotate : angles})
-		dispatch(changeAngle(elementNumber,angle))
+	angles[elementNumber] = angle
+	this.setState({ rotate : angles})
+	dispatch(changeAngle(elementNumber,angle))
 
 	}
 
@@ -56,8 +55,9 @@ export function handleStop(e,ui){
 export function getArrowOffset(number){
 /*	console.log([(this.state.currentPositions[0][1] - document.getElementsByClassName("objectHolder")[0].offsetHeight),
 			this.state.currentPositions[0][0] - document.getElementsByClassName("objectHolder")[0].offsetWidth] )
-*/	return [(this.state.currentPositions[0][1] - document.getElementsByClassName("objectHolder")[0].offsetHeight *0.70),
-			this.state.currentPositions[0][0] - document.getElementsByClassName("objectHolder")[0].offsetWidth] 
+*/	//console.log(this.state.currentPositions)			
+	return [(this.state.currentPositions[number][1] - document.getElementsByClassName("objectHolder")[0].offsetHeight * 0.40),
+			this.state.currentPositions[number][0] - document.getElementsByClassName("objectHolder")[0].offsetWidth] 
 }
 export function mount(object){
 	const elements = document.getElementById("dragElements").children
@@ -65,10 +65,11 @@ export function mount(object){
 	let desiredPositions = []
 	const offsetWidth = document.getElementsByClassName("objectHolder")[0].offsetWidth
 	const flex = 50;
-	for (let x=1; x < elements.length; x++){
+	for (let x=0; x < elements.length; x++){
 		let posInfo = elements.item(x).getBoundingClientRect();
 		positions.push([posInfo.left,posInfo.top]);
 		desiredPositions.push([[posInfo.left+flex-offsetWidth,posInfo.left-flex-offsetWidth],[posInfo.top+flex,posInfo.top-flex]]);
 	}
+	console.log(positions)
 	object.setState({currentPositions: positions, desiredPositions: desiredPositions, flex: flex, rotate: []})
 }
