@@ -1,4 +1,4 @@
-import {snapSet, instructionIncrement, addError, showArrow , clearError} from '../actions';
+import {snapSet, instructionIncrement, addError, showArrow , clearError, changeAngle} from '../actions';
 export function handleDrag(e,ui) {
 	const { dispatch } = this.props;
 	const elementNumber = Number(ui.node.id.substring(10))
@@ -36,12 +36,20 @@ export function handleStop(e,ui){
 		dispatch(addError(ui.node.children[0].textContent,"element misplaced"))
 		//ui.node.setAttribute('viewBox','0 0 100 100')
 		//rotate just the arrow
-		let arrow  = `<svg><line x1='50' y1='50' x2='0' y2='50'/><line x1='0' y1='50' x2='10' y2='60'/>
+		let angle = Math.atan((y-(this.state.desiredPositions[elementNumber][1][0]-this.state.flex))/
+					(x-(this.state.desiredPositions[elementNumber][0][0]-this.state.flex))) * 180/Math.PI
+
+		let arrow  = `<svg transform ='rotate(` + '10' + `)'><line x1='50' y1='50' x2='0' y2='50'/><line x1='0' y1='50' x2='10' y2='60'/>
 							<line x1='0' y1='50' x2='10' y2='40'/></svg>`
 		//arrow  = new DOMParser().parseFromString(arrow, "text/xml");
-		ui.node.innterHTML += arrow
-
+		let angles = this.state.rotate;
+		angles[elementNumber] = angle
+		this.setState({ rotate : angles})
+		ui.node.innterHTML = arrow
+		//let inaccuracy = [x-(this.state.desiredPositions[0][0]-this.state.flex),y-(this.state.desiredPositions[1][0]-this.state.flex)]
+		console.log(angle)
 		dispatch(showArrow(elementNumber))
+		dispatch(changeAngle(elementNumber,angle))
 		//ui.node.children[0].setAttribute('transform',"rotate(100)")
 	}
 }
@@ -56,5 +64,5 @@ export function mount(object){
 		positions.push([posInfo.left,posInfo.top]);
 		desiredPositions.push([[posInfo.left+flex-offsetWidth,posInfo.left-flex-offsetWidth],[posInfo.top+flex,posInfo.top-flex]]);
 	}
-	object.setState({currentPositions: positions, desiredPositions: desiredPositions})
+	object.setState({currentPositions: positions, desiredPositions: desiredPositions, flex: flex, rotate: []})
 }

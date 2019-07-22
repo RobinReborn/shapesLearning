@@ -1,13 +1,14 @@
 import {instructionsArray} from '../InstructionsArray';
 import {INSTRUCTION_INCREMENT, ADD_ERROR, CLEAR_ERROR, TOGGLE_CONTROL_PANEL,HIDE_CONTROL_PANEL_BUTTON,
-		SHOW_CONTROL_PANEL_BUTTON, SHOW_ARROW} from '../actionTypes'
+		SHOW_CONTROL_PANEL_BUTTON, SHOW_ARROW, CHANGE_ANGLE} from '../actionTypes'
 
 const initialState = {
 	instructions: [0,0],
 	errors: {},
 	showControlState: 'hidden',
 	showControlPanelButton: 'hidden',
-	arrowVisible: ['none','none','none','none']
+	arrowVisible: ['none','none','none','none'],
+	rotates : []
 }
 function shallowCopyOfEnumerableOwnProperties( original )  
 {
@@ -22,6 +23,11 @@ function shallowCopyOfEnumerableOwnProperties( original )
 
 function instructionReducer(state=initialState,action){
 	switch(action.type){
+		case CHANGE_ANGLE:{
+			let rotateArray = state.rotates;
+			rotateArray[action.element] = action.angle;
+			return Object.assign({}, state, {rotates: rotateArray})
+		}
 		case SHOW_ARROW: {
 			let arrowArray =  state.arrowVisible.slice()
 			arrowArray[action.element] = 'block'

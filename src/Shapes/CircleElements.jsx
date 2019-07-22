@@ -19,8 +19,9 @@ class CircleElements extends React.Component{
 			<div className='card' id='dragElements'>
 				<svg viewBox="0 0 100 17" />
 				<Draggable onDrag={this.handleDrag} onStop={this.handleStop}><svg id='Draggable_0'  viewBox="0 0 100 19">
-					<g>
-					<line x1='30' y1='10' x2='0' y2='10' transform="rotate(10)" style={{strokeWidth:1, stroke:'red', display: this.props.arrowVisible[0]}}/>
+					<g transform={"rotate(" + this.props.rotates[0] + ")"}>
+					<line x1='30' y1='10' x2='0' y2='10'
+					style={{strokeWidth:1, stroke:'red', display: this.props.arrowVisible[0]}}/>
 					<line x1='0' y1='10' x2='8' y2='6' style={{strokeWidth:1, stroke:'red',display: this.props.arrowVisible[0]}}/>
 					<line x1='0' y1='10' x2='8' y2='14' style={{strokeWidth:1, stroke:'red', display: this.props.arrowVisible[0]}}/></g>
 					<text className='Draggable' x="32" y="12" fontSize="12" fill="black">&lt;circle</text></svg></Draggable>
@@ -35,6 +36,6 @@ class CircleElements extends React.Component{
 	}
 }
 const mapStateToProps = (state) => {
-	return {arrowVisible: state.instructionsReducer.arrowVisible}};
+	return {arrowVisible: state.instructionsReducer.arrowVisible, rotates: state.instructionsReducer.rotates}};
 
 export default connect(mapStateToProps)(CircleElements);
