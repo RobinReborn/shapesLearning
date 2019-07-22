@@ -16,7 +16,7 @@ class UserInputRectangle extends React.Component {
 		this.setState({fill: color.target.value, fillFont: 'black'})
 	}
 	click() {
-		if (this.state.fill == 'red') {
+		if (this.state.fill === 'red') {
 			const {dispatch} = this.props;
 			dispatch(instructionIncrement())
         	this.update()

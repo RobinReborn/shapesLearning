@@ -14,7 +14,7 @@ class UserInputCircle extends React.Component {
 		this.setState({fill: color.target.value, fillFont: 'black'})
 	}
 	click() {
-		if (this.state.fill == 'blue') {
+		if (this.state.fill === 'blue') {
 			const {dispatch} = this.props;
 			dispatch(instructionIncrement())
         	this.update()

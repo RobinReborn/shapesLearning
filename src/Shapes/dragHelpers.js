@@ -27,11 +27,11 @@ export function handleStop(e,ui){
 		 y >= this.state.desiredPositions[elementNumber][1][1])) {
 		ui.node.style.visibility = "hidden";
 		dispatch(snapSet(elementNumber))
-		dispatch(clearError(ui.node.children[0].textContent))
+		dispatch(clearError(ui.node.children[0].textContent,elementNumber))
 
 		let check = true;
 		for (let x=0;x< document.getElementsByClassName('react-draggable').length; x++){
-			if (document.getElementsByClassName('react-draggable')[x].style.visibility != 'hidden'){
+			if (document.getElementsByClassName('react-draggable')[x].style.visibility !== 'hidden'){
 				check = false
 			}
 		}
@@ -41,11 +41,6 @@ export function handleStop(e,ui){
 	}
 	else {
 		dispatch(addError(ui.node.children[0].textContent,"element misplaced"))
-		//rotate just the arrow
-
-		let arrow  = `<svg transform ='rotate(` + '10' + `)'><line x1='50' y1='50' x2='0' y2='50'/><line x1='0' y1='50' x2='10' y2='60'/>
-							<line x1='0' y1='50' x2='10' y2='40'/></svg>`
-		//arrow  = new DOMParser().parseFromString(arrow, "text/xml");
 		dispatch(showArrow(elementNumber))
 
 		
@@ -53,9 +48,6 @@ export function handleStop(e,ui){
 }
 
 export function getArrowOffset(number){
-/*	console.log([(this.state.currentPositions[0][1] - document.getElementsByClassName("objectHolder")[0].offsetHeight),
-			this.state.currentPositions[0][0] - document.getElementsByClassName("objectHolder")[0].offsetWidth] )
-*/	//console.log(this.state.currentPositions)			
 	return [(this.state.currentPositions[number][1] - document.getElementsByClassName("objectHolder")[0].offsetHeight * 0.40),
 			this.state.currentPositions[number][0] - document.getElementsByClassName("objectHolder")[0].offsetWidth] 
 }

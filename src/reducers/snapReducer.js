@@ -1,5 +1,4 @@
-import {SNAP_SET, SNAP_GET, CHECK_SNAP_FINISHED, INCREMENT_SHAPE, RESET_SNAP} from '../actionTypes';
-import rootReducer from './';
+import {SNAP_SET, SNAP_GET, RESET_SNAP} from '../actionTypes';
 
 const initialState = {
 	snapped: []

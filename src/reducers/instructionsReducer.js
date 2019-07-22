@@ -34,7 +34,7 @@ function instructionReducer(state=initialState,action){
 			return Object.assign({}, state, {arrowVisible: arrowArray})
 		}
 		case TOGGLE_CONTROL_PANEL: {
-			if (state.showControlState == 'visible'){
+			if (state.showControlState === 'visible'){
 			return Object.assign({}, state,{showControlState: 'hidden'})
 			}
 			else{
@@ -66,7 +66,10 @@ function instructionReducer(state=initialState,action){
     		let stateErrors = newState.errors
     		delete stateErrors[action.error]
     		let newStateErrors = shallowCopyOfEnumerableOwnProperties(stateErrors)
-    		return Object.assign({}, state,{errors: newStateErrors})
+    		let arrowArray =  state.arrowVisible.slice()
+    		arrowArray[action.element] = 'none'
+    		//let new arrowArray 
+    		return Object.assign({}, state,{errors: newStateErrors, arrowVisible:arrowArray})
     	}
 		default:{
 			return state
