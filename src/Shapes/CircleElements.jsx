@@ -39,7 +39,8 @@ class CircleElements extends React.Component{
 				<div  id='arrowHolder'>
 					{arrowHolders}
 						</div>
-					
+				<svg viewBox="0 0 100 100"/>
+	
 
 			</div>)
 	}

@@ -57,8 +57,8 @@ export function handleStop(e,ui){
 }
 
 export function getArrowOffset(number){
-	return [(this.state.currentPositions[number][1] - document.getElementsByClassName("objectHolder")[0].offsetHeight * 0.40),
-			this.state.currentPositions[number][0] - document.getElementsByClassName("objectHolder")[0].offsetWidth] 
+	return [(this.state.currentPositions[number][1] - document.getElementsByClassName("objectHolder")[1].offsetHeight * 0.10),
+			this.state.currentPositions[number][0] - document.getElementsByClassName("objectHolder")[1].offsetWidth] 
 }
 export function mount(object){
 	const elements = document.getElementById("dragElements").children

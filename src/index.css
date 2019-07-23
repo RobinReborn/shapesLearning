@@ -96,3 +96,8 @@ foreignObject input{
 	position: absolute;
 	z-index: 1;
 }
+@supports (-moz-appearance:none) { 
+	.arrows{
+		position:inherit;
+	}
+}
