@@ -18,11 +18,11 @@ class ClickTriangle extends React.Component{
 					<Triangle />
 				</div>
 		        <div className='card'>
-			        <svg viewBox="0 0 100 100">
-			  			<text x="34" y="55" fontSize="8" fill="black">&lt;polygon</text>
-			   			<text x="27" y="68" fontSize="8" fill="black">points="{this.state.points[0]},</text>
-			  			<text x="29" y="81" fontSize="8" fill="black">{this.state.points[1]}, {this.state.points[2]}"</text>
-			  			<text x="15" y="93" fontSize="8" fill="black">fill="{this.state.fill}"&lt;/polygon&gt;</text>
+			        <svg viewBox="0 0 100 100" className='ClickTriangle'>
+			  			<text x="38" y="55"  fill="black">&lt;polygon</text>
+			   			<text x="31" y="68"  fill="black">points="{this.state.points[0]},</text>
+			  			<text x="33" y="81"  fill="black">{this.state.points[1]}, {this.state.points[2]}"</text>
+			  			<text x="23" y="93"  fill="black">fill="{this.state.fill}"&lt;/polygon&gt;</text>
 					</svg>
 				</div> 
 			</div>

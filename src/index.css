@@ -101,7 +101,19 @@ foreignObject input{
 	.arrows{
 		position:inherit;
 	}
+	svg{
+		font-size: 6;
+	}
+	.ClickCircle{
+		font-size: .5em;
+	}
 }
 .arrowAndElementsHolder{
 	position: relative;
+}
+.ClickShape{
+	font-size: .5em;
+}
+.ClickTriangle{
+	font-size: .3em;
 }

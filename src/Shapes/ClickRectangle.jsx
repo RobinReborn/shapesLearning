@@ -19,11 +19,11 @@ class ClickRectangle extends React.Component{
 					<Rectangle />
 				</div>
 		        <div className='card'>
-			        <svg viewBox="0 0 100 100">
-			  			<text x="5" y="32" fontSize="12" fill="black">&lt;rect width="{this.state.width}"</text>
-			   			<text x="24" y="48" fontSize="12" fill="black">height="{this.state.height}"</text>
-			  			<text x="27" y="63" fontSize="12" fill="black">fill="{this.state.fill}"&gt; </text>
-			  			<text x="35" y="77" fontSize="12" fill="black">&lt;/rect&gt;</text>
+			        <svg viewBox="0 0 100 100" className='ClickShape'>
+			  			<text x="12" y="32" fill="black">&lt;rect width="{this.state.width}"</text>
+			   			<text x="24" y="48" fill="black">height="{this.state.height}"</text>
+			  			<text x="27" y="63" fill="black">fill="{this.state.fill}"&gt; </text>
+			  			<text x="35" y="77" fill="black">&lt;/rect&gt;</text>
 					</svg>
 				</div> 
 			</div>
