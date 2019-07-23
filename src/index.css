@@ -89,6 +89,7 @@ foreignObject input{
 }
 .arrows{
 	position:absolute;
+	z-index:3;
 }
 #arrowHolder{
 	width:100%;

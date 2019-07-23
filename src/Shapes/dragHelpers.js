@@ -57,8 +57,17 @@ export function handleStop(e,ui){
 }
 
 export function getArrowOffset(number){
-	return [(this.state.currentPositions[number][1] - document.getElementsByClassName("objectHolder")[1].offsetHeight * 0.10),
-			this.state.currentPositions[number][0] - document.getElementsByClassName("objectHolder")[1].offsetWidth] 
+	if (document.getElementsByClassName("Draggable")[number]){
+		let rect = document.getElementsByClassName("Draggable")[number].getBoundingClientRect()
+		let holder = document.getElementsByClassName("objectHolder")[1].getBoundingClientRect()
+		let arrow = document.getElementsByClassName('arrows')[0].getBoundingClientRect()
+		return [rect.y -holder.y - arrow.height/2,rect.x -holder.x -rect.width*0.75]
+	}
+	else{
+		return [0,0]
+	}
+	/*return [(this.state.currentPositions[number][1] - document.getElementsByClassName("objectHolder")[1].offsetHeight * 0.05),
+			this.state.currentPositions[number][0] - document.getElementsByClassName("objectHolder")[1].offsetWidth] */
 }
 export function mount(object){
 	const elements = document.getElementById("dragElements").children
