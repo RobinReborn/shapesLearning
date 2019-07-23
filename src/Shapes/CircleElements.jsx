@@ -1,6 +1,6 @@
 import React from 'react';
 import Draggable from 'react-draggable';
-import {handleDrag,mount,handleStop,getArrowOffset,checkFinished} from './dragHelpers.js'
+import {handleDrag,mount,handleStop,getArrowOffset,checkFinished} from './dragHelpers'
 import {connect} from "react-redux";
 import ArrowHolder from './ArrowHolder';
 
@@ -11,7 +11,6 @@ class CircleElements extends React.Component{
 	    this.handleStop = handleStop.bind(this);
 	    this.state = {currentPositions: [[],[],[],[]], desiredPositions: [], flex: 50, rotate: []}
 		this.getArrowOffset = getArrowOffset.bind(this);
-		this.checkFinished = checkFinished.bind(this);
 	}
 	componentDidMount(){
 		mount(this);
@@ -24,7 +23,7 @@ class CircleElements extends React.Component{
 						rotates={this.props.rotates[x]} visible={this.props.arrowVisible[x]}/>)
 		}
 		return(
-			<div style={{position: "relative"}}>
+			<div className='arrowAndElementsHolder'>
 				<div id='dragElements'>
 					<svg viewBox="0 0 100 15"/>
 					<Draggable onDrag={this.handleDrag} onStop={this.handleStop}><svg id='Draggable_0'  viewBox="0 0 100 19">

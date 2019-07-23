@@ -38,7 +38,6 @@ export function handleStop(e,ui){
 		ui.node.style.visibility = "hidden";
 		let arrowHolder = document.getElementById('arrowHolder');
 		let arrowToRemove = document.getElementById('arrow' + String(elementNumber));
-		//arrowToRemove.arrowHolder.removeChild(arrowToRemove);
 		arrowToRemove.remove()
 		dispatch(snapSet(elementNumber))
 		dispatch(clearError(ui.node.children[0].textContent,elementNumber))
@@ -57,7 +56,7 @@ export function handleStop(e,ui){
 }
 
 export function getArrowOffset(number){
-	if (document.getElementsByClassName("Draggable")[number]){
+	if (document.getElementsByClassName("Draggable")[number] && document.getElementsByClassName('arrows')[0]){
 		let rect = document.getElementsByClassName("Draggable")[number].getBoundingClientRect()
 		let holder = document.getElementsByClassName("objectHolder")[1].getBoundingClientRect()
 		let arrow = document.getElementsByClassName('arrows')[0].getBoundingClientRect()
@@ -66,8 +65,6 @@ export function getArrowOffset(number){
 	else{
 		return [0,0]
 	}
-	/*return [(this.state.currentPositions[number][1] - document.getElementsByClassName("objectHolder")[1].offsetHeight * 0.05),
-			this.state.currentPositions[number][0] - document.getElementsByClassName("objectHolder")[1].offsetWidth] */
 }
 export function mount(object){
 	const elements = document.getElementById("dragElements").children
@@ -80,6 +77,5 @@ export function mount(object){
 		positions.push([posInfo.left,posInfo.top]);
 		desiredPositions.push([[posInfo.left+flex-offsetWidth,posInfo.left-flex-offsetWidth],[posInfo.top+flex,posInfo.top-flex]]);
 	}
-	console.log(positions)
 	object.setState({currentPositions: positions, desiredPositions: desiredPositions, flex: flex, rotate: []})
 }

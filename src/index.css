@@ -102,3 +102,6 @@ foreignObject input{
 		position:inherit;
 	}
 }
+.arrowAndElementsHolder{
+	position: relative;
+}
