@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useRef} from 'react';
 import Draggable from 'react-draggable';
 import {handleDrag,mount,handleStop,getArrowOffset,checkFinished} from './dragHelpers'
 import {connect} from "react-redux";
@@ -19,23 +19,23 @@ class CircleElements extends React.Component{
 	render() {
 		const arrowHolders = []
 		for (let x =0;x < 4;x++){
-			arrowHolders.push(<ArrowHolder key = {x} id={'arrow' + String(x)} top={this.getArrowOffset(x)[0]} left={this.getArrowOffset(x)[1]} 
+			arrowHolders.push(<ArrowHolder key = {x} top={this.getArrowOffset(x)[0]} left={this.getArrowOffset(x)[1]} 
 						rotates={this.props.rotates[x]} visible={this.props.arrowVisible[x]}/>)
 		}
 		return(
 			<div className='arrowAndElementsHolder'>
-				<div id='dragElements'>
+				<div ref='dragElements' id='dragElements'>
 					<svg viewBox="0 0 100 15"/>
-					<Draggable onDrag={this.handleDrag} onStop={this.handleStop}><svg id='Draggable_0'  viewBox="0 0 100 19">
+					<Draggable onDrag={this.handleDrag} onStop={this.handleStop}><svg id='Draggable_0' ref='Draggable_0'  viewBox="0 0 100 19">
 						<text className='Draggable' x="32" y="12" fontSize="12" fill="black">&lt;circle</text></svg></Draggable>
-					<Draggable onDrag={this.handleDrag} onStop={this.handleStop}><svg id='Draggable_1'  viewBox="0 0 100 19">
+					<Draggable onDrag={this.handleDrag} onStop={this.handleStop}><svg id='Draggable_1' ref='Draggable_1'  viewBox="0 0 100 19">
 						<text className='Draggable' x='30' y='12' fontSize="12" fill="black">r="100"</text></svg></Draggable>
-					<Draggable onDrag={this.handleDrag} onStop={this.handleStop}><svg id='Draggable_2' viewBox="0 0 100 18">
+					<Draggable onDrag={this.handleDrag} onStop={this.handleStop}><svg id='Draggable_2' ref='Draggable_2'viewBox="0 0 100 18">
 						<text className='Draggable' x="20" y="12" fontSize="12" fill="black">fill="blue"&gt;</text></svg></Draggable>
-					<Draggable onDrag={this.handleDrag} onStop={this.handleStop}><svg id='Draggable_3'  viewBox="0 0 100 18">
+					<Draggable onDrag={this.handleDrag} onStop={this.handleStop}><svg id='Draggable_3' ref='Draggable_3' viewBox="0 0 100 18">
 						<text className='Draggable' x="29" y="12" fontSize="12" fill="black">&lt;/circle&gt;</text></svg></Draggable>
 				</div>
-				<div  id='arrowHolder'>
+				<div  id='arrowHolder' ref='arrowHolder'>
 					{arrowHolders}
 						</div>
 				<svg viewBox="0 0 100 100"/>

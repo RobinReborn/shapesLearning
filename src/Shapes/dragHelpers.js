@@ -2,6 +2,8 @@ import {snapSet, instructionIncrement, addError, showArrow , clearError, changeA
 
 export function handleDrag(e,ui) {
 	const { dispatch } = this.props;
+	console.log('moved')
+
 	const elementNumber = Number(ui.node.id.substring(10))
 	const [x, y] = this.state.currentPositions[elementNumber];
 	let oldPositions = [...this.state.currentPositions];
@@ -36,9 +38,7 @@ export function handleStop(e,ui){
 		(y <= this.state.desiredPositions[elementNumber][1][0] &&
 		 y >= this.state.desiredPositions[elementNumber][1][1])) {
 		ui.node.style.visibility = "hidden";
-		let arrowHolder = document.getElementById('arrowHolder');
-		let arrowToRemove = document.getElementById('arrow' + String(elementNumber));
-		arrowToRemove.remove()
+		//arrowToRemove.remove()
 		dispatch(snapSet(elementNumber))
 		dispatch(clearError(ui.node.children[0].textContent,elementNumber))
 		if(checkFinished()){
@@ -67,7 +67,7 @@ export function getArrowOffset(number){
 	}
 }
 export function mount(object){
-	const elements = document.getElementById("dragElements").children
+	const elements = object.refs.dragElements.children
 	let positions = []
 	let desiredPositions = []
 	const offsetWidth = document.getElementsByClassName("objectHolder")[0].offsetWidth
