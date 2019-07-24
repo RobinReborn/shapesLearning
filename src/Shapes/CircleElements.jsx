@@ -9,7 +9,7 @@ class CircleElements extends React.Component{
 	    super(props);
 	    this.handleDrag = handleDrag.bind(this);
 	    this.handleStop = handleStop.bind(this);
-	    this.state = {currentPositions: [[],[],[],[]], desiredPositions: [], flex: 50, rotate: []}
+	    this.state = {currentPositions: [[],[],[],[]], desiredPositions: [], flex: 50, rotate: [0,0,0,0]}
 		this.getArrowOffset = getArrowOffset.bind(this);
 	}
 	componentDidMount(){
@@ -38,13 +38,14 @@ class CircleElements extends React.Component{
 				<div  id='arrowHolder' ref='arrowHolder'>
 					{arrowHolders}
 						</div>
-				<svg viewBox="0 0 100 100"/>
+				<svg viewBox="0 0 100 100" ref='heightSVG' id='heightSVG'/>
 	
 
 			</div>)
 	}
 }
+
+
 const mapStateToProps = (state) => {
 	return {arrowVisible: state.instructionsReducer.arrowVisible, rotates: state.instructionsReducer.rotates}};
-
 export default connect(mapStateToProps)(CircleElements);
