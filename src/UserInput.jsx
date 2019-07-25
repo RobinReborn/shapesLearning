@@ -10,7 +10,7 @@ import UserInputCircle from './Shapes/UserInputCircle';
 import UserInputRectangle from './Shapes/UserInputRectangle';
 import UserInputTriangle from './Shapes/UserInputTriangle'
 
-const UserInput = ({shape,update,level,snapped} ) => {
+const UserInput = ({shape,update,level} ) => {
 	switch (level) {
 		case 0 : {
 			switch (shape) {
@@ -31,13 +31,13 @@ const UserInput = ({shape,update,level,snapped} ) => {
 		case 1 : {
 			switch (shape) {
 				case 'circle': {
-						return <DragAttrCircle update={update} snapped={snapped}/>
+						return <DragAttrCircle update={update}/>
 					}
 					case 'rectangle' : {
-						return <DragAttrRectangle update={update} snapped={snapped}/>
+						return <DragAttrRectangle update={update}/>
 					}
 					case 'triangle' : {
-						return <DragAttrTriangle update={update} snapped={snapped}/>
+						return <DragAttrTriangle update={update}/>
 					}
 					default : {
 						return <div/>
