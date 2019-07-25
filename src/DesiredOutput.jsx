@@ -57,6 +57,22 @@ const DesiredOutput = ({shape,level} ) => {
 				}
 			}
 		}
+		case 3 : {
+			switch (shape) {
+				case 'circle': {
+					return <Circle />
+				}
+				case 'rectangle' : {
+					return <Rectangle />
+				}
+				case 'triangle' : {
+					return <Triangle />
+				}
+				default : {
+					return <div/>
+				}
+			}
+		}
 		default : { 
 			return <div/>
 		}

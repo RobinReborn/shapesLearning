@@ -26,7 +26,8 @@ import DragAttrCircle from '../Shapes/DragAttrCircle';
 import DragAttrRectangle from '../Shapes/DragAttrRectangle';
 import DragAttrTriangle from '../Shapes/DragAttrTriangle'
 import UserInputCircle from '../Shapes/UserInputCircle';
-import UserInputRectangle from '../Shapes/UserInputRectangle'
+import UserInputRectangle from '../Shapes/UserInputRectangle';
+
 beforeAll(() => {
   const div = document.createElement('div');
   window.domNode = div;
