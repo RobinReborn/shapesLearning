@@ -26,6 +26,7 @@ import DragAttrCircle from '../Shapes/DragAttrCircle';
 import DragAttrRectangle from '../Shapes/DragAttrRectangle';
 import DragAttrTriangle from '../Shapes/DragAttrTriangle'
 import UserInputCircle from '../Shapes/UserInputCircle';
+import UserInputRectangle from '../Shapes/UserInputRectangle'
 beforeAll(() => {
   const div = document.createElement('div');
   window.domNode = div;
@@ -47,7 +48,6 @@ describe('<ShowShape/>', () => {
 		wrapper.find('.flipHolder').simulate('click')
 		
 		let shapeStyle = wrapper.find('.flipHolder').find('.card').get(0).props.style
-		console.log(shapeStyle)
 		expect(shapeStyle).to.have.property('opacity',0.2)
 
 		expect(wrapper.find(Instructions).find('#instructions').text()).to.match(/^Click again to see the next shape/)
@@ -108,8 +108,14 @@ describe('<ShowShape/>', () => {
 		triWrapper.find("Draggable").at(3).simulate("mouseup");
 		reduxState = wrapper.state().store.getState()
 		expect(reduxState.snapReducer.snapped).to.deep.equal([ true, true, true, true ]);
+
 		wrapper.find('.card').at(1).simulate('click')
 		expect(wrapper.find(UserInputCircle)).to.have.lengthOf(1)
+		let input = wrapper.find('input').at(3)
+		console.log(input.value)
+		input.simulate('change', { target: { value: 'blue'}});
+		wrapper.find('.flipHolder').simulate('click')
+		expect(wrapper.find(UserInputRectangle)).to.have.lengthOf(1)
 
 
 	})

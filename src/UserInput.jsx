@@ -69,6 +69,5 @@ const UserInput = ({shape,update,level} ) => {
 UserInput.propTypes = {
 	shape: PropTypes.string.isRequired,
 	level: PropTypes.number.isRequired,
-	update: PropTypes.func.isRequired
 }
 export default UserInput;

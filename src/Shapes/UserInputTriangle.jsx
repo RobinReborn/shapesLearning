@@ -8,7 +8,6 @@ class UserInputTriangle extends React.Component {
     	super(props);
     	this.setFill = this.setFill.bind(this);
     	this.state = {fill: 'black', fillFont: 'white'}
-    	this.update = this.props.update.bind(this);
     	this.click = this.click.bind(this);
 	}
 	setFill = color => {
