@@ -45,6 +45,10 @@ describe('<ShowShape/>', () => {
 		expect(wrapper.find(DesiredOutput)).to.have.lengthOf(1)
 		expect(wrapper.find(UserInput)).to.have.lengthOf(1)
 		wrapper.find('.flipHolder').simulate('click')
+		
+		let shapeStyle = wrapper.find('.flipHolder').find('.card').get(0).props.style
+		console.log(shapeStyle)
+		expect(shapeStyle).to.have.property('opacity',0.2)
 
 		expect(wrapper.find(Instructions).find('#instructions').text()).to.match(/^Click again to see the next shape/)
 		wrapper.find('.flipHolder').simulate('click')
