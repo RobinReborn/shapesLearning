@@ -1,4 +1,4 @@
-import {snapSet, instructionIncrement, addError, showArrow , clearError, changeAngle} from '../actions';
+import {snapSet, instructionIncrement, addError, showArrow , clearError, changeAngle,incrementShape,resetSnap} from '../actions';
 
 export function handleDrag(e,ui) {
 	const { dispatch } = this.props;
@@ -40,6 +40,8 @@ export function handleStop(e,ui){
 		dispatch(clearError(ui.node.children[0].textContent,elementNumber))
 		if(checkFinished()){
 			dispatch(instructionIncrement())
+			dispatch(incrementShape())
+			dispatch(resetSnap())
 		}		
 	}
 	else {
