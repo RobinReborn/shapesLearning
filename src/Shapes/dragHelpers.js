@@ -38,10 +38,9 @@ export function handleStop(e,ui){
 		ui.node.style.visibility = "hidden";
 		dispatch(snapSet(elementNumber))
 		dispatch(clearError(ui.node.children[0].textContent,elementNumber))
+		document.getElementsByClassName('arrows')[elementNumber].style.display = 'none'
 		if(checkFinished()){
 			dispatch(instructionIncrement())
-			dispatch(incrementShape())
-			dispatch(resetSnap())
 		}		
 	}
 	else {
