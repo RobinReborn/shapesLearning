@@ -7,7 +7,7 @@ class ClickCircle extends React.Component{
 	constructor(props) {
 	    super(props);
 	    this.click = click.bind(this);
-	    this.state = {r: '100', fill: 'blue', opacity: 1, zIndex : 1, clicked : false};
+	    this.state = {opacity: 1, zIndex : 1, clicked : false};
 	    this.update = this.props.update.bind(this);
 	}
 	
@@ -20,8 +20,8 @@ class ClickCircle extends React.Component{
 	        <div className='card'>
 		        <svg viewBox="0 0 100 100" className='ClickShape'>
 		  			<text x="32" y="25"  fill="black">&lt;circle</text>
-		   			<text x="33" y="45"  fill="black">r="{this.state.r}"</text>
-		  			<text x="26" y="65"  fill="black">fill="{this.state.fill}"&gt;</text>
+		   			<text x="33" y="45"  fill="black">r="100"</text>
+		  			<text x="26" y="65"  fill="black">fill="blue"&gt;</text>
 		  			<text x="29" y="85"  fill="black">&lt;/circle&gt;</text>
 				</svg>
 			</div> 

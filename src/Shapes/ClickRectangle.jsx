@@ -7,8 +7,7 @@ class ClickRectangle extends React.Component{
 	constructor(props) {
 	    super(props);
 	    this.click = click.bind(this);
-	    this.state = {width: 100, height: 80, fill: 'red', opacity: 1, zIndex : 1, clicked : false};
-	    this.update = this.props.update.bind(this);
+	    this.state = {opacity: 1, zIndex : 1, clicked : false};
 	}
 	
 
@@ -20,9 +19,9 @@ class ClickRectangle extends React.Component{
 				</div>
 		        <div className='card'>
 			        <svg viewBox="0 0 100 100" className='ClickShape'>
-			  			<text x="12" y="32" fill="black">&lt;rect width="{this.state.width}"</text>
-			   			<text x="24" y="48" fill="black">height="{this.state.height}"</text>
-			  			<text x="27" y="63" fill="black">fill="{this.state.fill}"&gt; </text>
+			  			<text x="12" y="32" fill="black">&lt;rect width="100"</text>
+			   			<text x="24" y="48" fill="black">height="80"</text>
+			  			<text x="27" y="63" fill="black">fill="red"&gt; </text>
 			  			<text x="35" y="77" fill="black">&lt;/rect&gt;</text>
 					</svg>
 				</div> 
