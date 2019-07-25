@@ -7,7 +7,7 @@ import CircleElements from './Shapes/CircleElements';
 import RectangleElements from './Shapes/RectangleElements';
 import TriangleElements from './Shapes/TriangleElements'
 
-const DesiredOutput = ({shape,update,level,snapped} ) => {
+const DesiredOutput = ({shape,level} ) => {
 	switch (level) {
 		case 0 : {
 			switch (shape) {
@@ -28,13 +28,13 @@ const DesiredOutput = ({shape,update,level,snapped} ) => {
 		case 1 : {
 			switch (shape) {
 				case 'circle': {
-						return <CircleElements update={update} snapped={snapped}/>
+						return <CircleElements/>
 					}
 					case 'rectangle' : {
-						return <RectangleElements update={update} snapped={snapped}/>
+						return <RectangleElements />
 					}
 					case 'triangle' : {
-						return <TriangleElements update={update} snapped={snapped}/>
+						return <TriangleElements />
 					}
 					default : {
 						return <div/>
@@ -44,13 +44,13 @@ const DesiredOutput = ({shape,update,level,snapped} ) => {
 		case 2 : {
 			switch (shape) {
 				case 'circle': {
-					return <Circle update={update}/>
+					return <Circle />
 				}
 				case 'rectangle' : {
-					return <Rectangle update={update}/>
+					return <Rectangle />
 				}
 				case 'triangle' : {
-					return <Triangle update={update}/>
+					return <Triangle />
 				}
 				default : {
 					return <div/>
@@ -66,6 +66,5 @@ const DesiredOutput = ({shape,update,level,snapped} ) => {
 DesiredOutput.propTypes = {
 	shape: PropTypes.string.isRequired,
 	level: PropTypes.number.isRequired,
-	update: PropTypes.func.isRequired
 }
 export default DesiredOutput;

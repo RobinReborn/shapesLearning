@@ -15,13 +15,13 @@ const UserInput = ({shape,update,level} ) => {
 		case 0 : {
 			switch (shape) {
 				case 'circle': {
-					return <ClickCircle update={update}/>
+					return <ClickCircle/>
 				}
 				case 'rectangle' : {
-					return <ClickRectangle update={update}/>
+					return <ClickRectangle />
 				}
 				case 'triangle' : {
-					return <ClickTriangle update={update}/>
+					return <ClickTriangle/>
 				}
 				default : {
 					return <div/>
@@ -31,13 +31,13 @@ const UserInput = ({shape,update,level} ) => {
 		case 1 : {
 			switch (shape) {
 				case 'circle': {
-						return <DragAttrCircle update={update}/>
+						return <DragAttrCircle/>
 					}
 					case 'rectangle' : {
-						return <DragAttrRectangle update={update}/>
+						return <DragAttrRectangle/>
 					}
 					case 'triangle' : {
-						return <DragAttrTriangle update={update}/>
+						return <DragAttrTriangle/>
 					}
 					default : {
 						return <div/>
@@ -47,13 +47,13 @@ const UserInput = ({shape,update,level} ) => {
 		case 2 :{
 			switch (shape) {
 				case 'circle': {
-					return <UserInputCircle update={update}/>
+					return <UserInputCircle/>
 				}
 				case 'rectangle' : {
-					return <UserInputRectangle update={update}/>
+					return <UserInputRectangle />
 				}
 				case 'triangle' : {
-					return <UserInputTriangle update={update}/>
+					return <UserInputTriangle />
 				}
 				default : {
 					return <div/>

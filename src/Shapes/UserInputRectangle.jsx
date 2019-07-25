@@ -1,5 +1,5 @@
 import React from 'react';
-import {instructionIncrement} from '../actions'
+import {instructionIncrement, incrementShape} from '../actions'
 import { connect } from "react-redux";
 
 
@@ -19,7 +19,7 @@ class UserInputRectangle extends React.Component {
 		if (this.state.fill === 'red') {
 			const {dispatch} = this.props;
 			dispatch(instructionIncrement())
-        	this.update()
+			dispatch(incrementShape())
     	}
     }
 

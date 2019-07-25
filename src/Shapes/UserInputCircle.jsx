@@ -1,5 +1,5 @@
 import React from 'react';
-import {instructionIncrement} from '../actions'
+import {instructionIncrement, incrementShape} from '../actions'
 import { connect } from "react-redux";
 
 class UserInputCircle extends React.Component {
@@ -7,7 +7,6 @@ class UserInputCircle extends React.Component {
     	super(props);
     	this.setFill = this.setFill.bind(this);
     	this.state = {fill: 'black', fillFont: 'white'}
-    	this.update = this.props.update.bind(this);
     	this.click = this.click.bind(this);
 	}
 	setFill = color => {
@@ -17,7 +16,7 @@ class UserInputCircle extends React.Component {
 		if (this.state.fill === 'blue') {
 			const {dispatch} = this.props;
 			dispatch(instructionIncrement())
-        	this.update()
+        	dispatch(incrementShape())
     	}
     }
 	render() {

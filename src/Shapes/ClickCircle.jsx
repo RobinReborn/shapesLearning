@@ -8,7 +8,6 @@ class ClickCircle extends React.Component{
 	    super(props);
 	    this.click = click.bind(this);
 	    this.state = {opacity: 1, zIndex : 1, clicked : false};
-	    this.update = this.props.update.bind(this);
 	}
 	
 	render() {

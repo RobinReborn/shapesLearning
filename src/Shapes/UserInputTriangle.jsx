@@ -1,5 +1,5 @@
 import React from 'react';
-import {instructionIncrement} from '../actions'
+import {instructionIncrement, incrementShape} from '../actions'
 import { connect } from "react-redux";
 
 
@@ -18,7 +18,7 @@ class UserInputTriangle extends React.Component {
 		if (this.state.fill === 'green') {
 			const {dispatch} = this.props;
 			dispatch(instructionIncrement())
-        	this.update()
+        	dispatch(incrementShape())
     	}
     }
 

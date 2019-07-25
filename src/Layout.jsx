@@ -9,10 +9,10 @@ const Layout =({shape,update,level,snapped}) => {
 			<Instructions/>
 			<div className='drawHolder'>
 				<div className = 'objectHolder'>
-					<UserInput shape={shape} level={level} update={update}/>
+					<UserInput shape={shape} level={level}/>
 				</div>
 				<div className = 'objectHolder'>
-					<DesiredOutput shape={shape} level={level} update={update}/>
+					<DesiredOutput shape={shape} level={level}/>
 				</div>
 			</div>
 			</div>

@@ -5,17 +5,8 @@ import {shapeArray} from './shapeArray';
 
 const mapStateToProps = (state) => {
 	 return {shape: shapeArray[state.rootReducer.shape],
-	 		level: state.rootReducer.level,
-	 		};
+	 		level: state.rootReducer.level};
 }
 
-function mapDispatchToProps(dispatch) {
-	return {
-		update: () => dispatch(incrementShape())
-	}
-}
 
-export default connect(
-	mapStateToProps,
-	mapDispatchToProps
-	)(Layout)
+export default connect(mapStateToProps)(Layout)
