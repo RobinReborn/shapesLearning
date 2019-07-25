@@ -20,12 +20,16 @@ import ClickCircle from '../Shapes/ClickCircle';
 import ClickRectangle from '../Shapes/ClickRectangle';
 import CircleElements from '../Shapes/CircleElements';
 import {handleDrag,handleStop,getArrowOffset,checkFinished} from '../Shapes/dragHelpers'
+import DragAttrCircle from '../Shapes/DragAttrCircle';
+import DragAttrRectangle from '../Shapes/DragAttrRectangle';
 
 beforeAll(() => {
   const div = document.createElement('div');
   window.domNode = div;
   document.body.appendChild(div);
 })
+
+
 import { assert } from 'chai';
 
 describe('<ShowShape/>', () => {
@@ -40,28 +44,34 @@ describe('<ShowShape/>', () => {
 		expect(wrapper.find(Instructions).find('#instructions').text()).to.match(/^Click again to see the next shape/)
 		wrapper.find('.flipHolder').simulate('click')
 		expect(wrapper.find(Instructions).find('#instructions').text()).to.match(/^Click on the Rectangle on the left to see the code that generates it/)
+			wrapper.find('.flipHolder').simulate('click')
+
+		expect(wrapper.find(Instructions).find('#instructions').text()).to.match(/^Click again to see the next shape/)
+		wrapper.find('.flipHolder').simulate('click')
+		expect(wrapper.find(Instructions).find('#instructions').text()).to.match(/^Click on the Triangle on the left to see the code that generates it/)
+
 	})
 	it("clicking gets to next shape", () => {
-		const testState = {level:1,shape:0,
-			/*currentPosition: [
-  1064.449951171875,
-  294.25],desiredPosition: [1200,300]*/} 
-		const wrapper = mount(<Provider store={store}> <CircleElements/></Provider>,{ attachTo: window.domNode } )
+		const wrapper = mount(<Provider store={store}> <ShowShape/></Provider>,{ attachTo: window.domNode });
+		wrapper.find('.flipHolder').simulate('click')
+		wrapper.find('.flipHolder').simulate('click')
 
-		//do something to simulate on drag
-		wrapper.debug()
-		let draggable = wrapper.find('#Draggable_0')
-		let CircleElementsWrapperInstance = wrapper.instance()
-		let arrowVisibility = wrapper.find('.arrows').at(0).find('g').find('line').get(0).props.style
-		draggable.simulate('mousedown')
-		CircleElementsWrapperInstance.handleDrag
+		let circleWrapper = wrapper.find(CircleElements)
+		let arrowVisibility = circleWrapper.find('.arrows').at(0).find('g').find('line').get(0).props.style
 		expect(arrowVisibility).to.have.property('display', 'none');
-		draggable.simulate('mousemove' , {pageX: 42,pageY: 44})
-		CircleElementsWrapperInstance.handleStop
-		draggable.simulate('mouseup')
-		//console.log(wrapper.state())
 		
-		arrowVisibility = wrapper.find('.arrows').at(0).find('g').find('line').get(0).props.style
-		expect(arrowVisibility).to.have.property('display', 'block');
+		circleWrapper.find("Draggable").at(1).simulate("mousedown");
+		circleWrapper.find("Draggable").at(1).simulate("mouseup");
+		circleWrapper.find("Draggable").at(2).simulate("mousedown");
+		circleWrapper.find("Draggable").at(2).simulate("mouseup");
+		circleWrapper.find("Draggable").at(3).simulate("mousedown");
+		circleWrapper.find("Draggable").at(3).simulate("mouseup");
+		circleWrapper.find("Draggable").at(0).simulate("mousedown");
+		circleWrapper.find("Draggable").at(0).simulate("mouseup");
+		let reduxState = wrapper.state().store.getState()
+		console.log(reduxState.snapReducer.snapped)
+		expect(reduxState.snapReducer.snapped).to.deep.equal([ true, true, true, true ]);
+		wrapper.find('.card').at(1).simulate('click')
+		expect(wrapper.find(DragAttrRectangle)).to.have.lengthOf(1)
 	})
 })

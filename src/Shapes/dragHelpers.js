@@ -2,8 +2,6 @@ import {snapSet, instructionIncrement, addError, showArrow , clearError, changeA
 
 export function handleDrag(e,ui) {
 	const { dispatch } = this.props;
-	console.log('moved')
-
 	const elementNumber = Number(ui.node.id.substring(10))
 	const [x, y] = this.state.currentPositions[elementNumber];
 	let oldPositions = [...this.state.currentPositions];
@@ -17,8 +15,8 @@ export function handleDrag(e,ui) {
 	angles[elementNumber] = angle
 	this.setState({ rotate : angles})
 	dispatch(changeAngle(elementNumber,angle))
+}
 
-	}
 export function checkFinished(){
 	let check = true;
 	for (let x=0;x< document.getElementsByClassName('react-draggable').length; x++){
@@ -42,18 +40,18 @@ export function handleStop(e,ui){
 		dispatch(clearError(ui.node.children[0].textContent,elementNumber))
 		if(checkFinished()){
 			dispatch(instructionIncrement())
-		}	
+		}		
 	}
 	else {
 		dispatch(addError(ui.node.children[0].textContent,"element misplaced"))
-		dispatch(showArrow(elementNumber))	
+		dispatch(showArrow(elementNumber))		
 	}
 }
 
 export function getArrowOffset(number){
 	if (document.getElementsByClassName("Draggable")[number] && document.getElementsByClassName('arrows')[0]){
 		let rect = document.getElementsByClassName("Draggable")[number].getBoundingClientRect()
-		let holder = document.getElementById("heightSVG").getBoundingClientRect()
+		let holder = document.getElementsByClassName("objectHolder")[1].getBoundingClientRect()
 		let arrow = document.getElementsByClassName('arrows')[0].getBoundingClientRect()
 		return [rect.y -holder.y - arrow.height/2,rect.x -holder.x -rect.width*0.75]
 	}
@@ -65,7 +63,7 @@ export function mount(object){
 	const elements = object.refs.dragElements.children
 	let positions = []
 	let desiredPositions = []
-	const offsetWidth = object.refs.heightSVG.offsetWidth
+	const offsetWidth = document.getElementsByClassName("objectHolder")[0].offsetWidth || 0
 	const flex = 50;
 	for (let x=0; x < elements.length; x++){
 		let posInfo = elements.item(x).getBoundingClientRect();
