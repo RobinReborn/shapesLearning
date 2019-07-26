@@ -1,4 +1,4 @@
-import {snapSet, instructionIncrement, addError, showArrow , clearError, changeAngle,incrementShape,resetSnap} from '../actions';
+import {snapSet, instructionIncrement, addMisplacedElementError, showArrow , clearError, changeAngle,incrementShape,resetSnap} from '../actions';
 
 export function handleDrag(e,ui) {
 	const { dispatch } = this.props;
@@ -44,7 +44,7 @@ export function handleStop(e,ui){
 		}		
 	}
 	else {
-		dispatch(addError(ui.node.children[0].textContent,"element misplaced"))
+		dispatch(addMisplacedElementError(ui.node.children[0].textContent,"element misplaced"))
 		dispatch(showArrow(elementNumber))		
 	}
 }

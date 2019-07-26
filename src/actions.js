@@ -1,7 +1,7 @@
 import {INCREMENT_SHAPE, INCREMENT_INSTRUCTIONS, SNAP_SET, SNAP_GET, GET_SHAPE, 
-	RESET_SNAP ,CHECK_SNAP_FINISHED, INSTRUCTION_INCREMENT, CHANGE_STATE,ADD_ERROR, CLEAR_ERROR,
+	RESET_SNAP ,CHECK_SNAP_FINISHED, INSTRUCTION_INCREMENT, CHANGE_STATE,ADD_MISPLACED_ELEMENT_ERROR, CLEAR_ERROR,
 	SHOW_CONTROL_PANEL_BUTTON,TOGGLE_CONTROL_PANEL,HIDE_CONTROL_PANEL_BUTTON, SHOW_ARROW,
-	CHANGE_ANGLE} from "./actionTypes";
+	CHANGE_ANGLE, ADD_USER_INPUT_ERROR} from "./actionTypes";
 
 export const incrementShape = value => ({
 	type: INCREMENT_SHAPE,
@@ -45,11 +45,18 @@ export const changeState = (level,shape) => ({
 	shape
 })
 
-export const addError = (parameter,message) => ({
-	type: ADD_ERROR,
+export const addMisplacedElementError = (parameter,message) => ({
+	type: ADD_MISPLACED_ELEMENT_ERROR,
 	parameter,
 	message
 })
+
+export const addUserInputError = (tokens,desiredTokens) => ({
+	type: ADD_USER_INPUT_ERROR,
+	tokens,
+	desiredTokens
+})
+
 
 export const clearError = (error,element) => ({
 	type: CLEAR_ERROR,
@@ -79,3 +86,4 @@ export const changeAngle = (element,angle) => ({
 	element,
 	angle
 })
+
