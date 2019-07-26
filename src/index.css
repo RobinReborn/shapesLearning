@@ -122,4 +122,5 @@ foreignObject input{
     width:100%;
     font-size:5vh;
 	z-index: 1;
+	background: transparent;
 }

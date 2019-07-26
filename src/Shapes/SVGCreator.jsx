@@ -1,22 +1,27 @@
 import React from 'react';
+import {incrementShape} from '../actions'
+import { connect } from "react-redux";
 
 class SVGCreator extends React.Component {
 	constructor(props){
 		super(props);
 		this.setSVG = this.setSVG.bind(this);
-		//this.renderSVG = this.renderSVG.bind(this);
+		this.checkAccurate = this.checkAccurate.bind(this);
 		this.state = {svg: ''}
 	}
 	setSVG = text => {
 		this.setState({svg: text.target.value})
 	}
-/*	renderSVG(){
-		return {__html: this.state.svg}
-	}*/
+	checkAccurate(){
+		const {dispatch} = this.props;
+		if (this.state.svg == this.props.svg){
+			dispatch(incrementShape())
+		}
+	}
 	render(){
 		return(
-			<div className='flipHolder'>
-			<div className='card' style={{height: "100%", zIndex: "1", opacity: '0.5'}}>
+			<div className='flipHolder' onClick={this.checkAccurate}>
+			<div className='card' style={{height: "100%", zIndex: "1"}}>
 			<input className='svgInput' type='text' onChange={this.setSVG}/>
 			</div>
 			<div className='card'>
@@ -26,4 +31,4 @@ class SVGCreator extends React.Component {
 	}
 }
 
-export default SVGCreator
+export default connect()(SVGCreator)
