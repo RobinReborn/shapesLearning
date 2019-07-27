@@ -72,7 +72,7 @@ function instructionReducer(state=initialState,action){
 	    			error[action.desiredTokens[x]] = 'is missing'
 	    		}
 	    		else if (action.tokens[action.tokens.indexOf(action.desiredTokens[x])+1] != action.desiredTokens[x+1]){
-	    			error[action.desiredTokens[x]] = "value is wrong, it should be" + action.desiredTokens[x+1]
+	    			error[action.desiredTokens[x]] = "value is wrong, it should be " + action.desiredTokens[x+1]
 	    		}
     		}
     		return Object.assign({}, state, {errors: error})

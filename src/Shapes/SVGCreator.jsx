@@ -21,8 +21,9 @@ class SVGCreator extends React.Component {
 		parseInput = parseInput.toLowerCase()
 		parseInput = parseInput.replace(/'/g,"\"")
 
-		let checkParseInput = parseInput.split(/(\S*(?:(['"`]).*?\2)\S*)\s?|\s/)
-		let desiredTokens = this.props.svg.split(/(\S*(?:(['"`]).*?\2)\S*)\s?|\s/)
+		let checkParseInput = parseInput.split(/(\S*(?:(['"`]).*?\2)*)\s?|\s/)
+												
+		let desiredTokens = this.props.svg.split(/(\S*(?:(['"`]).*?\2)*)\s?|\s/)
 		let match = true
 		for(let x of desiredTokens){
 			if (checkParseInput.indexOf(x) ==-1){

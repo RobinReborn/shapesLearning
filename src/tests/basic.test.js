@@ -29,6 +29,7 @@ import UserInputCircle from '../Shapes/UserInputCircle';
 import UserInputRectangle from '../Shapes/UserInputRectangle';
 import UserInputTriangle from '../Shapes/UserInputTriangle';
 import Rectangle from '../Shapes/Rectangle';
+import Circle from '../Shapes/Circle';
 import SVGCreator from '../Shapes/SVGCreator';
 
 beforeAll(() => {
@@ -136,9 +137,17 @@ describe('<ShowShape/>', () => {
 		const wrapper = mount(<Provider store={store}> <ShowShape/></Provider>);
 		expect(wrapper.find(SVGCreator)).to.have.lengthOf(1)
 		let input = wrapper.find('input').at(3)
-		input.simulate('change', { target: { value: '<circle r="50" cx="50" cy="50" fill="blue" />'}});
+		input.simulate('change', { target: { value: '<circle cx="50" cy="50" fill="blue" />'}});
 		wrapper.find('#submitSVG').simulate('click')
-		console.log(wrapper)
+
+		expect(wrapper.find("#error").text()).to.equal("r is missing ")
+		input.simulate('change', { target: { value: '<circle cx="50" r="40" cy="50" fill="blue" />'}});
+		wrapper.find('#submitSVG').simulate('click')
+		expect(wrapper.find("#error").text()).to.equal("r value is wrong, it should be \"50\" ")
+
+		input.simulate('change', { target: { value: '<circle cx="50" r="50" cy="50" fill="blue" />'}});
+		wrapper.find('#submitSVG').simulate('click')
+		expect(wrapper.find("#error").text()).to.equal("")
 		expect(wrapper.find(Rectangle)).to.have.lengthOf(1);
 	})
 })
