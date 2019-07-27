@@ -15,7 +15,7 @@ class SVGCreator extends React.Component {
 	checkAccurate(){
 		
 		const {dispatch} = this.props;
-		//remove linebreaks etc
+		//remove linebreaks etc,  by token?
 		let parseInput = this.state.svg.replace(/(\r\n|\n|\r)/gm," ");
 		parseInput = parseInput.replace(/\s+/g, " ");
 		parseInput = parseInput.toLowerCase()
@@ -51,7 +51,7 @@ class SVGCreator extends React.Component {
 			<div className='flipHolder' >
 			<div className='card' style={{height: "100%", zIndex: "1"}}>
 			<input className='svgInput' type='text' onChange={this.setSVG} ref='svgText'/>
-			<button onClick={this.checkAccurate}>Submit</button>
+			<button id='submitSVG' onClick={this.checkAccurate}>Submit</button>
 			</div>
 			<div className='card'>
 			<svg viewBox="0 0 100 100" dangerouslySetInnerHTML={{__html: this.state.svg}}></svg>

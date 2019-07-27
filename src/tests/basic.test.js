@@ -27,6 +27,9 @@ import DragAttrRectangle from '../Shapes/DragAttrRectangle';
 import DragAttrTriangle from '../Shapes/DragAttrTriangle'
 import UserInputCircle from '../Shapes/UserInputCircle';
 import UserInputRectangle from '../Shapes/UserInputRectangle';
+import UserInputTriangle from '../Shapes/UserInputTriangle';
+import Rectangle from '../Shapes/Rectangle';
+import SVGCreator from '../Shapes/SVGCreator';
 
 beforeAll(() => {
   const div = document.createElement('div');
@@ -109,17 +112,33 @@ describe('<ShowShape/>', () => {
 		triWrapper.find("Draggable").at(3).simulate("mouseup");
 		reduxState = wrapper.state().store.getState()
 		expect(reduxState.snapReducer.snapped).to.deep.equal([ true, true, true, true ]);
-		wrapper.find('.card').at(1).simulate('click')
-
+})
+	it("setting the right color for a userinput shape and clicking moves to the next shape", () => {
 	
-		console.log(store.getState())
-		//const wrapper = mount(<Provider store={store}> <ShowShape/></Provider>,{ attachTo: window.domNode });
+		const wrapper = mount(<Provider store={store}> <ShowShape/></Provider>);
+		wrapper.find('.card').at(1).simulate('click')
 
 		expect(wrapper.find(UserInputCircle)).to.have.lengthOf(1)
 		let input = wrapper.find('input').at(3)
-		console.log(input.value)
 		input.simulate('change', { target: { value: 'blue'}});
 		wrapper.find('.flipHolder').simulate('click')
 		expect(wrapper.find(UserInputRectangle)).to.have.lengthOf(1)
+		input = wrapper.find('input').at(3)
+		input.simulate('change', { target: { value: 'red'}});
+		wrapper.find('.flipHolder').simulate('click')
+		expect(wrapper.find(UserInputTriangle)).to.have.lengthOf(1)
+		input = wrapper.find('input').at(3)
+		input.simulate('change', { target: { value: 'green'}});
+		wrapper.find('.flipHolder').simulate('click')
+	})
+
+	it("adding the right text to an SVGCreator lets you move to next shape", () => {
+		const wrapper = mount(<Provider store={store}> <ShowShape/></Provider>);
+		expect(wrapper.find(SVGCreator)).to.have.lengthOf(1)
+		let input = wrapper.find('input').at(3)
+		input.simulate('change', { target: { value: '<circle r="50" cx="50" cy="50" fill="blue" />'}});
+		wrapper.find('#submitSVG').simulate('click')
+		console.log(wrapper)
+		expect(wrapper.find(Rectangle)).to.have.lengthOf(1);
 	})
 })
