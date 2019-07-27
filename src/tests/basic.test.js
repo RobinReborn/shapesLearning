@@ -109,15 +109,17 @@ describe('<ShowShape/>', () => {
 		triWrapper.find("Draggable").at(3).simulate("mouseup");
 		reduxState = wrapper.state().store.getState()
 		expect(reduxState.snapReducer.snapped).to.deep.equal([ true, true, true, true ]);
-
 		wrapper.find('.card').at(1).simulate('click')
+
+	
+		console.log(store.getState())
+		//const wrapper = mount(<Provider store={store}> <ShowShape/></Provider>,{ attachTo: window.domNode });
+
 		expect(wrapper.find(UserInputCircle)).to.have.lengthOf(1)
 		let input = wrapper.find('input').at(3)
 		console.log(input.value)
 		input.simulate('change', { target: { value: 'blue'}});
 		wrapper.find('.flipHolder').simulate('click')
 		expect(wrapper.find(UserInputRectangle)).to.have.lengthOf(1)
-
-
 	})
 })

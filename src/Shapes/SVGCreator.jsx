@@ -19,8 +19,10 @@ class SVGCreator extends React.Component {
 		let parseInput = this.state.svg.replace(/(\r\n|\n|\r)/gm," ");
 		parseInput = parseInput.replace(/\s+/g, " ");
 		parseInput = parseInput.toLowerCase()
-		let checkParseInput = parseInput.split(' ')
-		let desiredTokens = this.props.svg.split(' ')
+		parseInput = parseInput.replace(/'/g,"\"")
+
+		let checkParseInput = parseInput.split(/(\S*(?:(['"`]).*?\2)\S*)\s?|\s/)
+		let desiredTokens = this.props.svg.split(/(\S*(?:(['"`]).*?\2)\S*)\s?|\s/)
 		let match = true
 		for(let x of desiredTokens){
 			if (checkParseInput.indexOf(x) ==-1){
@@ -28,27 +30,27 @@ class SVGCreator extends React.Component {
 				break;
 			}
 		}
+		parseInput = parseInput.split(/=|(\s*(?:(['"`]).*?\2)\S*)\s?|\s/)
+		parseInput = parseInput.filter(x => x != '' &&  x != null  && x != "'")
+		desiredTokens = this.props.svg.split(/=|(\s*(?:(['"`]).*?\2)\S*)\s?|\s/)
+		desiredTokens = desiredTokens.filter(x => x != '' &&  x != null && x != "\"" && x != "'")
 		if ( match){
 			dispatch(incrementShape())
-			parseInput = parseInput.split(/=|(\s*(?:(['"`]).*?\2)\S*)\s?|\s/)
-			parseInput = parseInput.filter(x => x != '' &&  x != null && x != "\""  && x != "'")
-			desiredTokens = this.props.svg.split(/=|(\s*(?:(['"`]).*?\2)\S*)\s?|\s/)
-			desiredTokens = desiredTokens.filter(x => x != '' &&  x != null && x != "\"" && x != "'")
+
 			dispatch(addUserInputError(parseInput,desiredTokens))
+			this.setState({svg: ''})
+			this.refs.svgText = ''
 		}
 		else{
-			parseInput = parseInput.split(/=|(\s*(?:(['"`]).*?\2)\S*)\s?|\s/)
-			parseInput = parseInput.filter(x => x != '' &&  x != null && x != "\""  && x != "'")
-			desiredTokens = this.props.svg.split(/=|(\s*(?:(['"`]).*?\2)\S*)\s?|\s/)
-			desiredTokens = desiredTokens.filter(x => x != '' &&  x != null && x != "\"" && x != "'")
 			dispatch(addUserInputError(parseInput,desiredTokens))
 		}
 	}
+
 	render(){
 		return(
 			<div className='flipHolder' >
 			<div className='card' style={{height: "100%", zIndex: "1"}}>
-			<input className='svgInput' type='text' onChange={this.setSVG}/>
+			<input className='svgInput' type='text' onChange={this.setSVG} ref='svgText'/>
 			<button onClick={this.checkAccurate}>Submit</button>
 			</div>
 			<div className='card'>
