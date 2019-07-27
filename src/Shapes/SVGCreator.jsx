@@ -19,7 +19,6 @@ class SVGCreator extends React.Component {
 		let parseInput = this.state.svg.replace(/(\r\n|\n|\r)/gm," ");
 		parseInput = parseInput.replace(/\s+/g, " ");
 		parseInput = parseInput.toLowerCase()
-		//we need to do something to not split when attribute values themselves have spaces like polygon points
 		let checkParseInput = parseInput.split(' ')
 		let desiredTokens = this.props.svg.split(' ')
 		let match = true
@@ -31,10 +30,17 @@ class SVGCreator extends React.Component {
 		}
 		if ( match){
 			dispatch(incrementShape())
+			parseInput = parseInput.split(/=|(\s*(?:(['"`]).*?\2)\S*)\s?|\s/)
+			parseInput = parseInput.filter(x => x != '' &&  x != null && x != "\""  && x != "'")
+			desiredTokens = this.props.svg.split(/=|(\s*(?:(['"`]).*?\2)\S*)\s?|\s/)
+			desiredTokens = desiredTokens.filter(x => x != '' &&  x != null && x != "\"" && x != "'")
+			dispatch(addUserInputError(parseInput,desiredTokens))
 		}
 		else{
-			parseInput = parseInput.split(/ |=/)
-			desiredTokens = this.props.svg.split(/ |=/)
+			parseInput = parseInput.split(/=|(\s*(?:(['"`]).*?\2)\S*)\s?|\s/)
+			parseInput = parseInput.filter(x => x != '' &&  x != null && x != "\""  && x != "'")
+			desiredTokens = this.props.svg.split(/=|(\s*(?:(['"`]).*?\2)\S*)\s?|\s/)
+			desiredTokens = desiredTokens.filter(x => x != '' &&  x != null && x != "\"" && x != "'")
 			dispatch(addUserInputError(parseInput,desiredTokens))
 		}
 	}
