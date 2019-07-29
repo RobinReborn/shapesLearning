@@ -178,6 +178,7 @@ describe('<ShowShape/>', () => {
 		input.simulate('change', { target: { value: '<polygon points="0 95, 100 95, 50 9" fill="green"></polygon>'}});
 		wrapper.find('#submitSVG').simulate('click')
 		expect(wrapper.find("#error").text()).to.equal("")
+		expect(wrapper.find(Instructions).find('#instructions').text()).to.match(/^Congratulations, you are finished!/)
 
 
 	})

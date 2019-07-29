@@ -8,4 +8,4 @@ const level2Array = ['Fill in the color of the Circle','Fill in the color of the
 const level3Array = ['Try to generate the shape on the right, click submit when you are done or to get hints',
 					'Try to generate the shape on the right, click submit when you are done or to get hints',
 					'Try to generate the shape on the right, click submit when you are done or to get hints']
-export const instructionsArray = [level0Array,level1Array,level2Array,level3Array];
+export const instructionsArray = [level0Array,level1Array,level2Array,level3Array,["Congratulations, you are finished!"]];

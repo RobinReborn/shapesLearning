@@ -1,5 +1,5 @@
 import React from 'react';
-import {incrementShape,addUserInputError} from '../actions'
+import {incrementShape,addUserInputError,instructionIncrement} from '../actions'
 import { connect } from "react-redux";
 
 class SVGCreator extends React.Component {
@@ -37,7 +37,7 @@ class SVGCreator extends React.Component {
 		desiredTokens = desiredTokens.filter(x => x != '' &&  x != null && x != "\"" && x != "'")
 		if ( match){
 			dispatch(incrementShape())
-
+			dispatch(instructionIncrement())
 			dispatch(addUserInputError(parseInput,desiredTokens))
 			this.setState({svg: ''})
 			this.refs.svgText = ''
