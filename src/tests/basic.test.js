@@ -31,6 +31,7 @@ import UserInputTriangle from '../Shapes/UserInputTriangle';
 import Rectangle from '../Shapes/Rectangle';
 import Circle from '../Shapes/Circle';
 import SVGCreator from '../Shapes/SVGCreator';
+import Triangle from '../Shapes/Triangle';
 
 beforeAll(() => {
   const div = document.createElement('div');
@@ -71,7 +72,7 @@ describe('<ShowShape/>', () => {
 		const wrapper = mount(<Provider store={store}> <ShowShape/></Provider>,{ attachTo: window.domNode });
 		wrapper.find('.flipHolder').simulate('click')
 		wrapper.find('.flipHolder').simulate('click')
-
+		expect(wrapper.find(Instructions).find('#instructions').text()).to.match(/^Drag the items from the right to the appropriate location on the left Circle/)
 		let circleWrapper = wrapper.find(CircleElements)
 		let arrowVisibility = circleWrapper.find('.arrows').at(0).find('g').find('line').get(0).props.style
 		expect(arrowVisibility).to.have.property('display', 'none');
@@ -83,10 +84,13 @@ describe('<ShowShape/>', () => {
 		circleWrapper.find("Draggable").at(2).simulate("mouseup");
 		circleWrapper.find("Draggable").at(3).simulate("mousedown");
 		circleWrapper.find("Draggable").at(3).simulate("mouseup");
+		expect(wrapper.find(Instructions).find('#instructions').text()).to.match(/^click again to see the next shape/)
 
 		let reduxState = wrapper.state().store.getState()
 		expect(reduxState.snapReducer.snapped).to.deep.equal([ true, true, true, true ]);
 		wrapper.find('.card').at(1).simulate('click')
+		expect(wrapper.find(Instructions).find('#instructions').text()).to.match(/^Drag the items from the right to the appropriate location on the left Rectangle/)
+
 		expect(wrapper.find(DragAttrRectangle)).to.have.lengthOf(1)
 		let rectWrapper = wrapper.find(RectangleElements)
 		rectWrapper.find("Draggable").at(0).simulate("mousedown");
@@ -98,8 +102,12 @@ describe('<ShowShape/>', () => {
 		rectWrapper.find("Draggable").at(3).simulate("mousedown");
 		rectWrapper.find("Draggable").at(3).simulate("mouseup");
 		reduxState = wrapper.state().store.getState()
+
+		expect(wrapper.find(Instructions).find('#instructions').text()).to.match(/^click again to see the next shape/)
 		expect(reduxState.snapReducer.snapped).to.deep.equal([ true, true, true, true ]);
 		wrapper.find('.card').at(1).simulate('click')
+		expect(wrapper.find(Instructions).find('#instructions').text()).to.match(/^Drag the items from the right to the appropriate location on the left Triangle/)
+
 		expect(wrapper.find(DragAttrTriangle)).to.have.lengthOf(1)
 
 		let triWrapper = wrapper.find(TriangleElements)
@@ -112,22 +120,30 @@ describe('<ShowShape/>', () => {
 		triWrapper.find("Draggable").at(3).simulate("mousedown");
 		triWrapper.find("Draggable").at(3).simulate("mouseup");
 		reduxState = wrapper.state().store.getState()
+
+		expect(wrapper.find(Instructions).find('#instructions').text()).to.match(/^click again to see the next shape/)
+
 		expect(reduxState.snapReducer.snapped).to.deep.equal([ true, true, true, true ]);
 })
 	it("setting the right color for a userinput shape and clicking moves to the next shape", () => {
 	
 		const wrapper = mount(<Provider store={store}> <ShowShape/></Provider>);
 		wrapper.find('.card').at(1).simulate('click')
+		expect(wrapper.find(Instructions).find('#instructions').text()).to.match(/^Fill in the color of the Circle/)
 
 		expect(wrapper.find(UserInputCircle)).to.have.lengthOf(1)
 		let input = wrapper.find('input').at(3)
 		input.simulate('change', { target: { value: 'blue'}});
 		wrapper.find('.flipHolder').simulate('click')
 		expect(wrapper.find(UserInputRectangle)).to.have.lengthOf(1)
+		expect(wrapper.find(Instructions).find('#instructions').text()).to.match(/^Fill in the color of the Rectangle/)
+
 		input = wrapper.find('input').at(3)
 		input.simulate('change', { target: { value: 'red'}});
 		wrapper.find('.flipHolder').simulate('click')
 		expect(wrapper.find(UserInputTriangle)).to.have.lengthOf(1)
+		expect(wrapper.find(Instructions).find('#instructions').text()).to.match(/^Fill in the color of the Triangle/)
+
 		input = wrapper.find('input').at(3)
 		input.simulate('change', { target: { value: 'green'}});
 		wrapper.find('.flipHolder').simulate('click')
@@ -137,17 +153,32 @@ describe('<ShowShape/>', () => {
 		const wrapper = mount(<Provider store={store}> <ShowShape/></Provider>);
 		expect(wrapper.find(SVGCreator)).to.have.lengthOf(1)
 		let input = wrapper.find('input').at(3)
-		input.simulate('change', { target: { value: '<circle cx="50" cy="50" fill="blue" />'}});
+		input.simulate('change', { target: { value: '<circle cx="50" cy="50" fill="blue"></circle>'}});
 		wrapper.find('#submitSVG').simulate('click')
 
 		expect(wrapper.find("#error").text()).to.equal("r is missing ")
-		input.simulate('change', { target: { value: '<circle cx="50" r="40" cy="50" fill="blue" />'}});
+		input.simulate('change', { target: { value: '<circle cx="50" r="40" cy="50" fill="blue"></circle>'}});
 		wrapper.find('#submitSVG').simulate('click')
 		expect(wrapper.find("#error").text()).to.equal("r value is wrong, it should be \"50\" ")
 
-		input.simulate('change', { target: { value: '<circle cx="50" r="50" cy="50" fill="blue" />'}});
+		input.simulate('change', { target: { value: '<circle cx="50" r="50" cy="50" fill="blue"></circle>'}});
 		wrapper.find('#submitSVG').simulate('click')
 		expect(wrapper.find("#error").text()).to.equal("")
+		expect(wrapper.find(Instructions).find('#instructions').text()).to.match(/^Try to generate the shape on the right, click submit when you are done or to get hints/)
 		expect(wrapper.find(Rectangle)).to.have.lengthOf(1);
+
+		
+
+		input.simulate('change', { target: { value: '<rect width="100" height="70" y="18" fill="red"></rect>'}});
+		wrapper.find('#submitSVG').simulate('click')
+		expect(wrapper.find("#error").text()).to.equal("")
+		expect(wrapper.find(Instructions).find('#instructions').text()).to.match(/^Try to generate the shape on the right, click submit when you are done or to get hints/)
+		expect(wrapper.find(Triangle)).to.have.lengthOf(1);
+
+		input.simulate('change', { target: { value: '<polygon points="0 95, 100 95, 50 9" fill="green"></polygon>'}});
+		wrapper.find('#submitSVG').simulate('click')
+		expect(wrapper.find("#error").text()).to.equal("")
+
+
 	})
 })
