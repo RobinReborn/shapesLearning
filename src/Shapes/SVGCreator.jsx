@@ -55,7 +55,7 @@ class SVGCreator extends React.Component {
 			<button id='submitSVG' onClick={this.checkAccurate}>Submit</button>
 			</div>
 			<div className='card'>
-			<svg viewBox="0 0 100 100" dangerouslySetInnerHTML={{__html: this.state.svg}}></svg>
+			<svg viewBox={this.props.offset} dangerouslySetInnerHTML={{__html: this.state.svg}}></svg>
 
 			</div>
 

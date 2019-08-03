@@ -64,13 +64,13 @@ const UserInput = ({shape,update,level} ) => {
 		case 3 :{
 			switch (shape) {
 				case 'circle': {
-					return <SVGCreator svg='<circle r="50" cx="50" cy="50" fill="blue"></circle>'/>
+					return <SVGCreator svg='<circle r="50" cx="50" cy="50" fill="blue"></circle>' offset='0 0 100 100'/>
 				}
 				case 'rectangle' : {
-					return <SVGCreator svg='<rect width="100" height="70" fill="red"></rect>'/>
+					return <SVGCreator svg='<rect width="100" height="70" fill="red"></rect>' offset='0 -18 100 100'/>
 				}
 				case 'triangle' : {
-					return <SVGCreator svg='<polygon points="0 95, 100 95, 50 9" fill="green"></polygon>'/>
+					return <SVGCreator svg='<polygon points="0 95, 100 95, 50 9" fill="green"></polygon>' offset='0 0 100 100'/>
 				}
 				default : {
 					return <div/>

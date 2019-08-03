@@ -169,7 +169,7 @@ describe('<ShowShape/>', () => {
 
 		
 
-		input.simulate('change', { target: { value: '<rect width="100" height="70" y="18" fill="red"></rect>'}});
+		input.simulate('change', { target: { value: '<rect width="100" height="70" fill="red"></rect>'}});
 		wrapper.find('#submitSVG').simulate('click')
 		expect(wrapper.find("#error").text()).to.equal("")
 		expect(wrapper.find(Instructions).find('#instructions').text()).to.match(/^Try to generate the shape on the right, click submit when you are done or to get hints/)
