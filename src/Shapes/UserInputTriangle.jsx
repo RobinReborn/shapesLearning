@@ -34,8 +34,8 @@ class UserInputTriangle extends React.Component {
 				   			<text x="27" y="68" fontSize="8" fill={this.state.fillFont}>points="10 80,</text>
 				  			<text x="29" y="81" fontSize="8" fill={this.state.fillFont}>90 80, 50 30"</text>
 				  			<text x="17" y="93" fontSize="8" fill={this.state.fillFont}>fill="</text>
-				  			<foreignObject x="35" y="76" width="25" height="30"><input type='text' onChange={this.setFill}/></foreignObject>
-				  			<text x="59" y="93" fontSize="8" fill={this.state.fillFont}>"&lt;/polgon&gt;</text>
+				  			<foreignObject x="33" y="78" width="22" height="16"><input type='text' onChange={this.setFill}/></foreignObject>
+				  			<text x="56" y="93" fontSize="8" fill={this.state.fillFont}>"&lt;/polgon&gt;</text>
 						</svg>
 					</div>
 				</div>)
