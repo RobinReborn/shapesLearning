@@ -10,7 +10,7 @@ import UserInputCircle from './Shapes/UserInputCircle';
 import UserInputRectangle from './Shapes/UserInputRectangle';
 import UserInputTriangle from './Shapes/UserInputTriangle';
 import SVGCreator from './Shapes/SVGCreator';
-
+import CircleAnimation from './Shapes/CircleAnimation'
 const UserInput = ({shape,update,level} ) => {
 	switch (level) {
 		case 0 : {
@@ -71,6 +71,16 @@ const UserInput = ({shape,update,level} ) => {
 				}
 				case 'triangle' : {
 					return <SVGCreator svg='<polygon points="0 95, 100 95, 50 9" fill="green"></polygon>' offset='0 0 100 100'/>
+				}
+				default : {
+					return <div/>
+				}
+			}
+		}
+		case 4:{
+			switch (shape) {
+				case 'circle': {
+					return <CircleAnimation/>
 				}
 				default : {
 					return <div/>

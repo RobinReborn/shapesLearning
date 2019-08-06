@@ -153,15 +153,15 @@ describe('<ShowShape/>', () => {
 		const wrapper = mount(<Provider store={store}> <ShowShape/></Provider>);
 		expect(wrapper.find(SVGCreator)).to.have.lengthOf(1)
 		let input = wrapper.find('input').at(3)
-		input.simulate('change', { target: { value: '<circle cx="50" cy="50" fill="blue"></circle>'}});
+		input.simulate('change', { target: { value: '<circle fill="blue" > </circle>'}});
 		wrapper.find('#submitSVG').simulate('click')
 
 		expect(wrapper.find("#error").text()).to.equal("r is missing ")
-		input.simulate('change', { target: { value: '<circle cx="50" r="40" cy="50" fill="blue"></circle>'}});
+		input.simulate('change', { target: { value: '<circle r="40" fill="blue"></circle>'}});
 		wrapper.find('#submitSVG').simulate('click')
 		expect(wrapper.find("#error").text()).to.equal("r value is wrong, it should be \"50\" ")
 
-		input.simulate('change', { target: { value: '<circle cx="50" r="50" cy="50" fill="blue"></circle>'}});
+		input.simulate('change', { target: { value: '<circle r="50" fill="blue"> </circle>'}});
 		wrapper.find('#submitSVG').simulate('click')
 		expect(wrapper.find("#error").text()).to.equal("")
 		expect(wrapper.find(Instructions).find('#instructions').text()).to.match(/^Try to generate the shape on the right, click submit when you are done or to get hints/)
