@@ -29,7 +29,12 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
-
+WEBPACK_LOADER = {
+    'DEFAULT': {
+        'BUNDLE_DIR_NAME': 'bundles/',
+        'STATS_FILE': os.path.join(BASE_DIR, 'webpack-stats.json'),
+    }
+}
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -38,16 +43,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-     'webpack_loader',
+    'webpack_loader',
     'frontend' # enable the frontend app
 ]
+STATIC_ROOT = BASE_DIR
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'frontend/static'), # We do this so that django's collectstatic copies or our bundles to the STATIC_ROOT or syncs them to whatever storage we use.
+)
 
-WEBPACK_LOADER = {
-    'DEFAULT': {
-        'BUNDLE_DIR_NAME': 'bundles/',
-        'STATS_FILE': os.path.join(BASE_DIR, 'webpack-stats.json'),
-    }
-}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

@@ -11,7 +11,7 @@
   },
   "scripts": {
     "dev": "webpack --mode development --display-error-details ./djangoCode/frontend/src/* --output ./djangoCode/frontend/static/frontend/main.js",
-    "build": "webpack --mode production ./djangoCode/frontend/src/* --output ./djangoCode/frontend/static/frontend/main.js",
+     "build": "webpack --config webpack.config.js --progress --colors --mode development",
     "start": "react-scripts start",
     "test": "react-scripts test",
     "eject": "react-scripts eject",

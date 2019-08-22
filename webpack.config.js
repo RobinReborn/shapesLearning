@@ -8,7 +8,7 @@ module.exports = {
   entry: './djangoCode/frontend/static/js/frontend',
 
   output: {
-      path: path.resolve('./shape-learning/djangoCode/frontend/static/bundles/'),
+      path: path.resolve('./djangoCode/frontend/static/bundles/'),
       filename: "[name]-[hash].js",
   },
 
