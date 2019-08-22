@@ -11,7 +11,7 @@
   },
   "scripts": {
     "dev": "webpack --mode development --display-error-details ./djangoCode/frontend/src/* --output ./djangoCode/frontend/static/frontend/main.js",
-     "build": "webpack --config webpack.config.js --progress --colors --mode development",
+    "build": "webpack --config webpack.config.js --progress --colors --mode development",
     "start": "react-scripts start",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
@@ -34,6 +34,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
     "@babel/preset-react": "^7.0.0",
     "babel-core": "^6.26.3",

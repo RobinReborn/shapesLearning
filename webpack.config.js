@@ -5,22 +5,26 @@ var BundleTracker = require('webpack-bundle-tracker');
 module.exports = {
   context: __dirname,
 
-  entry: './djangoCode/frontend/static/js/frontend',
+  entry: './djangoCode/frontend/static/js/',
 
   output: {
-      path: path.resolve('./djangoCode/frontend/static/bundles/'),
+      path: path.resolve('djangoCode/frontend/static/bundles/'),
       filename: "[name]-[hash].js",
   },
 
   plugins: [
-    new BundleTracker({filename: './djangoCode/webpack-stats.json'}),
+    new BundleTracker({filename: 'djangoCode/webpack-stats.json'}),
   ],
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: ['babel-loader']
+      },
+      {
+        test: /\.css$/,
+        use: ['css-loader']
       }
     ]
   },

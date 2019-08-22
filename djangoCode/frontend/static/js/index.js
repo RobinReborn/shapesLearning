@@ -1,13 +1,17 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
+import React from 'react';
+import { render } from 'react-dom'
 
+import './index.css';
+import { Provider } from 'react-redux';
+import rootReducer from './reducers'
+import { createStore } from 'redux';
+import ShowShape from './ShowShape';
 
-function Welcome(props) {
-  return <h1>Hello, test</h1>;
-}
+const store = createStore(rootReducer)
 
-const element = <Welcome name="world" />;
-ReactDOM.render(
-  element,
-  document.getElementById('react')
-);
+render(
+	<Provider store={store}> 
+		<ShowShape/>
+	</Provider>, 
+	document.getElementById('root')
+)
