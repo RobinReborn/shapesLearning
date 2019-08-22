@@ -10,11 +10,12 @@
     "redux-thunk": "^2.3.0"
   },
   "scripts": {
-    "dev": "webpack --mode development ./djangoCode/frontend/src/index.js --output ./djangoCode/frontend/static/frontend/main.js",
-    "build": "webpack --mode production ./djangoCode/frontend/src/index.js --output ./djangoCode/frontend/static/frontend/main.js",
+    "dev": "webpack --mode development --display-error-details ./djangoCode/frontend/src/* --output ./djangoCode/frontend/static/frontend/main.js",
+    "build": "webpack --mode production ./djangoCode/frontend/src/* --output ./djangoCode/frontend/static/frontend/main.js",
     "start": "react-scripts start",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "watch": "webpack --config webpack.config.js --watch --mode development"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -35,9 +36,13 @@
     "@babel/core": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
     "@babel/preset-react": "^7.0.0",
+    "babel-core": "^6.26.3",
     "babel-loader": "^8.0.6",
     "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
     "chai": "^4.2.0",
+    "css-loader": "^3.2.0",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
     "mocha": "^6.2.0",
@@ -46,6 +51,7 @@
     "react-dom": "^16.9.0",
     "sinon": "^7.3.2",
     "webpack": "^4.39.2",
+    "webpack-bundle-tracker": "^0.4.2-beta",
     "webpack-cli": "^3.3.7"
   }
 }

@@ -9,6 +9,9 @@ verify_ssl = true
 django = "*"
 djangorestframework = "*"
 django-rest-knox = "*"
+django-webpack-loader = "*"
+
 
 [requires]
 python_version = "3.7"
+

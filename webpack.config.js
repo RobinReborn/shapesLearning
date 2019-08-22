@@ -1,13 +1,31 @@
+var path = require("path");
+var webpack = require('webpack');
+var BundleTracker = require('webpack-bundle-tracker');
+
 module.exports = {
+  context: __dirname,
+
+  entry: './djangoCode/frontend/static/js/frontend',
+
+  output: {
+      path: path.resolve('./shape-learning/djangoCode/frontend/static/bundles/'),
+      filename: "[name]-[hash].js",
+  },
+
+  plugins: [
+    new BundleTracker({filename: './djangoCode/webpack-stats.json'}),
+  ],
   module: {
     rules: [
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        use: {
-          loader: "babel-loader"
-        }
+        use: ['babel-loader']
       }
     ]
+  },
+  resolve: {
+    extensions: ['*', '.js', '.jsx']
   }
+
 };
