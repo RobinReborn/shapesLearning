@@ -4,10 +4,11 @@ import { render } from 'react-dom'
 import './index.css';
 import { Provider } from 'react-redux';
 import rootReducer from './reducers'
-import { createStore } from 'redux';
+import { createStore , applyMiddleware } from 'redux';
 import ShowShape from './ShowShape';
+import logger from 'redux-logger'
 
-const store = createStore(rootReducer)
+const store = createStore(rootReducer,applyMiddleware(logger))
 
 render(
 	<Provider store={store}> 

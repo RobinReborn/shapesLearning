@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'webpack_loader',
-    'frontend' # enable the frontend app
+    'frontend', # enable the frontend app
 ]
 STATIC_ROOT = BASE_DIR
 STATICFILES_DIRS = (
