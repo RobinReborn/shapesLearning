@@ -26,3 +26,4 @@ yarn-error.log*
 *.pyc
 */__pycache__/
 package-lock.json
+djangoCode/frontend/static/bundles/

@@ -8,9 +8,10 @@ import jsonfield
 
 
 class Action(models.Model):
-    ipAddress = models.CharField(max_length=50)
+    ipAddress = models.CharField(max_length=50, blank=True)
     time = models.DateTimeField(auto_now=True)
-    data = jsonfield.JSONField()
+    state = jsonfield.JSONField()
+    action = models.CharField(max_length=50)
 
 
 # Create your models here.
