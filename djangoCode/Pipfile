@@ -10,8 +10,7 @@ django = "*"
 djangorestframework = "*"
 django-rest-knox = "*"
 django-webpack-loader = "*"
-
+django-jsonfield = "*"
 
 [requires]
 python_version = "3.7"
-
