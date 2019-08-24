@@ -12,6 +12,7 @@ class Action(models.Model):
     time = models.DateTimeField(auto_now=True)
     state = jsonfield.JSONField()
     action = models.CharField(max_length=50)
+    stateSubset = jsonfield.JSONField()
     def __str__(self):
-        return "action " + self.action + " state " + self.state
+        return "action " + self.action + " stateSubset " + self.stateSubset + " time " + str(self.time)
 

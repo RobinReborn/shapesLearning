@@ -17,7 +17,8 @@ def index(request):
 def logging(request):
 	data = request.POST.dict()
 	print ("logging..." + str(data.keys()))
-	Action.objects.create(ipAddress = get_client_ip(request), state = data['state'], action = data['action']).save()
+	Action.objects.create(ipAddress = get_client_ip(request), state = data['state'], 
+		 stateSubset = data['stateSubset'],  action = data['action']).save()
 	return HttpResponse('')
 
 # Create your views here.
