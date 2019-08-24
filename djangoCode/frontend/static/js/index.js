@@ -21,14 +21,9 @@ function postLog(state, action){
 	Http.open("POST", url, true);
 	Http.setRequestHeader(header, token);
 	var formData = new FormData();
-	formData.append('state', JSON.stringify(state))
-	formData.append('action', JSON.stringify(action))
+	formData.append('state', state)//JSON.stringify(state))
+	formData.append('action', action)//JSON.stringify(action))
 	Http.send(formData)
-	//Http.send({} JSON.stringify(state) +'&action=' + JSON.stringify(state));
-
-/*	Http.onreadystatechange = (e) => {
-	  console.log(Http.responseText)
-	}*/
 	return true
 }
 const logger = createLogger({

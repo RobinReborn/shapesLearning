@@ -12,6 +12,6 @@ class Action(models.Model):
     time = models.DateTimeField(auto_now=True)
     state = jsonfield.JSONField()
     action = models.CharField(max_length=50)
+    def __str__(self):
+        return "action " + self.action + " state " + self.state
 
-
-# Create your models here.
