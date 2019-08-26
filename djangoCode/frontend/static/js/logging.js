@@ -34,6 +34,8 @@ function stateSubset(state, action){
 		return state['rootReducer']
 	}
 }
-export const logger = createLogger({
+const logger = createLogger({
 	predicate: (getState, action) => postLog(getState(), action)
 })
+
+export default logger;

@@ -11,7 +11,7 @@ module.exports = {
       path: path.resolve('djangoCode/frontend/static/bundles/'),
       filename: "[name]-[hash].js",
   },
-
+  devtool: 'source-map',
   plugins: [
     new BundleTracker({filename: 'djangoCode/webpack-stats.json'}),
   ],

@@ -1,15 +1,17 @@
 import {instructionsArray} from '../InstructionsArray';
-import {INSTRUCTION_INCREMENT, ADD_MISPLACED_ELEMENT_ERROR, CLEAR_ERROR, TOGGLE_CONTROL_PANEL,HIDE_CONTROL_PANEL_BUTTON,
-		SHOW_CONTROL_PANEL_BUTTON, SHOW_ARROW, CHANGE_ANGLE, ADD_USER_INPUT_ERROR} from '../actionTypes'
+import {INSTRUCTION_INCREMENT, CLEAR_ERROR, TOGGLE_CONTROL_PANEL,HIDE_CONTROL_PANEL_BUTTON,
+		SHOW_CONTROL_PANEL_BUTTON} from '../actionTypes'
+import { combineReducers } from "redux";
 
 const initialState = {
 	instructions: [0,0],
-	errors: {},
 	showControlState: 'hidden',
 	showControlPanelButton: 'hidden',
 	arrowVisible: ['none','none','none','none'],
+	errors: {},
 	rotates : [0,0,0,0]
 }
+
 function shallowCopyOfEnumerableOwnProperties( original )  
 {
     var clone = {} ;
@@ -23,16 +25,7 @@ function shallowCopyOfEnumerableOwnProperties( original )
 
 function instructionReducer(state=initialState,action){
 	switch(action.type){
-		case CHANGE_ANGLE:{
-			let rotateArray = state.rotates;
-			rotateArray[action.element] = action.angle;
-			return Object.assign({}, state, {rotates: rotateArray})
-		}
-		case SHOW_ARROW: {
-			let arrowArray =  state.arrowVisible.slice()
-			arrowArray[action.element] = 'block'
-			return Object.assign({}, state, {arrowVisible: arrowArray})
-		}
+		
 		case TOGGLE_CONTROL_PANEL: {
 			if (state.showControlState === 'visible'){
 			return Object.assign({}, state,{showControlState: 'hidden'})
@@ -56,28 +49,6 @@ function instructionReducer(state=initialState,action){
 				return Object.assign({}, state,{instructions: [instructions[0]+1,0], errors: {}})
 			}
 		}
-		case ADD_MISPLACED_ELEMENT_ERROR: {
-			return {...state, errors: { 
-				...state.errors,
-           [action.parameter]: action.message} 
-    	}}
-    	case ADD_USER_INPUT_ERROR: {
-    		let error = {}
-    		if (action.tokens[0] != action.desiredTokens[0]){
-    			error['Shape must begin with'] =  action.desiredTokens[0]
-    		}
-    		//check attributes
-    		for (let x =1; x< action.desiredTokens.length; x=x+2){
-	    		if (action.tokens.indexOf(action.desiredTokens[x]) == -1){
-	    			error[action.desiredTokens[x]] = 'is missing'
-	    		}
-	    		else if (action.tokens[action.tokens.indexOf(action.desiredTokens[x])+1] != action.desiredTokens[x+1]){
-	    			error[action.desiredTokens[x]] = "value is wrong, it should be " + action.desiredTokens[x+1]
-	    		}
-    		}
-    		return Object.assign({}, state, {errors: error})
-
-    	}
     	case CLEAR_ERROR: {
     		let newState = state
     		let stateErrors = newState.errors
@@ -92,4 +63,4 @@ function instructionReducer(state=initialState,action){
 		}
 	}
 }
-export default instructionReducer;
+export default instructionReducer

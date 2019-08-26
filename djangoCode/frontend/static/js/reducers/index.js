@@ -3,6 +3,7 @@ import {INCREMENT_SHAPE, INC_LEVEL, CHANGE_STATE} from "../actionTypes";
 import {shapeArray} from "../shapeArray";
 import snapReducer from "./snapReducer";
 import instructionsReducer from "./instructionsReducer"
+import errorReducer from './errorReducer';
 
 const initialState = {
   shape: 0,
@@ -38,4 +39,4 @@ function rootReducer(state = initialState, action) {
 };
 
 
-export default combineReducers({rootReducer, snapReducer, instructionsReducer});
+export default combineReducers({rootReducer, snapReducer, instructionsReducer, errorReducer});
