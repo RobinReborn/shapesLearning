@@ -46,7 +46,7 @@ const Instructions = ({instructions, errors, level, shape, showControlState, con
 
 const mapStateToProps = state => {
 	return {instructions: state.instructionsReducer.instructions,
-			 errors: state.instructionsReducer.errors,
+			 errors: state.errorReducer.errors,
 			 level: state.rootReducer.level,
 			 shape: state.rootReducer.shape,
 			 showControlState: state.instructionsReducer.showControlState,

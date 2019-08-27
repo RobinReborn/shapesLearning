@@ -86,7 +86,7 @@ describe('<ShowShape/>', () => {
 		circleWrapper.find("Draggable").at(3).simulate("mouseup");
 		expect(wrapper.find(Instructions).find('#instructions').text()).to.match(/^click again to see the next shape/)
 
-		let reduxState = wrapper.instance().state().store.getState()
+		let reduxState = store.getState()
 		expect(reduxState.snapReducer.snapped).to.deep.equal([ true, true, true, true ]);
 		wrapper.find('.card').at(1).simulate('click')
 		expect(wrapper.find(Instructions).find('#instructions').text()).to.match(/^Drag the items from the right to the appropriate location on the left Rectangle/)
@@ -101,7 +101,7 @@ describe('<ShowShape/>', () => {
 		rectWrapper.find("Draggable").at(2).simulate("mouseup");
 		rectWrapper.find("Draggable").at(3).simulate("mousedown");
 		rectWrapper.find("Draggable").at(3).simulate("mouseup");
-		reduxState = wrapper.state().store.getState()
+		reduxState = store.getState()
 
 		expect(wrapper.find(Instructions).find('#instructions').text()).to.match(/^click again to see the next shape/)
 		expect(reduxState.snapReducer.snapped).to.deep.equal([ true, true, true, true ]);
@@ -119,7 +119,7 @@ describe('<ShowShape/>', () => {
 		triWrapper.find("Draggable").at(2).simulate("mouseup");
 		triWrapper.find("Draggable").at(3).simulate("mousedown");
 		triWrapper.find("Draggable").at(3).simulate("mouseup");
-		reduxState = wrapper.state().store.getState()
+		reduxState = store.getState()
 
 		expect(wrapper.find(Instructions).find('#instructions').text()).to.match(/^click again to see the next shape/)
 
