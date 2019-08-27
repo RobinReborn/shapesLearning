@@ -25,9 +25,10 @@ def logging(request):
         level = str(json.loads(data['stateSubset'])['level']) + " , " + str(json.loads(data['stateSubset'])['shape'])
         print (level)
         if (level != '0 , 0'):
-            print(User.objects.order_by('time')[0].time)
-            timeDiff =  User.objects.order_by('time')[0].time - datetime.datetime.now(datetime.timezone.utc)
+            print(datetime.datetime.now(datetime.timezone.utc))
+            print(User.objects.order_by('-time')[0].time)
+            timeDiff =  datetime.datetime.now(datetime.timezone.utc) - User.objects.order_by('time')[0].time
         User.objects.create(ipAddress = get_client_ip(request),
             level= level,
-            timeDifference = timeDiff).save()
+            timeDifference = timeDiff,time = datetime.datetime.now(datetime.timezone.utc)).save()
     return HttpResponse('')

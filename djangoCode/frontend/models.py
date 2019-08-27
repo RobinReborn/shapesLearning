@@ -17,7 +17,9 @@ class Action(models.Model):
         return "action " + self.action + " stateSubset " + self.stateSubset + " time " + str(self.time)
 
 class User(models.Model):
-	level = models.CharField(max_length=50)
-	ipAddress = models.CharField(max_length=50, blank=True)
-	timeDifference = models.DurationField()
-	time = models.DateTimeField(auto_now=True)
+    level = models.CharField(max_length=50)
+    ipAddress = models.CharField(max_length=50, blank=True)
+    timeDifference = models.DurationField()
+    time = models.DateTimeField(auto_now=True)
+    def __str__(self):
+        return self.ipAddress + "  " + self.level + "  " + str(self.timeDifference.seconds)
