@@ -13,8 +13,9 @@ class Action(models.Model):
     state = jsonfield.JSONField()
     action = models.CharField(max_length=50)
     stateSubset = jsonfield.JSONField()
+    actionData = jsonfield.JSONField()
     def __str__(self):
-        return "action " + self.action + " stateSubset " + self.stateSubset + " time " + str(self.time)
+        return "action " + self.action + " stateSubset " + self.stateSubset + " time " + str(self.time) + "actionData" + str(self.actionData)
 
 class User(models.Model):
     level = models.CharField(max_length=50)

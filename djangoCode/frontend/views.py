@@ -19,7 +19,7 @@ def index(request):
 def logging(request):
     data = request.POST.dict()
     Action.objects.create(ipAddress = get_client_ip(request), state = data['state'], 
-    	 stateSubset = data['stateSubset'],  action = data['action']).save()
+    	 stateSubset = data['stateSubset'],  action = data['action'], actionData = data['actionData']).save()
     if (json.loads(data['action'])['type'] == "INCREMENT_SHAPE"):
         timeDiff = datetime.timedelta(milliseconds=0)
         level = str(json.loads(data['stateSubset'])['level']) + " , " + str(json.loads(data['stateSubset'])['shape'])

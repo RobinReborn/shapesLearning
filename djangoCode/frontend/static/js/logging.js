@@ -17,11 +17,16 @@ function postLog(state, action){
 	var formData = new FormData();
 	formData.append('state', JSON.stringify(state))
 	formData.append('action', JSON.stringify(action))
+	formData.append('actionData', JSON.stringify(actionData(action)))
 	formData.append('stateSubset', JSON.stringify(stateSubset(state, action)))
 	Http.send(formData)
 	return true
 }
-
+function actionData(action){
+	let data = Object.assign({}, action)
+	delete data.type;
+	return data;
+}
 function stateSubset(state, action){
 	const instructionActions = [INSTRUCTION_INCREMENT, ADD_MISPLACED_ELEMENT_ERROR, CLEAR_ERROR, TOGGLE_CONTROL_PANEL,HIDE_CONTROL_PANEL_BUTTON,
 		SHOW_CONTROL_PANEL_BUTTON, SHOW_ARROW, CHANGE_ANGLE, ADD_USER_INPUT_ERROR]
