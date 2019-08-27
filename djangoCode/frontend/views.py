@@ -23,10 +23,7 @@ def logging(request):
     if (json.loads(data['action'])['type'] == "INCREMENT_SHAPE"):
         timeDiff = datetime.timedelta(milliseconds=0)
         level = str(json.loads(data['stateSubset'])['level']) + " , " + str(json.loads(data['stateSubset'])['shape'])
-        print (level)
         if (level != '0 , 0'):
-            print(datetime.datetime.now(datetime.timezone.utc))
-            print(User.objects.order_by('-time')[0].time)
             timeDiff =  datetime.datetime.now(datetime.timezone.utc) - User.objects.order_by('time')[0].time
         User.objects.create(ipAddress = get_client_ip(request),
             level= level,
