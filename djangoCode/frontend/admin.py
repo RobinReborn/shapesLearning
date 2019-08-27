@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Action
+from .models import Action,User
 
 admin.site.register(Action)
-# Register your models here.
+admin.site.register(User)
