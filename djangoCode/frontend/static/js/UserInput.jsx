@@ -79,9 +79,9 @@ const UserInput = ({shape,update,level} ) => {
 		}
 		case 4:{
 			switch (shape) {
-				case 'circle': {
+				/*case 'circle': {
 					return <CircleAnimation/>
-				}
+				}*/
 				default : {
 					return <div/>
 				}
