@@ -1,11 +1,22 @@
 import {ADD_MISPLACED_ELEMENT_ERROR,SHOW_ARROW, 
-    CHANGE_ANGLE, ADD_USER_INPUT_ERROR} from '../actionTypes'
+    CHANGE_ANGLE, ADD_USER_INPUT_ERROR, CLEAR_ERROR} from '../actionTypes'
 
 const initialState = {
     errors: {},
     rotates : [0,0,0,0],
     arrowVisible: ['none','none','none','none']
 
+}
+
+function shallowCopyOfEnumerableOwnProperties( original )  
+{
+    var clone = {} ;
+    var i , keys = Object.keys( original ) ;
+    for ( i = 0 ; i < keys.length ; i ++ )
+    {
+        clone[ keys[ i ] ] = original[ keys[ i ] ] ;
+    }
+    return clone ;
 }
 function errorReducer(state=initialState,action){
     switch(action.type){
@@ -41,6 +52,15 @@ function errorReducer(state=initialState,action){
     		return Object.assign({}, state, {errors: error})
 
     	}
+        case CLEAR_ERROR: {
+            let newState = state
+            let stateErrors = newState.errors
+            delete stateErrors[action.error]
+            let newStateErrors = shallowCopyOfEnumerableOwnProperties(stateErrors)
+            let arrowArray =  state.arrowVisible.slice()
+            arrowArray[action.element] = 'none'
+            return Object.assign({}, state,{errors: newStateErrors, arrowVisible:arrowArray})
+        }
         default:{
             return state
         }

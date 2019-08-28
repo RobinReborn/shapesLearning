@@ -38,7 +38,7 @@ export function handleStop(e,ui){
 		ui.node.style.visibility = "hidden";
 		dispatch(snapSet(elementNumber))
 		dispatch(clearError(ui.node.children[0].textContent,elementNumber))
-		document.getElementsByClassName('arrows')[elementNumber].style.display = 'none'
+		document.getElementsByClassName('arrows')[elementNumber].style.visibility = 'hidden'
 		if(checkFinished()){
 			dispatch(instructionIncrement())
 		}		
