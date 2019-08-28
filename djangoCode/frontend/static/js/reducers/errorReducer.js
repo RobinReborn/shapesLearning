@@ -41,7 +41,11 @@ function errorReducer(state=initialState,action){
     			error['Shape must begin with'] =  action.desiredTokens[0]
     		}
     		//check attributes
-    		for (let x =1; x< action.desiredTokens.length; x=x+2){
+            let end = action.desiredTokens.length;
+            if (action.desiredTokens.indexOf('>') != -1){
+                end = action.desiredTokens.indexOf('>')
+            }
+    		for (let x =1; x< end; x=x+2){
 	    		if (action.tokens.indexOf(action.desiredTokens[x]) == -1){
 	    			error[action.desiredTokens[x]] = 'is missing'
 	    		}
@@ -49,6 +53,10 @@ function errorReducer(state=initialState,action){
 	    			error[action.desiredTokens[x]] = "value is wrong, it should be " + action.desiredTokens[x+1]
 	    		}
     		}
+            //check for closing tag
+            if (action.tokens[end+1] != action.desiredTokens[end+1]){
+                error[action.desiredTokens[end+1]] = 'needs to be at the end'
+            }
     		return Object.assign({}, state, {errors: error})
 
     	}

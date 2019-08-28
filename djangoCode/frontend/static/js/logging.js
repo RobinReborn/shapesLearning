@@ -11,7 +11,6 @@ function postLog(state, action){
 	const url='/logging';
 	const header =  "X-CSRFToken";
     const token = Cookies.get('csrftoken');
-    console.log(action) 
 	Http.open("POST", url, true);
 	Http.setRequestHeader(header, token);
 	var formData = new FormData();

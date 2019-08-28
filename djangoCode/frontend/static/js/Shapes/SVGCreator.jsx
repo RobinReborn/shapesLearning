@@ -21,9 +21,9 @@ class SVGCreator extends React.Component {
 		parseInput = parseInput.toLowerCase()
 		parseInput = parseInput.replace(/'/g,"\"")
 
-		let checkParseInput = parseInput.split(/=|>|(\s*(?:(['"`]).*?\2)[^>|\s]*)\s?|\s/)
-												
-		let desiredTokens = this.props.svg.split(/=|>|(\s*(?:(['"`]).*?\2)[^>|\s]*)\s?|\s/)
+		let checkParseInput = parseInput.split(/=|(\s*(?:(['"`]).*?\2)[^>|\s]*)\s?|\s/)	
+										  
+		let desiredTokens = this.props.svg.split(/=|(\s*(?:(['"`]).*?\2)[^>|\s]*)\s?|\s/)	
 		let match = true
 		for(let x of desiredTokens){
 			if (checkParseInput.indexOf(x) ==-1){
@@ -31,10 +31,10 @@ class SVGCreator extends React.Component {
 				break;
 			}
 		}
-		parseInput = parseInput.split(/=|>|(\s*(?:(['"`]).*?\2)[^>|\s]*)\s?|\s/)
-		parseInput = parseInput.filter(x => x != '' &&  x != null  && x != "'")
-		desiredTokens = this.props.svg.split(/=|>|(\s*(?:(['"`]).*?\2)[^>|\s]*)\s?|\s/)
-		desiredTokens = desiredTokens.filter(x => x != '' &&  x != null && x != "\"" && x != "'")
+		parseInput = parseInput.split(/=|(\s*(?:(['"`]).*?\2)[^>|\s]*)\s?|\s/)	
+		parseInput = parseInput.filter(x => x != '' &&  x != null  && x != "'" && x != "\"")
+		desiredTokens = this.props.svg.split(/=|(\s*(?:(['"`]).*?\2)[^>|\s]*)\s?|\s/)	
+		desiredTokens = desiredTokens.filter(x => x != '' &&  x != null && x != "\"" && x != "'" && x != "\"")
 		if ( match){
 			dispatch(incrementShape())
 			dispatch(instructionIncrement())
