@@ -50,11 +50,11 @@ class SVGCreator extends React.Component {
 	render(){
 		return(
 			<div className='flipHolder' >
-			<div className='card' style={{height: "100%", zIndex: "1"}}>
+			<div className='card' style={{height: "90%", zIndex: "1"}}>
 			<input className='svgInput' type='text' onChange={this.setSVG} ref='svgText'/>
 			<button id='submitSVG' onClick={this.checkAccurate}>Submit</button>
 			</div>
-			<div className='card'>
+			<div className='card' style={{opacity: "0.5"}}>
 			<svg viewBox={this.props.offset} dangerouslySetInnerHTML={{__html: this.state.svg}}></svg>
 
 			</div>

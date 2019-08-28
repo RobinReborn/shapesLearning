@@ -94,6 +94,13 @@ foreignObject input{
 body{
 	font-family: "Helvetica Neue", "Arial", sans-serif;
 }
+#submitSVG {
+	height: 10%;
+    width: 80%;
+    margin-top: 2%;
+    border-radius: 1em;
+    border-style: solid;
+}
 #arrowHolder{
 	width:100%;
 	height:100%;
