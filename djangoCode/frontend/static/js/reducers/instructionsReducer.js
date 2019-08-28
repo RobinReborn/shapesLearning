@@ -9,7 +9,6 @@ const initialState = {
 	showControlPanelButton: 'hidden',
 	arrowVisible: ['none','none','none','none'],
 	errors: {},
-	rotates : [0,0,0,0]
 }
 
 function shallowCopyOfEnumerableOwnProperties( original )  

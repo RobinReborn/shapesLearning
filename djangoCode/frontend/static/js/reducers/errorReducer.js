@@ -2,7 +2,10 @@ import {ADD_MISPLACED_ELEMENT_ERROR,SHOW_ARROW,
     CHANGE_ANGLE, ADD_USER_INPUT_ERROR} from '../actionTypes'
 
 const initialState = {
-    errors: {}
+    errors: {},
+    rotates : [0,0,0,0],
+    arrowVisible: ['none','none','none','none']
+
 }
 function errorReducer(state=initialState,action){
     switch(action.type){

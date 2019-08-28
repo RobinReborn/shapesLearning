@@ -47,5 +47,5 @@ class CircleElements extends React.Component{
 
 
 const mapStateToProps = (state) => {
-	return {arrowVisible: state.instructionsReducer.arrowVisible, rotates: state.instructionsReducer.rotates}};
+	return {arrowVisible: state.errorReducer.arrowVisible, rotates: state.errorReducer.rotates}};
 export default connect(mapStateToProps)(CircleElements);
