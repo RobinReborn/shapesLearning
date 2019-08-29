@@ -7,5 +7,5 @@ const level1Array = ['Drag the items from the right to the appropriate location 
 const level2Array = ['Fill in the color of the Circle','Fill in the color of the Rectangle','Fill in the color of the Triangle']
 const level3Array = ['Try to generate the circle on the right, click submit when you are done or to get hints its radius is 50',
 					'Try to generate the rectangle on the right, its width is 100 and its height is 80, click submit when you are done or to get hints',
-					'Try to generate the triangle on the right, its points are at 10 80, 90 80 and 50 30 click submit when you are done or to get hints']
+					'Try to generate the triangle on the right, its points are at 0 95 100 95 and 50 9 click submit when you are done or to get hints']
 export const instructionsArray = [level0Array,level1Array,level2Array,level3Array,["Congratulations, you are finished!"]];

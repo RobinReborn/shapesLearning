@@ -19,8 +19,8 @@ class ClickTriangle extends React.Component{
 		        <div className='card'>
 			        <svg viewBox="0 0 100 100" className='ClickTriangle'>
 			  			<text x="38" y="55"  fill="black">&lt;polygon</text>
-			   			<text x="31" y="68"  fill="black">points="10 80,</text>
-			  			<text x="33" y="81"  fill="black">90 80, 50 30"</text>
+			   			<text x="31" y="68"  fill="black">points="0 95,</text>
+			  			<text x="33" y="81"  fill="black">100 95, 50 9"</text>
 			  			<text x="23" y="93"  fill="black">fill="green"&gt;&lt;/polygon&gt;</text>
 					</svg>
 				</div> 
