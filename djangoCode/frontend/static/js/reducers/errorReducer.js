@@ -37,25 +37,24 @@ function errorReducer(state=initialState,action){
     	   }}
     	case ADD_USER_INPUT_ERROR: {
     		let error = {}
-    		if (action.tokens[0] != action.desiredTokens[0]){
-    			error['Shape must begin with'] =  action.desiredTokens[0]
+    		if (action.tokens[0][0] != action.desiredTokens[0][0]){
+    			error['Shape must begin with'] =  action.desiredTokens[0][0]
     		}
     		//check attributes
-            let end = action.desiredTokens.length;
-            if (action.desiredTokens.indexOf('>') != -1){
-                end = action.desiredTokens.indexOf('>')
-            }
-    		for (let x =1; x< end; x=x+2){
-	    		if (action.tokens.indexOf(action.desiredTokens[x]) == -1){
-	    			error[action.desiredTokens[x]] = 'is missing'
+
+            //we are assuming a pairing of attributes and values
+    		for (let x =1; x< action.desiredTokens[0].length-1; x=x+2){
+	    		if (action.tokens[0].indexOf(action.desiredTokens[0][x]) == -1){
+	    			error[action.desiredTokens[0][x]] = 'is missing'
 	    		}
-	    		else if (action.tokens[action.tokens.indexOf(action.desiredTokens[x])+1] != action.desiredTokens[x+1]){
-	    			error[action.desiredTokens[x]] = "value is wrong, it should be " + action.desiredTokens[x+1]
+	    		else if (action.tokens[0][action.tokens[0].indexOf(action.desiredTokens[0][x])+1] != action.desiredTokens[0][x+1]){
+	    			error[action.desiredTokens[0][x]] = "value is wrong, it should be " + action.desiredTokens[0][x+1]
 	    		}
     		}
+
             //check for closing tag
-            if (action.tokens[end+1] != action.desiredTokens[end+1]){
-                error[action.desiredTokens[end+1]] = 'needs to be at the end'
+            if (action.tokens[1] != action.desiredTokens[1]){
+                error[action.desiredTokens[1]] = 'needs to be at the end'
             }
     		return Object.assign({}, state, {errors: error})
 

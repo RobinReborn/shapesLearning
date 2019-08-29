@@ -164,7 +164,7 @@ describe('<ShowShape/>', () => {
 		input.simulate('change', { target: { value: '<circle r="50" fill="blue"> </circle>'}});
 		wrapper.find('#submitSVG').simulate('click')
 		expect(wrapper.find("#error").text()).to.equal("")
-		expect(wrapper.find(Instructions).find('#instructions').text()).to.match(/^Try to generate the shape on the right, click submit when you are done or to get hints/)
+		expect(wrapper.find(Instructions).find('#instructions').text()).to.match(/^Try to generate the rectangle on the right, its width is 100 and its height is 80/)
 		expect(wrapper.find(Rectangle)).to.have.lengthOf(1);
 
 		
@@ -172,7 +172,7 @@ describe('<ShowShape/>', () => {
 		input.simulate('change', { target: { value: '<rect width="100" height="70" fill="red"></rect>'}});
 		wrapper.find('#submitSVG').simulate('click')
 		expect(wrapper.find("#error").text()).to.equal("")
-		expect(wrapper.find(Instructions).find('#instructions').text()).to.match(/^Try to generate the shape on the right, click submit when you are done or to get hints/)
+		expect(wrapper.find(Instructions).find('#instructions').text()).to.match(/^Try to generate the triangle on the right/)
 		expect(wrapper.find(Triangle)).to.have.lengthOf(1);
 
 		input.simulate('change', { target: { value: '<polygon points="0 95, 100 95, 50 9" fill="green"></polygon>'}});

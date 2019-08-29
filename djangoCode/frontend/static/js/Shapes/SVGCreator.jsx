@@ -20,21 +20,23 @@ class SVGCreator extends React.Component {
 		parseInput = parseInput.replace(/\s+/g, " ");
 		parseInput = parseInput.toLowerCase()
 		parseInput = parseInput.replace(/'/g,"\"")
+		let htmlTagRe = /<\/?[\w\s="/.':;#-\/\?]+>/gi;			  
 
-		let checkParseInput = parseInput.split(/=|(\s*(?:(['"`]).*?\2)[^>|\s]*)\s?|\s/)	
-										  
-		let desiredTokens = this.props.svg.split(/=|(\s*(?:(['"`]).*?\2)[^>|\s]*)\s?|\s/)	
+		parseInput = parseInput.match(htmlTagRe)
+		let checkParseInput = parseInput[0].split(/=|(\s*(?:(['"`]).*?\2)[^>|\s]*)\s?|\s/)	
+		let desiredTokens = this.props.svg.match(htmlTagRe)
+		desiredTokens[0] = desiredTokens[0].split(/=|(\s*(?:(['"`]).*?\2)[^>|\s]*)\s?|\s/)	
 		let match = true
-		for(let x of desiredTokens){
+		for(let x of desiredTokens[0]){
 			if (checkParseInput.indexOf(x) ==-1){
 				match = false;
 				break;
 			}
 		}
-		parseInput = parseInput.split(/=|(\s*(?:(['"`]).*?\2)[^>|\s]*)\s?|\s/)	
-		parseInput = parseInput.filter(x => x != '' &&  x != null  && x != "'" && x != "\"")
-		desiredTokens = this.props.svg.split(/=|(\s*(?:(['"`]).*?\2)[^>|\s]*)\s?|\s/)	
-		desiredTokens = desiredTokens.filter(x => x != '' &&  x != null && x != "\"" && x != "'" && x != "\"")
+		parseInput[0] = parseInput[0].split(/=|(\s*(?:(['"`]).*?\2)[^>|\s]*)\s?|\s/)	
+		parseInput[0] = parseInput[0].filter(x => x != '' &&  x != null  && x != "'" && x != "\"")
+		//desiredTokens[0] = this.props.svg.split(/=|(\s*(?:(['"`]).*?\2)[^>|\s]*)\s?|\s/)	
+		desiredTokens[0] = desiredTokens[0].filter(x => x != '' &&  x != null && x != "\"" && x != "'" && x != "\"")
 		if ( match){
 			dispatch(incrementShape())
 			dispatch(instructionIncrement())
