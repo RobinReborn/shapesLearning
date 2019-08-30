@@ -1,5 +1,5 @@
 import {ADD_MISPLACED_ELEMENT_ERROR,SHOW_ARROW, 
-    CHANGE_ANGLE, ADD_USER_INPUT_ERROR, CLEAR_ERROR} from '../actionTypes'
+    CHANGE_ANGLE, ADD_USER_INPUT_ERROR, CLEAR_ERROR,UNKNOWN_ERROR} from '../actionTypes'
 
 const initialState = {
     errors: {},
@@ -35,13 +35,15 @@ function errorReducer(state=initialState,action){
 				...state.errors,
            [action.parameter]: action.message} 
     	   }}
+        case UNKNOWN_ERROR: {
+            return {...state, errors: {"unknown" :  "error"}}
+        }
     	case ADD_USER_INPUT_ERROR: {
     		let error = {}
     		if (action.tokens[0][0] != action.desiredTokens[0][0]){
     			error['Shape must begin with'] =  action.desiredTokens[0][0]
     		}
     		//check attributes
-
             //we are assuming a pairing of attributes and values
     		for (let x =1; x< action.desiredTokens[0].length-1; x=x+2){
 	    		if (action.tokens[0].indexOf(action.desiredTokens[0][x]) == -1){
