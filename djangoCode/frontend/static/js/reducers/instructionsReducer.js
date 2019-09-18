@@ -48,15 +48,7 @@ function instructionReducer(state=initialState,action){
 				return Object.assign({}, state,{instructions: [instructions[0]+1,0], errors: {}})
 			}
 		}
-    	case CLEAR_ERROR: {
-    		let newState = state
-    		let stateErrors = newState.errors
-    		delete stateErrors[action.error]
-    		let newStateErrors = shallowCopyOfEnumerableOwnProperties(stateErrors)
-    		let arrowArray =  state.arrowVisible.slice()
-    		arrowArray[action.element] = 'none'
-    		return Object.assign({}, state,{errors: newStateErrors, arrowVisible:arrowArray})
-    	}
+    	
 		default:{
 			return state
 		}

@@ -27,3 +27,4 @@ yarn-error.log*
 */__pycache__/
 package-lock.json
 djangoCode/frontend/static/bundles/
+djangoCode/webpack-stats.json

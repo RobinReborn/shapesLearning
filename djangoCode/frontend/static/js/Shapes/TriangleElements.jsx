@@ -31,9 +31,9 @@ class TriangleElements extends React.Component{
 				<Draggable onDrag={this.handleDrag} onStop={this.handleStop}><svg ref='Draggable_0' id='Draggable_0' viewBox="0 0 100 14">
 					<text className='Draggable' x="34.5" y="9" fontSize="8" fill="black">&lt;polygon</text></svg></Draggable>
 				<Draggable onDrag={this.handleDrag} onStop={this.handleStop}><svg ref='Draggable_1' id='Draggable_1' viewBox="0 0 100 14">
-					<text className='Draggable' x="27" y="9" fontSize="8" fill="black">points="10 80,</text></svg></Draggable>
+					<text className='Draggable' x="27" y="9" fontSize="8" fill="black">points="0 95,</text></svg></Draggable>
 				<Draggable onDrag={this.handleDrag} onStop={this.handleStop}><svg ref='Draggable_2' id='Draggable_2'  viewBox="0 0 100 14">
-					<text className='Draggable' x="29" y="8" fontSize="8" fill="black">90 80, 50 30"</text></svg></Draggable>
+					<text className='Draggable' x="29" y="8" fontSize="8" fill="black">100 95, 50 9"</text></svg></Draggable>
 				<Draggable onDrag={this.handleDrag} onStop={this.handleStop}><svg ref='Draggable_3' id='Draggable_3' viewBox="0 0 100 14">
 					<text className='Draggable' x="14" y="8" fontSize="8" fill="black">fill="green" &lt;/polgon&gt;</text></svg></Draggable>
 			</div>

@@ -64,13 +64,13 @@ const UserInput = ({shape,update,level} ) => {
 		case 3 :{
 			switch (shape) {
 				case 'circle': {
-					return <SVGCreator svg='<circle r="50" fill="blue"></circle>' offset='-50 -50 100 100'/>
+					return <SVGCreator svg='<circle r="50" fill="blue"> </circle>' offset='-50 -50 100 100'/>
 				}
 				case 'rectangle' : {
-					return <SVGCreator svg='<rect width="100" height="70" fill="red"></rect>' offset='0 -18 100 100'/>
+					return <SVGCreator svg='<rect width="100" height="70" fill="red"> </rect>' offset='0 -18 100 100'/>
 				}
 				case 'triangle' : {
-					return <SVGCreator svg='<polygon points="0 95, 100 95, 50 9" fill="green"></polygon>' offset='0 0 100 100'/>
+					return <SVGCreator svg='<polygon points="0 95, 100 95, 50 9" fill="green"> </polygon>' offset='0 0 100 100'/>
 				}
 				default : {
 					return <div/>
@@ -79,9 +79,9 @@ const UserInput = ({shape,update,level} ) => {
 		}
 		case 4:{
 			switch (shape) {
-				case 'circle': {
+				/*case 'circle': {
 					return <CircleAnimation/>
-				}
+				}*/
 				default : {
 					return <div/>
 				}

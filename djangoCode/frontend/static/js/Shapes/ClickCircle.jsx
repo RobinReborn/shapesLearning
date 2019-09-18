@@ -19,7 +19,7 @@ class ClickCircle extends React.Component{
 	        <div className='card'>
 		        <svg viewBox="0 0 100 100" className='ClickShape'>
 		  			<text x="32" y="25"  fill="black">&lt;circle</text>
-		   			<text x="33" y="45"  fill="black">r="100"</text>
+		   			<text x="33" y="45"  fill="black">r="50"</text>
 		  			<text x="26" y="65"  fill="black">fill="blue"&gt;</text>
 		  			<text x="29" y="85"  fill="black">&lt;/circle&gt;</text>
 				</svg>

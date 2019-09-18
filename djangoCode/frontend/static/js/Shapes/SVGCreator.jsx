@@ -1,5 +1,5 @@
 import React from 'react';
-import {incrementShape,addUserInputError,instructionIncrement} from '../actions'
+import {incrementShape,addUserInputError,instructionIncrement, unknownError} from '../actions'
 import { connect } from "react-redux";
 
 class SVGCreator extends React.Component {
@@ -12,40 +12,49 @@ class SVGCreator extends React.Component {
 	setSVG = text => {
 		this.setState({svg: text.target.value})
 	}
-	checkAccurate(){
-		
-		const {dispatch} = this.props;
-		//remove linebreaks etc,  by token?
-		let parseInput = this.state.svg.replace(/(\r\n|\n|\r)/gm," ");
-		parseInput = parseInput.replace(/\s+/g, " ");
-		parseInput = parseInput.toLowerCase()
-		parseInput = parseInput.replace(/'/g,"\"")
 
-		let checkParseInput = parseInput.split(/=|>|(\s*(?:(['"`]).*?\2)[^>|\s]*)\s?|\s/)
-												
-		let desiredTokens = this.props.svg.split(/=|>|(\s*(?:(['"`]).*?\2)[^>|\s]*)\s?|\s/)
-		let match = true
-		for(let x of desiredTokens){
-			if (checkParseInput.indexOf(x) ==-1){
-				match = false;
-				break;
+	checkAccurate(){
+		const {dispatch} = this.props;
+		try {
+			
+			//remove linebreaks etc,  by token
+			let parseInput = this.state.svg.replace(/(\r\n|\n|\r)/gm," ");
+			parseInput = parseInput.replace(/\s+/g, " ");
+			parseInput = parseInput.toLowerCase()
+			parseInput = parseInput.replace(/'/g,"\"")
+			let htmlTagRe = /<\/?[\w\s="/.':;#-\/\?]+>/gi;			  
+
+			parseInput = parseInput.match(htmlTagRe)
+			let checkParseInput = parseInput[0].split(/=|(\s*(?:(['"`]).*?\2)[^>|\s]*)\s?|\s/)	
+			let desiredTokens = this.props.svg.match(htmlTagRe)
+			desiredTokens[0] = desiredTokens[0].split(/=|(\s*(?:(['"`]).*?\2)[^>|\s]*)\s?|\s/)	
+			let match = true
+			for(let x of desiredTokens[0]){
+				if (checkParseInput.indexOf(x) ==-1){
+					match = false;
+					break;
+				}
+			}
+			parseInput[0] = parseInput[0].split(/=|(\s*(?:(['"`]).*?\2)[^>|\s]*)\s?|\s/)	
+			parseInput[0] = parseInput[0].filter(x => x != '' &&  x != null  && x != "'" && x != "\"")
+			desiredTokens[0] = desiredTokens[0].filter(x => x != '' &&  x != null && x != "\"" && x != "'" && x != "\"")
+			if ( match){
+				dispatch(incrementShape())
+				dispatch(instructionIncrement())
+				dispatch(addUserInputError(parseInput,desiredTokens))
+				this.refs.svgText.value = ''
+				this.setState({svg: ''})
+			}
+			else{
+				dispatch(addUserInputError(parseInput,desiredTokens))
 			}
 		}
-		parseInput = parseInput.split(/=|>|(\s*(?:(['"`]).*?\2)[^>|\s]*)\s?|\s/)
-		parseInput = parseInput.filter(x => x != '' &&  x != null  && x != "'")
-		desiredTokens = this.props.svg.split(/=|>|(\s*(?:(['"`]).*?\2)[^>|\s]*)\s?|\s/)
-		desiredTokens = desiredTokens.filter(x => x != '' &&  x != null && x != "\"" && x != "'")
-		if ( match){
-			dispatch(incrementShape())
-			dispatch(instructionIncrement())
-			dispatch(addUserInputError(parseInput,desiredTokens))
-			this.setState({svg: ''})
-			this.refs.svgText = ''
-		}
-		else{
-			dispatch(addUserInputError(parseInput,desiredTokens))
+		
+		catch(err) {
+  			dispatch(unknownError())
 		}
 	}
+
 
 	render(){
 		return(
@@ -54,7 +63,7 @@ class SVGCreator extends React.Component {
 			<input className='svgInput' type='text' onChange={this.setSVG} ref='svgText'/>
 			<button id='submitSVG' onClick={this.checkAccurate}>Submit</button>
 			</div>
-			<div className='card'>
+			<div className='card' style={{opacity: "0.5"}}>
 			<svg viewBox={this.props.offset} dangerouslySetInnerHTML={{__html: this.state.svg}}></svg>
 
 			</div>
