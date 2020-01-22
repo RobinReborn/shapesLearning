@@ -7,7 +7,7 @@
 djangoCode/VenvDjango/
 # testing
 /coverage
-
+djangoCode/bundles/
 # production
 /build
 
