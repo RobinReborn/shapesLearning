@@ -40,7 +40,6 @@ beforeAll(() => {
 })
 
 
-import { assert } from 'chai';
 
 describe('<ShowShape/>', () => {
 	let store = createStore(rootReducer)

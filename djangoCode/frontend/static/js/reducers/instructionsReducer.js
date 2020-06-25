@@ -1,7 +1,6 @@
 import {instructionsArray} from '../InstructionsArray';
 import {INSTRUCTION_INCREMENT, CLEAR_ERROR, TOGGLE_CONTROL_PANEL,HIDE_CONTROL_PANEL_BUTTON,
 		SHOW_CONTROL_PANEL_BUTTON} from '../actionTypes'
-import { combineReducers } from "redux";
 
 const initialState = {
 	instructions: [0,0],
